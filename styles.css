@@ -42,8 +42,7 @@ body {
 }
 
 .btn_gotomainmenu{
-    /* background-color: #fff500; */
-    background: linear-gradient(135deg, #fff500, #f0ea39); /* Градиентный фон */
+    background-color: #fff500;
     border-radius: 10px;
     padding: 10px;
     font-size:14px;
@@ -51,7 +50,7 @@ body {
     align-items: center; 
     justify-content: center; 
     gap: 8px; 
-    /* box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.2); */
+    
 }
 
 .btn_gotomainmenu:active {
