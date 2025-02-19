@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+button,input {
+    border:none;
+    outline: none;
+    background: none;
+    font-family:Montserrat;
+}
+
+body {
+    font-family:Montserrat;
+    /* align-items: center;
+    justify-content: center; */
+    height: 100vh;
+    background-color: #ffffff ;
+    color:rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight:bold;
+    align-items:left;
+    margin:20px 0px 20px 0px;
+}
+
+.appspace {
+    /* width: 400px; */
+    width:100%;
+    max-width: 400px;
+    /* background-color: salmon; */
+    padding: 0px 20px 0px 20px;
+    height: 100vh;
+}
+
+.btn_gotomainmenu{
+    /* background-color: #fff500; */
+    background: linear-gradient(135deg, #fff500, #f0ea39); /* Градиентный фон */
+    border-radius: 10px;
+    padding: 10px;
+    font-size:14px;
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+    /* box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.2); */
+}
+
+.btn_gotomainmenu:active {
+    transform: translateY(1px); 
+    /* box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2); */
+}
+
+.gotomainmenuicon{
+    width:20px;
+    height: 20px;
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+}
+
+.index__btndiv {
+    margin: 50px 0px;
+}
+
+.index__btn {
+    background-color: #fff500;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 15px;
+    font-size:16px;
+    width: 100%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189);
+}
+
+.index__btn:active {
+    transform: translateY(1px); 
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* стили для страницы dateinterval */
+.dateinterval__calendardiv{
+    margin-top:50px;
+}
+
+.wrapper__dateinterval__routingbtn{
+/* display: flex;
+align-items: flex-end;  */
+height: 200px;
+position: relative;
+}
+
+
+.dateinterval__routingbtn {
+    text-align: center;
+    position: absolute;
+    bottom: 0; /* Прижатие к низу */
+    left: 50%;
+    transform: translateX(-50%);
+   
+}
+
+.date-container {
+    margin-bottom: 20px;
+}
+
+.date-container label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+
+.nextBtn {
+background-color: #fff500;
+margin: 40px 0px 20px 0px;
+border-radius: 10px;
+padding: 15px;
+font-size:16px;
+width: 100%;
+box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189);
+}
+
+
+
+.nextBtn:disabled {
+     background-color: #fff500;  
+color: #040404;  
+/* border: 1px solid #B1B1B1;   */
+cursor: not-allowed;     
+pointer-events: none;    
+opacity: 0.5;
+/* box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189); */
+}
+
+.nextBtn:active {
+    transform: translateY(1px); 
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189);
+}
+
+
+#dropdown {
+    width: 100%;             
+    border: 1px solid #DEBB70; 
+    color: white;           
+    background-color: #1b1d22; 
+    padding: 10px;           
+    border-radius: 5px;      
+  }
+  
+.inputdate {
+    width: 100%;             
+    border: 1px solid #000000; 
+    color: rgb(0, 0, 0);         
+    background-color: #d4d3d6; 
+    padding: 10px;           
+    font-size: 16px;         
+    border-radius: 5px;      
+  }
+  
+.labeldi {
+        font-weight: 300 !important; 
+          color: #000000;   
+          font-size: 16px;  
+          margin-bottom: 5px; 
+          display: block;    
+      }
+
+.textunderbtnclass {
+    font-size:14px;
+text-align:center;
+}
+
+.nonvisible{
+    display: none;
+}
