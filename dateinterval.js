@@ -35,14 +35,14 @@ function createDatePicker(inputId,labelText) {
 }
 
 // Функция для преобразования даты из формата YYYY-MM-DD в DD.MM.YYYY
-// function formatDate(dateString) {
-//     // const [year, month, day] = dateString.split("-"); // Разбиваем строку по тире
-//     // return `${day}.${month}.${year}`; // Возвращаем в нужном формате
+function formatDate(dateString,type) {
+    const [year, month, day] = dateString.split("-"); // Разбиваем строку по тире
+    const str = `${day}.${month}`; // Возвращаем в нужном формате
+    
+    type === 'start' ? localStorage.setItem('dstartString',str) : localStorage.setItem('dfinishString',str)
+    // console.log(type,str);
+}
 
-//     // const inputDate = document.getElementById("dateInput").value; // Например, "2024-02-16"
-//     const unixTimestamp = Math.floor(new Date(dateString).getTime() / 1000);
-//     console.log(unixTimestamp);
-// }
 
 // Создаем поля для даты начала и окончания
 const startDate = createDatePicker("startDateInput","Дата начала:");
@@ -58,7 +58,7 @@ submitBtn.setAttribute("disabled", true);
 submitBtn.setAttribute("class", "nextBtn");
   			
  // Обработчик событий для активации кнопки
-function validateDates() {
+function validateDates(type) {
     const startValue = startDate.input.value;
     const endValue = endDate.input.value;
     const today = new Date().toISOString().split("T")[0]; // Сегодняшняя дата в формате YYYY-MM-DD
@@ -79,10 +79,14 @@ function validateDates() {
               	const textunderbutton = document.getElementById("textunderbutton");
 				textunderbutton.classList.remove('nonvisible')
             }
+
+    // const res = type==='start' ? formatDate(startValue,type) : formatDate(endValue,type)
+    type==='start' ? formatDate(startValue,type) : formatDate(endValue,type)
 }
 
-startDate.input.addEventListener("change", validateDates);
-endDate.input.addEventListener("change", validateDates);
+// startDate.input.addEventListener("change", validateDates);
+startDate.input.addEventListener("change", () => validateDates('start'));
+endDate.input.addEventListener("change", () => validateDates('finish'));
 
         
 submitBtn.addEventListener("click", () => {

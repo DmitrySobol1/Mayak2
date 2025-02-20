@@ -1,6 +1,12 @@
 const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
 
+const subtitle = document.getElementById('subtitle')
+const dstartString = localStorage.getItem('dstartString')
+const dfinishString = localStorage.getItem('dfinishString')
+const subtitleFull = `c ${dstartString} по ${dfinishString}`
+subtitle.textContent = subtitleFull
+
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='dateinterval.html'

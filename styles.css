@@ -32,6 +32,11 @@ body {
     margin:20px 0px 20px 0px;
 }
 
+.subtitle {
+    margin:20px 0px 20px 0px;
+    font-weight:500;
+}
+
 .appspace {
     /* width: 400px; */
     width:100%;
