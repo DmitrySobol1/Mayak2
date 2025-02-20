@@ -41,6 +41,9 @@ function getAllTheatre(dstart,dfinish){
 
 
 
+const tempbtn = document.getElementById('tempbtn').addEventListener('click',()=>{
+    window.location.href="getEventsFilteredByTheatre.html"
+})
 
 
 
