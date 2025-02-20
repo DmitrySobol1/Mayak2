@@ -31,10 +31,14 @@ function createDatePicker(inputId,labelText) {
 }
 
 // Функция для преобразования даты из формата YYYY-MM-DD в DD.MM.YYYY
-function formatDate(dateString) {
-    const [year, month, day] = dateString.split("-"); // Разбиваем строку по тире
-    return `${day}.${month}.${year}`; // Возвращаем в нужном формате
-}
+// function formatDate(dateString) {
+//     // const [year, month, day] = dateString.split("-"); // Разбиваем строку по тире
+//     // return `${day}.${month}.${year}`; // Возвращаем в нужном формате
+
+//     // const inputDate = document.getElementById("dateInput").value; // Например, "2024-02-16"
+//     const unixTimestamp = Math.floor(new Date(dateString).getTime() / 1000);
+//     console.log(unixTimestamp);
+// }
 
 // Создаем поля для даты начала и окончания
 const startDate = createDatePicker("startDateInput","Дата начала:");
@@ -78,8 +82,20 @@ endDate.input.addEventListener("change", validateDates);
 
         
 submitBtn.addEventListener("click", () => {
-        const startFormatted = formatDate(startDate.input.value); // Преобразуем дату начала
-        const endFormatted = formatDate(endDate.input.value); // Преобразуем дату окончания
+        const startToUnix =  Math.floor(new Date(startDate.input.value).getTime() / 1000);
+        const finishToUnix =  Math.floor(new Date(endDate.input.value).getTime() / 1000);
+
+        localStorage.setItem('dstart',startToUnix)
+        localStorage.setItem('dfinish',finishToUnix)
+
+        const start = document.getElementById('start')
+        start.textContent = 'start='+startToUnix
+
+        const finish = document.getElementById('finish')
+        finish.textContent = 'finish='+finishToUnix
+
+        // window.location.href = "getAllEvents.html"
+
 });
 
 // Добавляем элементы в контейнер

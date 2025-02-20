@@ -187,3 +187,9 @@ text-align:center;
 .nonvisible{
     display: none;
 }
+
+.tempbtn {
+    border:1px solid black;
+    background-color: #DEBB70;
+    padding:10px;
+}
