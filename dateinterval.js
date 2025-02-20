@@ -85,16 +85,19 @@ submitBtn.addEventListener("click", () => {
         const startToUnix =  Math.floor(new Date(startDate.input.value).getTime() / 1000);
         const finishToUnix =  Math.floor(new Date(endDate.input.value).getTime() / 1000);
 
+        // чтобы в выборку попадали все мероприятия dfinish
+        const finishToUnixEndOfDay = Number(finishToUnix) + 86300
+
         localStorage.setItem('dstart',startToUnix)
-        localStorage.setItem('dfinish',finishToUnix)
+        localStorage.setItem('dfinish',finishToUnixEndOfDay)
 
-        const start = document.getElementById('start')
-        start.textContent = 'start='+startToUnix
+        // const start = document.getElementById('start')
+        // start.textContent = 'start='+startToUnix
 
-        const finish = document.getElementById('finish')
-        finish.textContent = 'finish='+finishToUnix
+        // const finish = document.getElementById('finish')
+        // finish.textContent = 'finish='+finishToUnix
 
-        // window.location.href = "getAllEvents.html"
+        window.location.href = "getAllEvents.html"
 
 });
 

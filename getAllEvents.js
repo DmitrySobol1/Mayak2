@@ -14,12 +14,15 @@ function getAllTheatre(dstart,dfinish){
         .then(res=>res.json())
         .then (data=>{
             console.log('найдено театров:',data.payload.length)
+
+            const getallevents__theatre = document.getElementById('getallevents__theatre')
+            getallevents__theatre.textContent = `В театре найдено событий: ${data.payload.length}`
+
         })
 }
 
 
-const tempbtn = document.getElementById('tempbtn').addEventListener('click', ()=>{
-
+const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='dateinterval.html'
 
 })
