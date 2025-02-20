@@ -44,7 +44,7 @@ body {
 .btn_gotomainmenu{
     background-color: #fff500;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px 30px;
     font-size:14px;
     display: flex;  
     align-items: center; 
@@ -68,15 +68,15 @@ body {
 
 
 .btn_back{
-background-color: #ffffff;
-border-radius: 10px;
-border:1px solid black;
-padding: 10px;
-font-size:14px;
-display: flex;  
-align-items: center; 
-justify-content: center; 
-gap: 8px; 
+    background-color: #ffffff;
+    border-radius: 10px;
+    border:1px solid black;
+    padding: 20px 30px;
+    font-size:14px;
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
 }
 
 
@@ -220,11 +220,11 @@ text-align:center;
 }
     
     
-    .getallevents__routingbtn {
-        display: flex;
-        position: absolute;
-        bottom: 10px;
-        gap:10px;
-    }
+.getallevents__routingbtn {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    gap:10px;
+}
 
   
