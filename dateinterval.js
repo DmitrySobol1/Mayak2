@@ -4,6 +4,10 @@ const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventLis
     window.location.href = "index.html";
 })
 
+const btn_back = document.getElementById('btn_back').addEventListener('click',()=>{
+    window.location.href = "index.html";
+})
+
 
 
 // Функция для создания поля даты

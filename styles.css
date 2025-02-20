@@ -41,10 +41,26 @@ body {
     height: 100vh;
 }
 
+
+
+/* роутинг кнопки */
+.wrapper__routingbtn{
+    display: flex; 
+    justify-content: center;
+}
+    
+    
+.routingbtn {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    gap:10px;
+}
+
 .btn_gotomainmenu{
     background-color: #fff500;
     border-radius: 10px;
-    padding: 20px 30px;
+    padding: 15px 30px;
     font-size:14px;
     display: flex;  
     align-items: center; 
@@ -67,11 +83,11 @@ body {
 }
 
 
-.btn_back{
+.btn_back {
     background-color: #ffffff;
     border-radius: 10px;
     border:1px solid black;
-    padding: 20px 30px;
+    padding: 15px 30px;
     font-size:14px;
     display: flex;  
     align-items: center; 
@@ -79,11 +95,23 @@ body {
     gap: 8px; 
 }
 
+.btn_back:active {
+    transform: translateY(1px); 
+    /* box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2); */
+}
+
 
 .btn_backmenuicon {
     width:15x;
     height: 15px;
 }
+
+/* роутинг кнопки - finish*/
+
+
+
+
+
 
 .index__btndiv {
     margin: 50px 0px;
@@ -108,27 +136,13 @@ body {
 }
 
 
+
+
 /* стили для страницы dateinterval */
 .dateinterval__calendardiv{
     margin-top:50px;
 }
 
-.wrapper__dateinterval__routingbtn{
-/* display: flex;
-align-items: flex-end;  */
-/* height: 200px; */
-/* position: relative; */
-}
-
-
-.dateinterval__routingbtn {
-    text-align: center;
-    position: absolute;
-    bottom: 10px; /* Прижатие к низу */
-    left: 50%;
-    transform: translateX(-50%);
-    
-}
 
 .date-container {
     margin-bottom: 20px;
@@ -207,24 +221,5 @@ text-align:center;
     display: none;
 }
 
-.tempbtn {
-    border:1px solid black;
-    background-color: #DEBB70;
-    padding:10px;
-}
 
-
-.wrapper__getallevents__routingbtn{
-    display: flex; 
-    justify-content: center;
-}
-    
-    
-.getallevents__routingbtn {
-    display: flex;
-    position: absolute;
-    bottom: 10px;
-    gap:10px;
-}
-
-  
+/* стили для страницы dateinterval - finish  */

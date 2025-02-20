@@ -1,6 +1,17 @@
 const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
 
+
+const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
+    window.location.href='dateinterval.html'
+})
+
+const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
+    window.location.href='index.html'
+})
+
+
+
 getAllTheatre(dstart,dfinish)
     
 
@@ -22,7 +33,12 @@ function getAllTheatre(dstart,dfinish){
 }
 
 
-const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
-    window.location.href='dateinterval.html'
 
-})
+
+
+
+
+
+
+
+
