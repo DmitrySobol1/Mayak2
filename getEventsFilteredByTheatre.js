@@ -162,6 +162,7 @@ function render() {
       
       newDiv.addEventListener('click', () => {
         localStorage.setItem('choosedTheatre',item.id)
+        localStorage.setItem('choosedTheatreName',item.name)
         window.location.href= 'getSpectaclesAtCurrentTheatre.html'
     });
       

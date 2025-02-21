@@ -1,11 +1,14 @@
 const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
 const theatre_id = localStorage.getItem('choosedTheatre')
+const choosedTheatreName = localStorage.getItem('choosedTheatreName')
 
+const title = document.getElementById('title')
 const subtitle = document.getElementById('subtitle')
 const dstartString = localStorage.getItem('dstartString')
 const dfinishString = localStorage.getItem('dfinishString')
 const subtitleFull = `c ${dstartString} по ${dfinishString}`
+title.textContent = `Спектакли в ${choosedTheatreName}`
 subtitle.textContent = subtitleFull
 
 
@@ -162,6 +165,13 @@ function render() {
 
       newDiv.appendChild(imgDiv)
       newDiv.appendChild(p);
+
+      newDiv.addEventListener('click', () => {
+        localStorage.setItem('choosedSpectacle',item.spectacleName)
+        console.log (item)
+        // window.location.href= 'getSpectaclesAtCurrentTheatre.html'
+    });
+
   
       // Добавляем div в fragment
       fragment.appendChild(newDiv);
