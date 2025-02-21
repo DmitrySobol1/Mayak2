@@ -23,6 +23,19 @@ const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventLis
 })
 
 
+const loader = document.getElementById('loader_div')
+
+function showloader() {
+  loader.classList.remove('nonvisible')
+}
+
+function hideloader() {
+  loader.classList.add('nonvisible')
+}
+
+
+
+
 
 getAllTheatre(dstart,dfinish)
     
@@ -75,7 +88,7 @@ getAllTheatre(dstart,dfinish)
 
 async function getAllTheatre(dstart, dfinish) {
     try {
-     
+     showloader()
       const response = await fetch(
         `https://api.directual.com/good/api/v5/data/event_theatre_spectacle/getAllSpectacles?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}`,
         {
@@ -248,6 +261,7 @@ function render() {
   
     // Добавляем fragment в контейнер
     theatrediv.appendChild(fragment);
+    hideloader()
 }
 
 

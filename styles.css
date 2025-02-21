@@ -44,7 +44,14 @@ body {
     /* background-color: salmon; */
     padding: 0px 20px 0px 20px;
     height: 100vh;
+    /* display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; */
 }
+
+/* .visible {
+    opacity: 1;
+} */
 
 
 
@@ -113,6 +120,14 @@ body {
 
 /* роутинг кнопки - finish*/
 
+
+
+/* .loading-screen {
+    z-index: 1000;
+    height: 100vh;
+    background-color: #000000;
+    color:white;
+} */
 
 
 
@@ -272,3 +287,55 @@ text-align:center;
 background-color: salmon;
 padding:10px;
 }
+
+
+
+
+/* лоадер */
+
+.loader_div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dbdbdb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loader {
+    border: 6px solid #000000;
+    border-top: 6px solid #fff500;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader_div p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #000000;
+}
+
+
+
+.nonvisible {
+    display:none;
+}
+
+
+/* лоадер - */
