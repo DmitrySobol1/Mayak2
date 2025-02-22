@@ -22,11 +22,24 @@ const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventLis
 })
 
 
+const loader = document.getElementById('loader_div')
+
+function showloader() {
+  loader.classList.remove('nonvisible')
+}
+
+function hideloader() {
+  loader.classList.add('nonvisible')
+}
+
+
 
 
 getEventImgAndName()
 
 async function getEventImgAndName(){
+    showloader()
+
     const response = await fetch('https://api.directual.com/good/api/v5/data/event/getImgAndName?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
         method: 'GET',
         headers: {
@@ -53,25 +66,7 @@ async function getEventImgAndName(){
 
 
 getAllSchedule(dstart,dfinish)
-    
-
-// function getAllTheatre(dstart,dfinish){
-//     fetch(`https://api.directual.com/good/api/v5/data/event_theatre_spectacle/getAllSpectacles?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         })
-//         .then(res=>res.json())
-//         .then (data=>{
-//             console.log('найдено театров:',data.payload.length)
-
-//             const getallevents__theatre = document.getElementById('getallevents__theatre')
-//             getallevents__theatre.textContent = `В театре найдено событий: ${data.payload.length}`
-
-//         })
-// }
-
+showloader()
 
 function getAllSchedule(dstart,dfinish){
     fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getAllSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}`, {
@@ -115,7 +110,8 @@ function getAllSchedule(dstart,dfinish){
 }
 
 function renderFront(qty_theatre,qty_party){
-
+    showloader()
+    
     const eventstypediv = document.querySelector('#eventstypediv')
 
 
@@ -173,6 +169,9 @@ function renderFront(qty_theatre,qty_party){
 
     eventstypediv.appendChild(newDivTheatre)
     eventstypediv.appendChild(newDivParty)
+
+    hideloader()
+
 }
 
 
