@@ -384,7 +384,11 @@ padding:10px;
 
 .ShowChoosedEvent_div {
 margin-bottom: 40px;
+}
 
+.ShowChoosedEvent_div2 {
+    /* margin-bottom: 150px;  */
+    padding-bottom: 70px;
 }
 
 .ShowChoosedEvent_img {

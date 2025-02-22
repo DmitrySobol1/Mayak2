@@ -176,16 +176,6 @@ payload.forEach((item)=>{
 
 
 
-window.addEventListener('load', () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight;
-
-    if (scrollHeight > clientHeight) {
-        console.log('Контент длиннее экрана! Требуется вертикальный скролл.');
-    } else {
-        console.log('Контент помещается на экране2.');
-    }
-});
 
 
 
