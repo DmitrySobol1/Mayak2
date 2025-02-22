@@ -375,3 +375,32 @@ padding:10px;
 
 
 /* лоадер - */
+
+
+.ShowChoosedEvent_div {
+    /* width: 100%; */
+
+}
+
+.ShowChoosedEvent_img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.ShowChoosedEvent_title {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.ShowChoosedEvent_description{
+    margin-bottom: 20px;
+}
+
+.ShowChoosedEvent_scheduleItemContainer {
+    background-color: #d4d3d6;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
