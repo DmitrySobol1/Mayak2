@@ -33,12 +33,13 @@ function hideloader() {
 }
 
 
+showloader()
 
 
 getEventImgAndName()
 
 async function getEventImgAndName(){
-    showloader()
+   
 
     const response = await fetch('https://api.directual.com/good/api/v5/data/event/getImgAndName?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
         method: 'GET',
@@ -69,7 +70,7 @@ getAllSchedule(dstart,dfinish)
 showloader()
 
 function getAllSchedule(dstart,dfinish){
-    fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getAllSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}`, {
+    fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getAllSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&pageSize=100`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -111,7 +112,7 @@ function getAllSchedule(dstart,dfinish){
 
 function renderFront(qty_theatre,qty_party){
     showloader()
-    
+
     const eventstypediv = document.querySelector('#eventstypediv')
 
 
@@ -152,7 +153,7 @@ function renderFront(qty_theatre,qty_party){
     newDivPartyScore.classList.add('getAllEvents_divScore')
     newDivPartyScore.textContent = qty_party
     
-    newImgParty=  document.createElement('img')
+    newImgParty= document.createElement('img')
     newImgParty.src = partyImg
     newImgParty.classList.add('getAllEvents_img')
 
@@ -167,15 +168,22 @@ function renderFront(qty_theatre,qty_party){
     newDivParty.appendChild(newPparty)
 
 
+    newDivTheatre.addEventListener('click',()=>{
+        localStorage.setItem('eventType','theatre')
+        window.location.href = '2getEventsFilteredByTheatre.html'
+    })
+
+    newDivParty.addEventListener('click',()=>{
+        localStorage.setItem('eventType','party')
+        window.location.href = '2getEventsFilteredByTheatre.html'
+    })
+
     eventstypediv.appendChild(newDivTheatre)
     eventstypediv.appendChild(newDivParty)
 
     hideloader()
-
+    
 }
-
-
-
 
 
 

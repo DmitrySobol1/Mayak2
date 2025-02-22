@@ -1,5 +1,6 @@
 const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
+const eventType = localStorage.getItem('eventType')
 
 const subtitle = document.getElementById('subtitle')
 const dstartString = localStorage.getItem('dstartString')
@@ -8,14 +9,13 @@ const subtitleFull = `c ${dstartString} по ${dfinishString}`
 subtitle.textContent = subtitleFull
 
 
-// let uniqueTheaters = []
-// let array = []
+
 
 let allTheatres = []
 let renderArray = []
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
-    window.location.href='getAllEvents.html'
+    window.location.href='1getAllEvents.html'
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
@@ -34,51 +34,57 @@ function hideloader() {
 }
 
 
+getScheduleGroupByTheatreOrGenre()
 
-getAllTheatre(dstart,dfinish)
+
+async function getScheduleGroupByTheatreOrGenre() {
+  try {
+  //  showloader()
+  
+    const response = await fetch(
+      `https://api.directual.com/good/api/v5/data/3_schedule/getScheduleGroupByTheatreOrGenre?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&eventType=${eventType}&pageSize=100`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    // Проверка ответа
+    if (!response.ok) {
+      throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+   
+    const data = await response.json();
+    allTheatres = data.payload;
+    // console.log(allTheatres)
+
+    // Создаем объект для подсчета событий по театрам/жанрам
+    const theatreEventCounts = allTheatres.reduce((acc, event) => {
+      const theatreId = event.theatreOrGenre_id.id;
+      acc[theatreId] = (acc[theatreId] || 0) + 1;
+      return acc;
+    }, {});
+
+    console.log(theatreEventCounts)
     
 
-async function getAllTheatre(dstart, dfinish) {
-    try {
-     showloader()
-      const response = await fetch(
-        `https://api.directual.com/good/api/v5/data/event_theatre_spectacle/getAllSpectacles?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-  
-      // Проверка ответа
-      if (!response.ok) {
-        throw new Error(`Ошибка HTTP: ${response.status}`);
-      }
-  
-     
-      const data = await response.json();
-      allTheatres = data.payload;
-  
-      // Создаем объект для подсчета событий по театрам
-      const theatreEventCounts = allTheatres.reduce((acc, event) => {
-        const theatreId = event.theatre_id.id;
-        acc[theatreId] = (acc[theatreId] || 0) + 1;
-        return acc;
-      }, {});
-  
-      // Сохраняем данные в localStorage
-      Object.entries(theatreEventCounts).forEach(([theatreId, count]) => {
-        localStorage.setItem(theatreId, count);
-      });
-  
-      // Рендерим театры
-      preparingToRenderTheatre();
+    // Сохраняем данные в localStorage
+    Object.entries(theatreEventCounts).forEach(([theatreId, count]) => {
+      localStorage.setItem(theatreId, count);
+    });
 
-    } catch (error) {
-      console.error('Ошибка при получении данных:', error);
-    }
+    // Рендерим 
+    preparingToRenderTheatre();
+
+  } catch (error) {
+    console.error('Ошибка при получении данных:', error);
   }
+}
+
+
+
 
 
 
@@ -92,7 +98,7 @@ function preparingToRenderTheatre() {
       // Создаем массив уникальных театров
       const uniqueTheatres = [
         ...new Map(
-          allTheatres.map(item => [item.theatre_id.id, item.theatre_id])
+          allTheatres.map(item => [item.theatreOrGenre_id.id, item.theatreOrGenre_id])
         ).values()
       ];
 
