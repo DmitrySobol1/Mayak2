@@ -158,10 +158,34 @@ payload.forEach((item)=>{
 
     })
 
-
-
 }
 
+
+
+// function hasVerticalScroll(element) {
+//     return element.scrollHeight > element.clientHeight;
+// }
+
+// const schedulediv = document.getElementById('schedulediv');
+
+// if (hasVerticalScroll(schedulediv)) {
+//     console.log('Контент длиннее экрана! Требуется вертикальный скролл.');
+// } else {
+//     console.log('Контент помещается на экране.');
+// }
+
+
+
+window.addEventListener('load', () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+
+    if (scrollHeight > clientHeight) {
+        console.log('Контент длиннее экрана! Требуется вертикальный скролл.');
+    } else {
+        console.log('Контент помещается на экране2.');
+    }
+});
 
 
 
