@@ -125,12 +125,12 @@ payload.forEach((item)=>{
 
         const title = document.createElement('p');
         title.textContent = `${item.dateString} в ${item.timeString} | ${item.spectacleOrPlace_id.name}`;
-        title.classList.add('ShowChoosedEvent_title'); 
+        title.classList.add('scheduleItemContainer_title'); 
 
        
         const description = document.createElement('p');
         description.textContent = 'Места в кассах: нет'
-        description.classList.add('ShowChoosedEvent_description'); 
+        // description.classList.add('ShowChoosedEvent_description'); 
 
         
         const description2 = document.createElement('p');
@@ -140,11 +140,11 @@ payload.forEach((item)=>{
 
         const interesting = document.createElement('p');
         interesting.textContent = 'Интересно: число'
-        interesting.classList.add('ShowChoosedEvent_description'); 
+        // interesting.classList.add('ShowChoosedEvent_description'); 
 
         const wantGo = document.createElement('p');
         wantGo.textContent = 'Собираются пойти: число'
-        wantGo.classList.add('ShowChoosedEvent_description'); 
+        // wantGo.classList.add('ShowChoosedEvent_description'); 
 
         // Добавляем элементы в newDiv
         newDiv.appendChild(title);
