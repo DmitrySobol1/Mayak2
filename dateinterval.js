@@ -105,7 +105,7 @@ submitBtn.addEventListener("click", () => {
         // const finish = document.getElementById('finish')
         // finish.textContent = 'finish='+finishToUnix
 
-        window.location.href = "getAllEvents.html"
+        window.location.href = "1getAllEvents.html"
 
 });
 
