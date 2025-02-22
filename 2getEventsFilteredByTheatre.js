@@ -8,7 +8,8 @@ const dfinishString = localStorage.getItem('dfinishString')
 const subtitleFull = `c ${dstartString} по ${dfinishString}`
 subtitle.textContent = subtitleFull
 
-
+const title = document.querySelector('.title')
+title.textContent = eventType === 'theatre'? 'Театры' : 'Вечеринки'
 
 
 let allTheatres = []
@@ -39,7 +40,7 @@ getScheduleGroupByTheatreOrGenre()
 
 async function getScheduleGroupByTheatreOrGenre() {
   try {
-  //  showloader()
+  
   
     const response = await fetch(
       `https://api.directual.com/good/api/v5/data/3_schedule/getScheduleGroupByTheatreOrGenre?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&eventType=${eventType}&pageSize=100`,
@@ -67,9 +68,7 @@ async function getScheduleGroupByTheatreOrGenre() {
       return acc;
     }, {});
 
-    console.log(theatreEventCounts)
-    
-
+   
     // Сохраняем данные в localStorage
     Object.entries(theatreEventCounts).forEach(([theatreId, count]) => {
       localStorage.setItem(theatreId, count);
@@ -85,9 +84,6 @@ async function getScheduleGroupByTheatreOrGenre() {
 
 
 
-
-
-
 function preparingToRenderTheatre() {
     try {
       // Проверка наличия allTheatres
@@ -95,25 +91,20 @@ function preparingToRenderTheatre() {
         throw new Error('allTheatres должен быть массивом');
       }
   
-      // Создаем массив уникальных театров
+      // Создаем массив уникальных театров/жанров
       const uniqueTheatres = [
         ...new Map(
           allTheatres.map(item => [item.theatreOrGenre_id.id, item.theatreOrGenre_id])
         ).values()
       ];
 
-      console.log(allTheatres)
-  
-      // Добавляем количество событий для каждого театра
+      // Добавляем количество событий для каждого театра/жанра
       renderArray = uniqueTheatres.map(theatre => ({
         ...theatre,
         qty: Number(localStorage.getItem(theatre.id)) || 0 // Преобразуем в число
       }));
   
-      console.log(renderArray);
-
       render()
-
 
     } catch (error) {
       console.error('Ошибка при рендеринге театров:', error);
@@ -131,7 +122,7 @@ function render() {
       return;
     }
   
-    // Очищаем контейнер перед добавлением новых элементов (опционально)
+    // Очищаем контейнер перед добавлением новых элементов
     theatrediv.innerHTML = '';
   
     // Создаем DocumentFragment для оптимизации
@@ -149,17 +140,14 @@ function render() {
       qtyDiv.classList.add('qty-div');
       qtyDiv.textContent = item.qty ;
 
-      // Создаем изображение
       const img = document.createElement('img');
       img.src = item.img;
       img.alt = item.name;
       img.classList.add('getEventsFilteredByTheatre_img');
   
-      // Создаем параграф с названием театра
       const p = document.createElement('p');
       p.textContent = item.name;
   
-      // Добавляем элементы в div
       imgDiv.appendChild(img)
       imgDiv.appendChild(qtyDiv)
 
@@ -167,9 +155,9 @@ function render() {
       newDiv.appendChild(p);
       
       newDiv.addEventListener('click', () => {
-        localStorage.setItem('choosedTheatre',item.id)
-        localStorage.setItem('choosedTheatreName',item.name)
-        window.location.href= 'getSpectaclesAtCurrentTheatre.html'
+        localStorage.setItem('choosedTheatreGenre',item.id)
+        localStorage.setItem('choosedName',item.name)
+        window.location.href= '3getSpectaclesAtCurrentTheatre.html'
     });
       
       // Добавляем div в fragment
