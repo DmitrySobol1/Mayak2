@@ -324,8 +324,12 @@ payload.forEach((item)=>{
 
         const btn = document.createElement('button');
         btn.textContent = 'смотреть предложения'
+        // btn.id = item.id
         btn.classList.add('ShowChoosedEvent_btn'); 
-
+        btn.addEventListener('click', ()=>{
+            localStorage.setItem('choosedSchedule',item.id)
+            window.location.href = '5ShowCurrentEventTickets.html'
+        })
         
         const iconsdiv = document.createElement('div');
         iconsdiv.classList.add('ShowChoosedEvent_iconsdiv'); 
@@ -349,7 +353,7 @@ payload.forEach((item)=>{
                     qtyInteresting ++ 
                     qtyheart.textContent = qtyInteresting
                     heartarray.push(event.target.dataset.id);
-                    console.log(heartarray)
+                    
                     // localStorage.setItem('heartarray',heartarray)
             } else {
                 imgheart.dataset.status = 'no'
@@ -357,7 +361,7 @@ payload.forEach((item)=>{
                 qtyInteresting -- 
                 qtyheart.textContent = qtyInteresting
                 heartarray = heartarray.filter(item => item !== event.target.dataset.id);
-                console.log(heartarray)
+                
                 // localStorage.setItem('heartarray',heartarray)
             }
             })
@@ -389,7 +393,7 @@ payload.forEach((item)=>{
                     qtyWantGo ++ 
                     qtyman.textContent = qtyWantGo
                     manarray.push(event.target.dataset.id);
-                    console.log(manarray)
+                    // console.log(manarray)
                     // localStorage.setItem('heartarray',heartarray)
             } else {
                 imgman.dataset.status = 'no'
@@ -397,7 +401,7 @@ payload.forEach((item)=>{
                 qtyWantGo -- 
                 qtyman.textContent = qtyWantGo
                 manarray = manarray.filter(item => item !== event.target.dataset.id);
-                console.log(manarray)
+                // console.log(manarray)
                 // localStorage.setItem('heartarray',heartarray)
             }
             })
