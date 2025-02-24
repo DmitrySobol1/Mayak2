@@ -2,10 +2,10 @@ const choosedSchedule = localStorage.getItem('choosedSchedule')
 
 // const dstart = localStorage.getItem('dstart')
 // const dfinish = localStorage.getItem('dfinish')
-// const eventType = localStorage.getItem('eventType')
+const eventType = localStorage.getItem('eventType')
 // const choosedEvent = localStorage.getItem('choosedEvent')
 const choosedEventName = localStorage.getItem('choosedEventName')
-// const choosedName = localStorage.getItem('choosedName')
+const choosedName = localStorage.getItem('choosedName')
 
 // const subtitle = document.getElementById('subtitle')
 // const dstartString = localStorage.getItem('dstartString')
@@ -20,8 +20,8 @@ const choosedEventName = localStorage.getItem('choosedEventName')
 // let heartarray = []
 // let manarray = []
 
-// const title = document.querySelector('.title')
-// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
+const title = document.querySelector('.title')
+title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
 
 
 
@@ -284,9 +284,12 @@ payload.forEach((item)=>{
        
         const description = document.createElement('p');
         description.textContent = `Расположение мест: ${item.placeLocation}`
-        description.classList.add('ShowChoosedEvent_descriptionKassa'); 
+        description.classList.add('ShowCurrentEvent_description'); 
 
         
+        const rowMestoDiv = document.createElement('div');
+        rowMestoDiv.classList.add('ShowCurrentEvent_rowMestoDiv'); 
+
         const row = document.createElement('p');
         row.textContent = `Ряд: ${item.row}`
         row.classList.add('ShowChoosedEvent_description'); 
@@ -312,7 +315,7 @@ payload.forEach((item)=>{
         btn.textContent = 'написать продавцу'
         btn.classList.add('ShowChoosedEvent_btn'); 
         btn.addEventListener('click',()=>{
-            window.location.href = 'https://t.me/jetbot_support'
+            window.location.href = `https://t.me/${item.seller_id.tlg_username}`
             // Telegram.WebApp.openLink()
         })
 
@@ -418,14 +421,22 @@ payload.forEach((item)=>{
 
         
 //         // Добавляем элементы в newDiv
+
+
+        
+
         newDiv.appendChild(title);
         newDiv.appendChild(description);
-        newDiv.appendChild(row);
-        newDiv.appendChild(mesto);
+
+        rowMestoDiv.appendChild(row);
+        rowMestoDiv.appendChild(mesto);
+        newDiv.appendChild(rowMestoDiv);
+        
         newDiv.appendChild(qty);
         newDiv.appendChild(price);
         // newDiv.appendChild(interesting);
         newDiv.appendChild(btn);
+        
         // newDiv.appendChild(description2);
         // newDiv.appendChild(interesting);
         // newDiv.appendChild(wantGo);
@@ -433,6 +444,7 @@ payload.forEach((item)=>{
         // newDiv.appendChild(iconsdiv);
 
         // Добавляем newDiv в infodiv
+
         schedulediv.appendChild(newDiv);
 
     })

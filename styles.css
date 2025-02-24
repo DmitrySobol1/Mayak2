@@ -470,6 +470,17 @@ margin-bottom: 40px;
 }
 
 
+.ShowCurrentEvent_rowMestoDiv {
+    display: flex;
+    gap:20px;
+    margin-bottom: 15px;
+    
+}
+
+.ShowCurrentEvent_description {
+    margin-bottom: 10px;
+}
+
 
 
 
