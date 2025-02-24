@@ -14,17 +14,129 @@ subtitle.textContent = subtitleFull
 let allTheatres = []
 let theatreEventCounts = []
 
+// let heartarray = localStorage.getItem('heartarray')
+let heartarray = []
+let manarray = []
+
 const title = document.querySelector('.title')
 title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
 
 
-const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
-    window.location.href='3getSpectaclesAtCurrentTheatre.html'
-})
 
-const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
+
+const btn_back = document.getElementById('btn_back').addEventListener('click', async () => {
+    try {
+
+        if (heartarray.length > 0){
+        // Выполняем запрос
+        const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+            method: 'POST',
+            body: JSON.stringify({
+                'id': '', 
+                'array': heartarray,
+                'type':'heart'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const json = await response.json();
+        console.log('отправил heart');
+        
+    } 
+
+    if (manarray.length > 0){
+        // Выполняем запрос
+        const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+            method: 'POST',
+            body: JSON.stringify({
+                'id': '', 
+                'array': manarray,
+                'type':'man'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const json = await response.json();
+        console.log('отправил man');
+
+    } 
+
+    // Перенаправляем пользователя
+    window.location.href = '3getSpectaclesAtCurrentTheatre.html';
+
+
+    } catch (error) {
+        console.error('Произошла ошибка:', error);
+    }
+});
+
+
+
+
+
+const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', async () => {
+    try {
+
+        if (heartarray.length > 0){
+        // Выполняем запрос
+        const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+            method: 'POST',
+            body: JSON.stringify({
+                'id': '', 
+                'array': heartarray,
+                'type':'heart'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const json = await response.json();
+        console.log('отправил heart');
+        
+    } 
+
+    if (manarray.length > 0){
+        // Выполняем запрос
+        const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+            method: 'POST',
+            body: JSON.stringify({
+                'id': '', 
+                'array': manarray,
+                'type':'man'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const json = await response.json();
+        console.log('отправил man');
+
+    } 
+
+    // Перенаправляем пользователя
     window.location.href='index.html'
-})
+
+
+    } catch (error) {
+        console.error('Произошла ошибка:', error);
+    }
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,7 +236,7 @@ async function getScheduleGroupByTheatreOrGenre() {
       return acc;
     }, {});
 
-    console.log(theatreEventCounts)
+//    console.log('тута',theatreEventCounts)
    
     // Рендерим 
     preparingToRenderTheatre();
@@ -150,6 +262,9 @@ function preparingToRenderTheatre() {
           allTheatres.map(item => [item.schedule_id.id, item.schedule_id])
         ).values()
       ];
+
+      console.log('тута',uniqueTheatres)
+
 
       // Добавляем количество событий для каждого театра/жанра
       renderArray = uniqueTheatres.map(theatre => ({
@@ -191,6 +306,7 @@ payload.forEach((item)=>{
         
         const newDiv = document.createElement('div');
         newDiv.classList.add('ShowChoosedEvent_scheduleItemContainer'); 
+        
 
         const title = document.createElement('p');
         title.textContent = `${item.dateString} в ${item.timeString} | ${item.eventname}`;
@@ -199,21 +315,11 @@ payload.forEach((item)=>{
        
         const description = document.createElement('p');
         description.textContent = 'Места в кассах: нет'
-        // description.classList.add('ShowChoosedEvent_description'); 
 
         
         const description2 = document.createElement('p');
         description2.textContent = `Предложений по билетам: ${item.qty}`
         description2.classList.add('ShowChoosedEvent_description'); 
-
-
-        // const interesting = document.createElement('p');
-        // interesting.textContent = 'Интересно: число'
-        // // interesting.classList.add('ShowChoosedEvent_description'); 
-
-        // const wantGo = document.createElement('p');
-        // wantGo.textContent = 'Собираются пойти: число'
-        // // wantGo.classList.add('ShowChoosedEvent_description'); 
 
         const btn = document.createElement('button');
         btn.textContent = 'смотреть предложения'
@@ -222,34 +328,84 @@ payload.forEach((item)=>{
         
         const iconsdiv = document.createElement('div');
         iconsdiv.classList.add('ShowChoosedEvent_iconsdiv'); 
+       
 
 
             const iconleftdiv = document.createElement('div');
             iconleftdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
 
+            
             const imgheart = document.createElement('img');
             imgheart.src = 'assets/heart.png'
+            imgheart.id = item.id
+            imgheart.dataset.status = 'no'
+            imgheart.dataset.id = item.id
             imgheart.classList.add ('ShowChoosedEvent_icon')
+            imgheart.addEventListener('click',(event)=>{
+                if (imgheart.dataset.status == 'no'){
+                    imgheart.dataset.status = 'yes'
+                    imgheart.src = 'assets/heartpressed.png'
+                    qtyInteresting ++ 
+                    qtyheart.textContent = qtyInteresting
+                    heartarray.push(event.target.dataset.id);
+                    console.log(heartarray)
+                    // localStorage.setItem('heartarray',heartarray)
+            } else {
+                imgheart.dataset.status = 'no'
+                imgheart.src = 'assets/heart.png'
+                qtyInteresting -- 
+                qtyheart.textContent = qtyInteresting
+                heartarray = heartarray.filter(item => item !== event.target.dataset.id);
+                console.log(heartarray)
+                // localStorage.setItem('heartarray',heartarray)
+            }
+            })
 
             const qtyheart = document.createElement('span');
-            qtyheart.textContent = 0
+            let qtyInteresting = item.qtyInteresting
+            qtyheart.textContent = qtyInteresting
 
             const textheart = document.createElement('span');
             textheart.textContent = ' - интересно'
 
 
 
-
+              
             
             const iconrightdiv = document.createElement('div');
             iconrightdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
 
             const imgman = document.createElement('img');
             imgman.src = 'assets/man.png'
+            imgman.id = item.id
+            imgman.dataset.status = 'no'
+            imgman.dataset.id = item.id
             imgman.classList.add ('ShowChoosedEvent_icon')
+            imgman.addEventListener('click',(event)=>{
+                if (imgman.dataset.status == 'no'){
+                    imgman.dataset.status = 'yes'
+                    imgman.src = 'assets/manpressed.png'
+                    qtyWantGo ++ 
+                    qtyman.textContent = qtyWantGo
+                    manarray.push(event.target.dataset.id);
+                    console.log(manarray)
+                    // localStorage.setItem('heartarray',heartarray)
+            } else {
+                imgman.dataset.status = 'no'
+                imgman.src = 'assets/man.png'
+                qtyWantGo -- 
+                qtyman.textContent = qtyWantGo
+                manarray = manarray.filter(item => item !== event.target.dataset.id);
+                console.log(manarray)
+                // localStorage.setItem('heartarray',heartarray)
+            }
+            })
+           
+
 
             const qtyman = document.createElement('span');
-            qtyman.textContent = 0
+            let qtyWantGo = item.qtyWantGo
+            qtyman.textContent = qtyWantGo
 
             const textman = document.createElement('span');
             textman.textContent = ' - идут'
@@ -284,3 +440,31 @@ payload.forEach((item)=>{
 
     })
 }
+
+
+// setIconsValue()
+
+// function setIconsValue(){
+
+  
+//     if (heartarray){
+//         console.log ("был")
+//     // heartarrayToSet = heartarray.split(',')
+//     //   document.addEventListener('DOMContentLoaded', () => {
+//     //     setTimeout(() => {
+//     //         heartarrayToSet.forEach((item) => {
+//     //             let curenticon = document.getElementById(item);
+//     //             if (curenticon) {
+//     //                 curenticon.src = 'assets/heartpressed.png';
+//     //                 curenticon.dataset.status= 'yes'
+//     //             }
+//     //         });
+//     //     }, 500); 
+//     // });   
+
+// } else {
+//     heartarray = [] 
+//     console.log ("не было, создал пустой")
+// }
+   
+// }
