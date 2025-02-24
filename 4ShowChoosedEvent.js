@@ -42,7 +42,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', a
         });
 
         const json = await response.json();
-        console.log('отправил heart');
+        
         
     } 
 
@@ -61,7 +61,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', a
         });
 
         const json = await response.json();
-        console.log('отправил man');
+        
 
     } 
 
@@ -115,7 +115,7 @@ const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventLi
         });
 
         const json = await response.json();
-        console.log('отправил man');
+        
 
     } 
 
@@ -315,6 +315,7 @@ payload.forEach((item)=>{
        
         const description = document.createElement('p');
         description.textContent = 'Места в кассах: нет'
+        description.classList.add('ShowChoosedEvent_descriptionKassa'); 
 
         
         const description2 = document.createElement('p');

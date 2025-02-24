@@ -254,12 +254,14 @@ text-align:center;
 .getAllEvents_div {
 margin-bottom:30px;
 font-weight: 500;
+font-size: 18px;
 
 }
 
 .getAllEvents_divForImg {
     position:relative;
-    width:250px;
+    /* width:250px; */
+    width: 100%;
 }
 
 .getAllEvents_divScore {
@@ -408,8 +410,12 @@ margin-bottom: 40px;
     font-weight: 600;
 }
 
-.ShowChoosedEvent_description{
+.ShowChoosedEvent_descriptionKassa{
     margin-bottom: 20px;
+}
+
+.ShowChoosedEvent_description{
+    margin-bottom: 10px;
 }
 
 .ShowChoosedEvent_scheduleItemContainer {
@@ -456,3 +462,4 @@ margin-bottom: 40px;
     text-align: center;
     gap: 5px;
 }
+
