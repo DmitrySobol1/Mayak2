@@ -11,6 +11,9 @@ const dfinishString = localStorage.getItem('dfinishString')
 const subtitleFull = `c ${dstartString} по ${dfinishString}`
 subtitle.textContent = subtitleFull
 
+let allTheatres = []
+let theatreEventCounts = []
+
 const title = document.querySelector('.title')
 title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
 
@@ -22,6 +25,9 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
     window.location.href='index.html'
 })
+
+
+
 
 
 getInfoAboutCurrentSpectacleOrPlace()
@@ -84,21 +90,88 @@ async function getInfoAboutCurrentSpectacleOrPlace(){
 
 
 
-showScheduleOfCurrentSpectacleOrPlace()
+
+getScheduleGroupByTheatreOrGenre()
 
 
-async function showScheduleOfCurrentSpectacleOrPlace (){
-const response = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/showScheduleOfCurrentSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&current_id=${choosedEvent}`, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    })
+async function getScheduleGroupByTheatreOrGenre() {
+  try {
+  
+  
+    const response = await fetch(
+      `https://api.directual.com/good/api/v5/data/4_tickets/getTicketsFilteredByEvent?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&spectacleOrPlace_id=${choosedEvent}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
-    const json = await response.json()
-    payload = json.payload
+    // Проверка ответа
+    if (!response.ok) {
+      throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+   
+    const data = await response.json();
+    allTheatres = data.payload;
+    console.log(allTheatres)
 
-    console.log(payload)
+    // Создаем объект для подсчета событий по театрам/жанрам
+    theatreEventCounts = allTheatres.reduce((acc, event) => {
+      const theatreId = event.schedule_id.id;
+      acc[theatreId] = (acc[theatreId] || 0) + 1;
+      return acc;
+    }, {});
+
+    console.log(theatreEventCounts)
+   
+    // Рендерим 
+    preparingToRenderTheatre();
+
+   
+  } catch (error) {
+    console.error('Ошибка при получении данных:', error);
+  }
+}
+
+
+
+function preparingToRenderTheatre() {
+    try {
+      // Проверка наличия allTheatres
+      if (!allTheatres || !Array.isArray(allTheatres)) {
+        throw new Error('allTheatres должен быть массивом');
+      }
+  
+      // Создаем массив уникальных театров/жанров
+      const uniqueTheatres = [
+        ...new Map(
+          allTheatres.map(item => [item.schedule_id.id, item.schedule_id])
+        ).values()
+      ];
+
+      // Добавляем количество событий для каждого театра/жанра
+      renderArray = uniqueTheatres.map(theatre => ({
+        ...theatre,
+        qty: Number(theatreEventCounts[theatre.id]) || 0,
+        eventname: choosedEventName
+      }));
+  
+      console.log(renderArray)
+
+      render()
+
+    } catch (error) {
+      console.error('Ошибка при рендеринге театров:', error);
+    }
+  }
+
+
+
+function render (){
+
+    payload = renderArray
 
  // Проверяем, существует ли элемент infodiv
  if (!schedulediv) {
@@ -106,25 +179,21 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/3_sched
     return;
 }
 
-
 if (!payload ) {
     console.error('Некорректные данные в payload');
     return;
 }
 
-   
 payload.forEach((item)=>{
 
+        const schedulediv = document.getElementById('schedulediv');
 
-    const schedulediv = document.getElementById('schedulediv');
-
-     
-
+        
         const newDiv = document.createElement('div');
         newDiv.classList.add('ShowChoosedEvent_scheduleItemContainer'); 
 
         const title = document.createElement('p');
-        title.textContent = `${item.dateString} в ${item.timeString} | ${item.spectacleOrPlace_id.name}`;
+        title.textContent = `${item.dateString} в ${item.timeString} | ${item.eventname}`;
         title.classList.add('scheduleItemContainer_title'); 
 
        
@@ -134,203 +203,84 @@ payload.forEach((item)=>{
 
         
         const description2 = document.createElement('p');
-        description2.textContent = 'Предложений по билетам: число'
+        description2.textContent = `Предложений по билетам: ${item.qty}`
         description2.classList.add('ShowChoosedEvent_description'); 
 
 
-        const interesting = document.createElement('p');
-        interesting.textContent = 'Интересно: число'
-        // interesting.classList.add('ShowChoosedEvent_description'); 
+        // const interesting = document.createElement('p');
+        // interesting.textContent = 'Интересно: число'
+        // // interesting.classList.add('ShowChoosedEvent_description'); 
 
-        const wantGo = document.createElement('p');
-        wantGo.textContent = 'Собираются пойти: число'
-        // wantGo.classList.add('ShowChoosedEvent_description'); 
+        // const wantGo = document.createElement('p');
+        // wantGo.textContent = 'Собираются пойти: число'
+        // // wantGo.classList.add('ShowChoosedEvent_description'); 
 
+        const btn = document.createElement('button');
+        btn.textContent = 'смотреть предложения'
+        btn.classList.add('ShowChoosedEvent_btn'); 
+
+        
+        const iconsdiv = document.createElement('div');
+        iconsdiv.classList.add('ShowChoosedEvent_iconsdiv'); 
+
+
+            const iconleftdiv = document.createElement('div');
+            iconleftdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
+
+            const imgheart = document.createElement('img');
+            imgheart.src = 'assets/heart.png'
+            imgheart.classList.add ('ShowChoosedEvent_icon')
+
+            const qtyheart = document.createElement('span');
+            qtyheart.textContent = 0
+
+            const textheart = document.createElement('span');
+            textheart.textContent = ' - интересно'
+
+
+
+
+            
+            const iconrightdiv = document.createElement('div');
+            iconrightdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
+
+            const imgman = document.createElement('img');
+            imgman.src = 'assets/man.png'
+            imgman.classList.add ('ShowChoosedEvent_icon')
+
+            const qtyman = document.createElement('span');
+            qtyman.textContent = 0
+
+            const textman = document.createElement('span');
+            textman.textContent = ' - идут'
+
+
+
+
+        iconleftdiv.appendChild(imgheart);
+        iconleftdiv.appendChild(qtyheart);
+        iconleftdiv.appendChild(textheart);
+
+
+        iconrightdiv.appendChild(imgman);
+        iconrightdiv.appendChild(qtyman);
+        iconrightdiv.appendChild(textman);
+
+        iconsdiv.appendChild(iconleftdiv);
+        iconsdiv.appendChild(iconrightdiv);
+
+        
         // Добавляем элементы в newDiv
         newDiv.appendChild(title);
         newDiv.appendChild(description);
         newDiv.appendChild(description2);
-        newDiv.appendChild(interesting);
-        newDiv.appendChild(wantGo);
+        // newDiv.appendChild(interesting);
+        // newDiv.appendChild(wantGo);
+        newDiv.appendChild(btn);
+        newDiv.appendChild(iconsdiv);
 
         // Добавляем newDiv в infodiv
         schedulediv.appendChild(newDiv);
 
     })
-
 }
-
-
-
-// function hasVerticalScroll(element) {
-//     return element.scrollHeight > element.clientHeight;
-// }
-
-// const schedulediv = document.getElementById('schedulediv');
-
-// if (hasVerticalScroll(schedulediv)) {
-//     console.log('Контент длиннее экрана! Требуется вертикальный скролл.');
-// } else {
-//     console.log('Контент помещается на экране.');
-// }
-
-
-
-
-
-
-
-
-
-// let allTheatres = []
-// let renderArray = []
-
-// const loader = document.getElementById('loader_div')
-
-// function showloader() {
-//   loader.classList.remove('nonvisible')
-// }
-
-// function hideloader() {
-//   loader.classList.add('nonvisible')
-// }
-
-
-// getScheduleGroupByTheatreOrGenre()
-
-
-// async function getScheduleGroupByTheatreOrGenre() {
-//   try {
-  
-  
-//     const response = await fetch(
-//       `https://api.directual.com/good/api/v5/data/3_schedule/getScheduleGroupBySpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&theatreOrGenre=${choosedTheatreGenre}&pageSize=100`,
-//       {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       }
-//     );
-
-//     // Проверка ответа
-//     if (!response.ok) {
-//       throw new Error(`Ошибка HTTP: ${response.status}`);
-//     }
-   
-//     const data = await response.json();
-//     allTheatres = data.payload;
-//     // console.log(allTheatres)
-
-//     // Создаем объект для подсчета событий по театрам/жанрам
-//     const theatreEventCounts = allTheatres.reduce((acc, event) => {
-//       const theatreId = event.spectacleOrPlace_id.id;
-//       acc[theatreId] = (acc[theatreId] || 0) + 1;
-//       return acc;
-//     }, {});
-
-   
-//     // Сохраняем данные в localStorage
-//     Object.entries(theatreEventCounts).forEach(([theatreId, count]) => {
-//       localStorage.setItem(theatreId, count);
-//     });
-
-//     // Рендерим 
-//     preparingToRenderTheatre();
-
-//   } catch (error) {
-//     console.error('Ошибка при получении данных:', error);
-//   }
-// }
-
-
-
-// function preparingToRenderTheatre() {
-//     try {
-//       // Проверка наличия allTheatres
-//       if (!allTheatres || !Array.isArray(allTheatres)) {
-//         throw new Error('allTheatres должен быть массивом');
-//       }
-  
-//       // Создаем массив уникальных театров/жанров
-//       const uniqueTheatres = [
-//         ...new Map(
-//           allTheatres.map(item => [item.spectacleOrPlace_id.id, item.spectacleOrPlace_id])
-//         ).values()
-//       ];
-
-//       // Добавляем количество событий для каждого театра/жанра
-//       renderArray = uniqueTheatres.map(theatre => ({
-//         ...theatre,
-//         qty: Number(localStorage.getItem(theatre.id)) || 0 // Преобразуем в число
-//       }));
-  
-//       render()
-
-//     } catch (error) {
-//       console.error('Ошибка при рендеринге театров:', error);
-//     }
-//   }
-
-
-
-// function render() {
-    
-//     const theatrediv = document.getElementById('theatrediv');
-   
-//     if (!theatrediv) {
-//       console.error('Элемент с id="theatrediv" не найден');
-//       return;
-//     }
-  
-//     // Очищаем контейнер перед добавлением новых элементов
-//     theatrediv.innerHTML = '';
-  
-//     // Создаем DocumentFragment для оптимизации
-//     const fragment = document.createDocumentFragment();
-  
-//     // Проходим по массиву и создаем элементы
-//     renderArray.forEach((item) => {
-//       const newDiv = document.createElement('div')
-//       newDiv.classList.add('theatre-item'); 
-  
-//       const imgDiv = document.createElement('div');
-//       imgDiv.classList.add('img-div');  
-
-//       const qtyDiv = document.createElement('div');
-//       qtyDiv.classList.add('qty-div');
-//       qtyDiv.textContent = item.qty ;
-
-//       const img = document.createElement('img');
-//       img.src = item.img;
-//       img.alt = item.name;
-//       img.classList.add('getEventsFilteredByTheatre_img');
-  
-//       const p = document.createElement('p');
-//       p.textContent = item.name;
-  
-//       imgDiv.appendChild(img)
-//       imgDiv.appendChild(qtyDiv)
-
-//       newDiv.appendChild(imgDiv)
-//       newDiv.appendChild(p);
-      
-//       newDiv.addEventListener('click', () => {
-//         localStorage.setItem('choosedEvent',item.id)
-//         localStorage.setItem('choosedEventName',item.name)
-//         window.location.href= '4ShowChoosedEvent.html'
-//     });
-      
-//       // Добавляем div в fragment
-//       fragment.appendChild(newDiv);
-//     });
-  
-    
-//     // Добавляем fragment в контейнер
-//     theatrediv.appendChild(fragment);
-    
-//     hideloader()
-// }
-
-
-
