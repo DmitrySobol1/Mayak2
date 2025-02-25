@@ -31,7 +31,15 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 });
 
 
+const loader = document.getElementById('loader_div')
 
+function showloader() {
+  loader.classList.remove('nonvisible')
+}
+
+function hideloader() {
+  loader.classList.add('nonvisible')
+}
 
 
 // const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', async () => {
@@ -316,7 +324,6 @@ payload.forEach((item)=>{
         btn.classList.add('ShowCurrentEvent_btn'); 
         btn.addEventListener('click',()=>{
             window.location.href = `https://t.me/${item.seller_id.tlg_username}`
-            // Telegram.WebApp.openLink()
         })
 
         
@@ -448,6 +455,8 @@ payload.forEach((item)=>{
         schedulediv.appendChild(newDiv);
 
     })
+
+    hideloader()
 }
 
 
