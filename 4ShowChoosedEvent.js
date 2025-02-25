@@ -195,7 +195,7 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
 
     const mainActor_title = document.createElement('div')
     mainActor_title.classList.add('ShowChoosedEvent_title')
-    mainActor_title.textContent = 'Главные действуюшие лица:'
+    mainActor_title.textContent = 'Главные действующие лица:'
     const mainActor = document.createElement('div')
     mainActor.textContent = item.main_actor
     mainActor.classList.add('ShowChoosedEvent_text')
