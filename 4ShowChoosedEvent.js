@@ -143,9 +143,113 @@ function hideloader() {
 
 
 
-getInfo()
+showInfoAboutSpectacleOrPlce()
 
-async function getInfo(){
+
+async function showInfoAboutSpectacleOrPlce(){
+
+
+const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spectacleorplace/getInfoAboutCurrentSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&item_id=${choosedEvent}`, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    })
+
+    const json = await response.json()
+    
+
+    const item=json.payload[0]
+    console.log ('item=',item)
+
+
+    const infodiv = document.getElementById('infodiv')
+
+
+    const img = document.createElement('img')
+    img.src = item.img
+    img.classList.add('ShowChoosedEvent_img')
+
+
+    const description_title = document.createElement('div')
+    description_title.classList.add('ShowChoosedEvent_title')
+    description_title.textContent = 'Описание:'
+    const description = document.createElement('div')
+    description.textContent = item.description
+    description.classList.add('ShowChoosedEvent_text')
+    
+
+    // const subCategory_title = document.createElement('div')
+    // subCategory_title.classList.add('ShowChoosedEvent_title')
+    // subCategory_title.textContent = 'Подкатегория:'
+    // const subCategory = document.createElement('div')
+    // subCategory.textContent = item.subCategory_id.subcategory_name
+    // subCategory.classList.add('ShowChoosedEvent_text')
+
+    const subCategory_title = document.createElement('div')
+    subCategory_title.classList.add('ShowChoosedEvent_title')
+    subCategory_title.textContent = 'Подкатегория:'
+    const subCategory = document.createElement('div')
+    subCategory.textContent = item.subCategory_id.subcategory_name
+    subCategory.classList.add('ShowChoosedEvent_text')
+
+    const mainActor_title = document.createElement('div')
+    mainActor_title.classList.add('ShowChoosedEvent_title')
+    mainActor_title.textContent = 'Главные действуюшие лица:'
+    const mainActor = document.createElement('div')
+    mainActor.textContent = item.main_actor
+    mainActor.classList.add('ShowChoosedEvent_text')
+
+    const age_title = document.createElement('div')
+    age_title.classList.add('ShowChoosedEvent_title')
+    age_title.textContent = 'Возраст:'
+    const age = document.createElement('div')
+    age.textContent = item.age
+    age.classList.add('ShowChoosedEvent_text')
+
+    const duration_title = document.createElement('div')
+    duration_title.classList.add('ShowChoosedEvent_title')
+    duration_title.textContent = 'Продолжительность:'
+    const duration = document.createElement('div')
+    duration.textContent = item.duration
+    duration.classList.add('ShowChoosedEvent_text')
+
+
+
+    
+
+    
+    infodiv.appendChild(img)
+    infodiv.appendChild(description_title)
+    infodiv.appendChild(description)
+    infodiv.appendChild(subCategory_title)
+    infodiv.appendChild(subCategory)
+    infodiv.appendChild(mainActor_title)
+    infodiv.appendChild(mainActor)
+    infodiv.appendChild(mainActor_title)
+    infodiv.appendChild(mainActor)
+    infodiv.appendChild(age_title)
+    infodiv.appendChild(age)
+    infodiv.appendChild(duration_title)
+    infodiv.appendChild(duration)
+    
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+getInfoSchedule()
+
+async function getInfoSchedule(){
 
    const response  = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getCurrentEventSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&event_id=${choosedEvent}&dstart=${dstart}&dfinish=${dfinish}`, {
         method: 'GET',
