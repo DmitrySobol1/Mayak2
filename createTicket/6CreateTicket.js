@@ -1,9 +1,19 @@
+// Прод
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = const tlgid = window.Telegram.WebApp.initDataUnsafe.user.username
+
+// тесты
+// const tlgid = 777
+// const username = 'my777name'
+
+
 const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
 const choosedEvent = localStorage.getItem('choosedEvent')
 const choosedEventName = localStorage.getItem('choosedEventName')
 const choosedName = localStorage.getItem('choosedName')
+const choosedSchedule = localStorage.getItem('choosedSchedule')
 
 const subtitle = document.getElementById('subtitle')
 const dstartString = localStorage.getItem('dstartString')
@@ -27,45 +37,63 @@ const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventLi
 });
 
 
+const loader = document.getElementById('loader_div')
+
+function showloader() {
+  loader.classList.remove('nonvisible')
+}
+
+function hideloader() {
+  loader.classList.add('nonvisible')
+}
+
+
+hideloader()
+
+
+
 
 document.getElementById('ticketForm').addEventListener('submit', function(event) {
     // Предотвращаем стандартное поведение формы
     event.preventDefault();
 
-    // Вызываем вашу функцию
-    handleFormSubmit();
+    createNewTicket()
 });
 
-// Ваша функция
-function handleFormSubmit() {
-    // Получаем данные из формы
+
+async function createNewTicket(){
+
     const placeLocation = document.getElementById('placeLocation').value;
     const row = document.getElementById('row').value;
     const placeNumber = document.getElementById('placeNumber').value;
     const qty = document.getElementById('qty').value;
     const price = document.getElementById('price').value;
 
-    // Выводим данные в консоль (или отправляем на сервер)
-    console.log('Расположение мест:', placeLocation);
-    console.log('Ряд:', row);
-    console.log('Номер места:', placeNumber);
-    console.log('Количество мест:', qty);
-    console.log('Цена за 1 билет:', price);
+const response = await fetch('https://api.directual.com/good/api/v5/data/rqsttocreatenewticket/rqstToCreateNewTicket?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+    method: 'POST',
+    // specify id if you want to edit existing objects
+    body: JSON.stringify({
+        'id': '',
+        'spectacleOrPlace_id': choosedEvent,
+        'seller_id': tlgid,
+        'pricePerTicket': price,
+        'qty': qty,
+        'placeNumber': placeNumber,
+        'row': row,
+        'placeLocation': placeLocation,
+        'schedule_id': choosedSchedule,
+        'isOperated':false,
+        'username':username,
+        'status':'fab806b0-e853-47b4-909d-a3666ad3b2a1'
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    })
 
-    // Дополнительная логика (например, отправка данных на сервер)
-    // fetch('/submit', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ placeLocation, row, placeNumber, qty, price }),
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // }).then(response => response.json())
-    //   .then(data => console.log(data))
-    //   .catch(error => console.error('Ошибка:', error));
+    const result  = await response.json()
+    console.log (result)
 
-    // Очистка формы (опционально)
-    document.getElementById('ticketForm').reset();
+    window.location.href = '7SuccesSent.html'
+
 }
-
-
-

@@ -11,7 +11,7 @@
    
     <div class="appspace" id="appspace">
 
-        <div id="loader_div" class="loader_div" style="display: none;">
+        <div id="loader_div" class="loader_div">
             <div class="loader"></div>
             <p>Ищем информацию ...</p>
         </div>
@@ -21,7 +21,9 @@
         
         <div class="ShowChoosedEvent_div" id="infodiv"></div>
         
-        <div class="subtitle">Укажите данные для продажи билета:</div>
+        <div class="createTicket_subtitle">Укажите данные для продажи билета:</div>
+        <div class="createTicket_info">если разные цены или места в разных рядах - создайте несколько объявлений</div>
+        
         <div class="ShowChoosedEvent_div2" id="schedulediv">
 
              
@@ -51,7 +53,7 @@
 
                 <div class="form-group">
                     <label for="price">Цена за 1 билет:</label>
-                    <input type="number" id="price" name="price" min="0" max="500000" step="100" required>
+                    <input type="number" id="price" name="price" min="0" max="500000" step="1" required>
                 </div>
             
             

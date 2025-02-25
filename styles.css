@@ -524,10 +524,10 @@ margin-bottom: 40px;
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
+    margin-bottom: 5px;
+    color: #000000;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 /* Стили для полей ввода */
@@ -579,6 +579,17 @@ margin-bottom: 40px;
 }
 
 
+.createTicket_subtitle {
+    font-weight: 500;
+    margin-bottom:10px
+}
+
+.createTicket_info {
+    margin-bottom:20px;
+    background-color:#ffd43f;
+    border-radius: 10px;
+    padding: 5px;
+}
 
 
 /* ДОБАВИТЬ БИЛЕТ - ФИНИШ */
