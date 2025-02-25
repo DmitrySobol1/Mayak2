@@ -11,4 +11,8 @@ const index__btn_createticket = document.getElementById('index__btn_createticket
 })
 
 
+const index__btn_myticket = document.getElementById('index__btn_myticket').addEventListener('click',()=>{
+    window.location.href = "./myTickets/1showMyTickets.html";
+})
+
 

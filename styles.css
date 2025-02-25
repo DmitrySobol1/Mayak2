@@ -593,3 +593,24 @@ margin-bottom: 40px;
 
 
 /* ДОБАВИТЬ БИЛЕТ - ФИНИШ */
+
+
+.showMyTickets_btnDelete {
+    background-color: salmon;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px 0px 20px 0px;
+    width:100%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189);
+    font-size:16px;
+    font-weight: 500; 
+}
+
+.showMyTickets_text{
+    margin-bottom:5px;
+}
+
+.showMyTickets_subtitle{
+    margin:0px 0px 20px 0px;
+    font-weight:500; 
+}
