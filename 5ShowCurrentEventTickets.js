@@ -313,7 +313,7 @@ payload.forEach((item)=>{
 
         const btn = document.createElement('button');
         btn.textContent = 'написать продавцу'
-        btn.classList.add('ShowChoosedEvent_btn'); 
+        btn.classList.add('ShowCurrentEvent_btn'); 
         btn.addEventListener('click',()=>{
             window.location.href = `https://t.me/${item.seller_id.tlg_username}`
             // Telegram.WebApp.openLink()
