@@ -3,7 +3,7 @@
 // const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-const tlgid = 123
+const tlgid = 777
 const username = 'my777name'
 
 
@@ -87,8 +87,8 @@ async function getMyPublishedTickets(){
 
         if (payload.length == 0) {
 
-            const noTickets2=document.getElementById('noTickets2')
-            noTickets2.classList.remove('nonvisible')
+            const noTickets1=document.getElementById('noTickets1')
+            noTickets1.classList.remove('nonvisible')
         } else {
 
             payload.forEach((item)=>{
