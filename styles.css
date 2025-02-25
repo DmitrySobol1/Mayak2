@@ -160,7 +160,10 @@ body {
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-
+.index_nofound {
+    font-size:18px;
+    font-weight: 500;
+}
 
 
 /* стили для страницы dateinterval */

@@ -78,34 +78,42 @@ function getAllSchedule(dstart,dfinish){
         })
         .then(res=>res.json())
         .then (data=>{
-            // console.log('найдено театров:',data.payload.length)
-            console.log('найдено театров:',data)
+                        
+            let length = Number(data.payload.length)
+                
+            if (length > 0){
+                // console.log ('есть события')
 
-            const array = data.payload
-            let qty_theatre = 0
-            let qty_party = 0
-            let img_theatre = ''
-            let name_theatre = ''
-            let img_party = ''
-            let name_party = ''
+                const array = data.payload
+                let qty_theatre = 0
+                let qty_party = 0
+                let img_theatre = ''
+                let name_theatre = ''
+                let img_party = ''
+                let name_party = ''
 
 
-            array.forEach((item) => {
-                const eventType = item.eventType_id.id.trim().toLowerCase();
-                if (eventType === 'theatre') {
-                    qty_theatre++;
-                   
-                } else if (eventType === 'party') {
-                    qty_party++;
-                   
-                } else {
-                    console.warn('Неизвестный eventType_id:', item.eventType_id.id);
-                }
-            });
-            
-            console.log('Theatre:', qty_theatre, 'Party:', qty_party);
+                array.forEach((item) => {
+                    const eventType = item.eventType_id.id.trim().toLowerCase();
+                    if (eventType === 'theatre') {
+                        qty_theatre++;
+                    
+                    } else if (eventType === 'party') {
+                        qty_party++;
+                    
+                    } else {
+                        console.warn('Неизвестный eventType_id:', item.eventType_id.id);
+                    }
+                });
+                
+                renderFront(qty_theatre,qty_party)
 
-            renderFront(qty_theatre,qty_party)
+            } else {
+                console.log ('нет событий')
+                const index_nofound=document.getElementById('index_nofound')
+                index_nofound.classList.remove('nonvisible')
+                hideloader()
+            }
 
         })
 }
