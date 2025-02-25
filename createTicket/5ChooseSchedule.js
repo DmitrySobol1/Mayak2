@@ -209,7 +209,7 @@ async function getInfoSchedule(){
                 newDiv.appendChild(title);
                 // newDiv.appendChild(description);
                 newDiv.appendChild(description2);
-                item.ticketsArray_ids ? newDiv.appendChild(btn) : ''
+                newDiv.appendChild(btn) 
                 newDiv.appendChild(iconsdiv);
 
                 // Добавляем newDiv в infodiv

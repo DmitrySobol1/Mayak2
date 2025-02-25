@@ -542,6 +542,8 @@ margin-bottom: 40px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+
+
 .form-group input:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
