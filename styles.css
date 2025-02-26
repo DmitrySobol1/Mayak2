@@ -671,6 +671,9 @@ margin-bottom: 40px;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 20px auto;
+    background-color: salmon;   
 }
 
 /* POP UP ОКНО ДЛЯ УДАЛЕНИЯ БИЛЕТА - ФИНИШ */
+
+

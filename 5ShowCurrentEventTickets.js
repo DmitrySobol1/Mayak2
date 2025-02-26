@@ -279,7 +279,7 @@ payload.forEach((item)=>{
         btn.textContent = 'написать продавцу'
         btn.classList.add('ShowCurrentEvent_btn'); 
         btn.addEventListener('click',()=>{
-            window.location.href = `https://t.me/${item.seller_id.tlg_username}`
+            window.location.href = `https://t.me/${item.sellerUsername}`
         })
 
         
