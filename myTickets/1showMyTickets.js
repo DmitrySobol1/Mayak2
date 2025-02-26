@@ -6,6 +6,8 @@
 const tlgid = 777
 const username = 'my777name'
 
+let typeTicket = ''
+let ticketId = ''
 
 
 const dstart = localStorage.getItem('dstart')
@@ -15,18 +17,18 @@ const choosedEvent = localStorage.getItem('choosedEvent')
 const choosedEventName = localStorage.getItem('choosedEventName')
 const choosedName = localStorage.getItem('choosedName')
 
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = dstartString
-// subtitle.textContent = subtitleFull
+const popup = document.getElementById("popup");
+const openBtn = document.getElementById("openPopup");
+const closeBtn = document.querySelector(".close");
 
-let allTheatres = []
-let theatreEventCounts = []
 
-// let heartarray = localStorage.getItem('heartarray')
-let heartarray = []
-let manarray = []
+
+// let allTheatres = []
+// let theatreEventCounts = []
+
+// // let heartarray = localStorage.getItem('heartarray')
+// let heartarray = []
+// let manarray = []
 
 // const title = document.querySelector('.title')
 // title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
@@ -130,9 +132,9 @@ async function getMyPublishedTickets(){
                 btn.textContent = 'удалить билет'
                 btn.classList.add('showMyTickets_btnDelete'); 
                 btn.addEventListener('click', ()=>{
-                    localStorage.setItem('choosedSchedule',item.id)
-                    localStorage.setItem('timeString',item.timeString)
-                    window.location.href = '6CreateTicket.html'
+                    popup.style.display = "flex";
+                    typeTicket = 'published'
+                    ticketId = item.id
                 })
         
         
@@ -222,9 +224,9 @@ async function getMyNotPublishedTickets(){
                 btn.textContent = 'удалить билет'
                 btn.classList.add('showMyTickets_btnDelete'); 
                 btn.addEventListener('click', ()=>{
-                    localStorage.setItem('choosedSchedule',item.id)
-                    localStorage.setItem('timeString',item.timeString)
-                    window.location.href = '6CreateTicket.html'
+                    popup.style.display = "flex";
+                    typeTicket = 'notpublished'
+                    ticketId = item.id
                 })
         
         
@@ -247,6 +249,73 @@ async function getMyNotPublishedTickets(){
  }
 
 
+ // Закрытие popup при клике вне окна
+ popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+        popup.style.display = "none";
+    }
+});
+
+
+const yes_btn = document.getElementById('yes');
+yes_btn.addEventListener('click', () => {
+    
+    const first_text = document.getElementById('first_text');
+    const second_text = document.getElementById('second_text');
+    const ok = document.getElementById('ok');
+    const popup_loader = document.getElementById('popup_loader');
+    
+    yes_btn.classList.add('nonvisible');
+    no_btn.classList.add('nonvisible');
+    first_text.classList.add('nonvisible');
+
+    popup_loader.style.display='block'
+
+    deleteTicket();
+});
 
 
 
+const no_btn = document.getElementById('no');
+no_btn.addEventListener('click', () => {
+    popup.style.display = "none";
+});
+
+
+const ok_btn = document.getElementById('ok');
+ok_btn.addEventListener('click', () => {
+    popup.style.display = "none";
+    location.reload();
+});
+
+
+
+
+async function deleteTicket(){
+
+        const response = await fetch('https://api.directual.com/good/api/v5/data/rqsttodeleteticket/rqstToDeleteTicket?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+        method: 'POST',
+        
+        body: JSON.stringify({
+            'id': '',
+            'user_id': tlgid,
+            'typeTicket': typeTicket,
+            'ticket_id': ticketId,
+            'isOperated': false
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        })
+
+        const result = await response.json()
+        
+        const second_text = document.getElementById('second_text');
+        const ok = document.getElementById('ok');
+        const popup_loader = document.getElementById('popup_loader');
+        
+        popup_loader.style.display='none'
+        second_text.classList.remove('nonvisible');
+        ok.classList.remove('nonvisible')
+
+}
