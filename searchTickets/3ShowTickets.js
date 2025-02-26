@@ -172,8 +172,12 @@ async function getTicketsFilteredByEventType(){
             
     
             const title = document.createElement('p');
-            title.textContent = `${item.schedule_id.dateString} в ${item.schedule_id.timeString} | ${item.spectacleOrPlace_id.name}`;
+            title.textContent = `${item.schedule_id.dateString} в ${item.schedule_id.timeString}`;
             title.classList.add('scheduleItemContainer_title'); 
+
+            const title2 = document.createElement('p');
+            title2.textContent = `${item.spectacleOrPlace_id.theatreOrGenre_id.name} | ${item.spectacleOrPlace_id.name}`;
+            title2.classList.add('scheduleItemContainer_title'); 
     
            
             const description = document.createElement('p');
@@ -319,6 +323,7 @@ async function getTicketsFilteredByEventType(){
             
     
             newDiv.appendChild(title);
+            newDiv.appendChild(title2);
             newDiv.appendChild(description);
     
             rowMestoDiv.appendChild(row);
