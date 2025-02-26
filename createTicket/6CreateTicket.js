@@ -84,7 +84,8 @@ const response = await fetch('https://api.directual.com/good/api/v5/data/rqsttoc
         'schedule_id': choosedSchedule,
         'isOperated':false,
         'username':username,
-        'status':'fab806b0-e853-47b4-909d-a3666ad3b2a1'
+        'status':'fab806b0-e853-47b4-909d-a3666ad3b2a1',
+        'isActive':true
     }),
     headers: {
         'Content-Type': 'application/json'
