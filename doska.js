@@ -16,3 +16,8 @@ const index__btn_myticket = document.getElementById('index__btn_myticket').addEv
 })
 
 
+
+
+const index__btn_searchevent = document.getElementById('index__btn_searchevent').addEventListener('click',()=>{
+    window.location.href = "./searchTickets/1dates.html";
+})

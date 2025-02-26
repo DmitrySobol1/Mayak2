@@ -16,11 +16,11 @@ let partyImg = ''
 
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
-    window.location.href='dateinterval.html'
+    window.location.href='1dates.html'
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../index.html'
 })
 
 
@@ -72,7 +72,7 @@ getAllSchedule(dstart,dfinish)
 showloader()
 
 function getAllSchedule(dstart,dfinish){
-    fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getAllSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&pageSize=100`, {
+    fetch(`https://api.directual.com/good/api/v5/data/4_tickets/getAllTickets?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&pageSize=100`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -180,12 +180,12 @@ function renderFront(qty_theatre,qty_party){
 
     newDivTheatre.addEventListener('click',()=>{
         localStorage.setItem('eventType','theatre')
-        window.location.href = '2getEventsFilteredByTheatre.html'
+        window.location.href = '3ShowTickets.html'
     })
 
     newDivParty.addEventListener('click',()=>{
         localStorage.setItem('eventType','party')
-        window.location.href = '2getEventsFilteredByTheatre.html'
+        window.location.href = '3ShowTickets.html'
     })
 
     eventstypediv.appendChild(newDivTheatre)

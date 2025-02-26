@@ -30,6 +30,11 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
     window.location.href = '4ShowChoosedEvent.html';
 });
 
+const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', async () => {
+    window.location.href='index.html'
+    }
+);
+
 
 const loader = document.getElementById('loader_div')
 
@@ -42,55 +47,6 @@ function hideloader() {
 }
 
 
-// const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', async () => {
-//     try {
-
-//         if (heartarray.length > 0){
-//         // Выполняем запрос
-//         const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-//             method: 'POST',
-//             body: JSON.stringify({
-//                 'id': '', 
-//                 'array': heartarray,
-//                 'type':'heart'
-//             }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//         });
-
-//         const json = await response.json();
-//         console.log('отправил heart');
-        
-//     } 
-
-//     if (manarray.length > 0){
-//         // Выполняем запрос
-//         const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-//             method: 'POST',
-//             body: JSON.stringify({
-//                 'id': '', 
-//                 'array': manarray,
-//                 'type':'man'
-//             }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//         });
-
-//         const json = await response.json();
-        
-
-//     } 
-
-//     // Перенаправляем пользователя
-//     window.location.href='index.html'
-
-
-//     } catch (error) {
-//         console.error('Произошла ошибка:', error);
-//     }
-// });
 
 
 
