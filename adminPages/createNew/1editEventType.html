@@ -19,10 +19,25 @@
         <div class="title">Редактирование</div>
         <div class="subtitle" id="subtitle"></div>
         
-        <div class="index_nofound nonvisible" id="index_nofound">На указанные даты событий не найдено</div>
+        <!-- <input> -->
         
         <div id = "eventstypediv"></div>
+        <div class="adminEdit_DivSaveCancellBtn">
+            <button class="adminEdit_btnSave" id="adminEdit_btnSave">сохранить изменения</button>
+            <button class="adminEdit_btnCnl" id="adminEdit_btnCnl">вернуть, как было</button>
+        </div>
 
+
+        <!-- <img id="preview" src="#" alt="Предпросмотр" style="max-width: 300px; display: none;"> -->
+
+    <form action="/upload" method="POST" enctype="multipart/form-data" id="imgform">
+        <div>
+            <label for="photo">Выберите новую фотографию:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+        </div>
+        
+        <button type="submit" style="border:2px solid black">Загрузить</button>
+    </form>
         
        
         <div class="wrapper__routingbtn">

@@ -93,90 +93,54 @@ function renderFront(name,img){
     newImgTheatre =  document.createElement('img')
     newImgTheatre.src = img
     newImgTheatre.classList.add('getAllEvents_img')
+    newImgTheatre.id = 'preview'
+
+    input = document.createElement('input')
+    input.value = name
+    input.type = 'text'
+    input.required = true
+    input.classList.add('admin_input')
+    input.placeholder = 'укажите название'
+
+    // divTextPlusIcon = document.createElement('div')
+    // divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
+
+    // newPtheatre = document.createElement('div')
+    // newPtheatre.textContent = name
+
+    // iconEdit = document.createElement('div')
+    // iconEdit.classList.add('iconEdit')
+    // iconEditPen = document.createElement('img')
+    // iconEditPen.src = "../../assets/pencil.png"
+    // iconEditPen.classList.add('iconEditPen')
+    // iconEditText = document.createElement('span')
+    // iconEditText.textContent = 'редактировать'
+
+    // iconEdit.appendChild(iconEditPen)
+    // iconEdit.appendChild(iconEditText)
 
 
-    divTextPlusIcon = document.createElement('div')
-    divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
-
-    newPtheatre = document.createElement('div')
-    newPtheatre.textContent = name
-
-    iconEdit = document.createElement('div')
-    iconEdit.classList.add('iconEdit')
-    iconEditPen = document.createElement('img')
-    iconEditPen.src = "../../assets/pencil.png"
-    iconEditPen.classList.add('iconEditPen')
-    iconEditText = document.createElement('span')
-    iconEditText.textContent = 'редактировать'
-
-    iconEdit.appendChild(iconEditPen)
-    iconEdit.appendChild(iconEditText)
-
-
-    divTextPlusIcon.appendChild(newPtheatre)
-    divTextPlusIcon.appendChild(iconEdit)
+    // divTextPlusIcon.appendChild(newPtheatre)
+    // divTextPlusIcon.appendChild(iconEdit)
 
 
     newDivForImgTheatre.appendChild(newImgTheatre)
 
     newDivTheatre.appendChild(newDivForImgTheatre)
-    newDivTheatre.appendChild(divTextPlusIcon)
+    newDivTheatre.appendChild(input)
+    // newDivTheatre.appendChild(divTextPlusIcon)
     
 
 
-    // newDivParty = document.createElement('div')
-    // newDivParty.classList.add('getAllEvents_div')
 
-    // newDivForImgParty = document.createElement('div')
-    // newDivForImgParty.classList.add('getAllEvents_divForImg')
-    
-    // newImgParty =  document.createElement('img')
-    // newImgParty.src = partyImg
-    // newImgParty.classList.add('getAllEvents_img')
-
-
-    // divTextPlusIcon2 = document.createElement('div')
-    // divTextPlusIcon2.classList.add('admin1showEventType_divTextPlusIcon')
-
-    // newPparty = document.createElement('div')
-    // newPparty.textContent = partyName
-
-    // iconEdit2 = document.createElement('div')
-    // iconEdit2.classList.add('iconEdit')
-    // iconEditPen2 = document.createElement('img')
-    // iconEditPen2.src = "../../assets/pencil.png"
-    // iconEditPen2.classList.add('iconEditPen')
-    // iconEditText2 = document.createElement('span')
-    // iconEditText2.textContent = 'редактировать'
-
-    // iconEdit2.appendChild(iconEditPen2)
-    // iconEdit2.appendChild(iconEditText2)
-
-
-    // divTextPlusIcon2.appendChild(newPparty)
-    // divTextPlusIcon2.appendChild(iconEdit2)
-
-
-    // newDivForImgParty.appendChild(newImgParty)
-
-    // newDivParty.appendChild(newDivForImgParty)
-    // newDivParty.appendChild(divTextPlusIcon2)
-
-
-
-
-    newDivTheatre.addEventListener('click',()=>{
-        localStorage.setItem('eventType','theatre')
-        window.location.href = '2showTheatreOrGenre.html'
-    })
-
-    // newDivParty.addEventListener('click',()=>{
-    //     localStorage.setItem('eventType','party')
+    // newDivTheatre.addEventListener('click',()=>{
+    //     localStorage.setItem('eventType','theatre')
     //     window.location.href = '2showTheatreOrGenre.html'
     // })
 
+    
     eventstypediv.appendChild(newDivTheatre)
-    // eventstypediv.appendChild(newDivParty)
+   
 
     hideloader()
     
@@ -185,10 +149,23 @@ function renderFront(name,img){
 
 
 
+const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
+    location.reload();
+})
 
 
-
-
+document.getElementById('photo').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
 
 
