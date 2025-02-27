@@ -62,14 +62,14 @@ async function getEventImgAndName(){
             partyImg = item.img
         }
      })
-
+     getAllSchedule(dstart,dfinish)
 }
 
 
 
 
-getAllSchedule(dstart,dfinish)
-showloader()
+
+// showloader()
 
 function getAllSchedule(dstart,dfinish){
     fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getAllSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&pageSize=100`, {
