@@ -123,8 +123,11 @@ function renderFront(){
          contextMenu.classList.add('visible');
          // Позиционируем меню рядом с кнопкой
          const rect = iconEdit.getBoundingClientRect();
-         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Ниже кнопки
-         contextMenu.style.left = `${rect.left + window.scrollX}px`; // Слева от кнопки
+         const menuWidth = contextMenu.offsetWidth; // Ширина меню
+
+         // Позиционируем меню слева от кнопки
+         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
+         contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
 
     });
 
@@ -187,8 +190,11 @@ function renderFront(){
          contextMenu.classList.add('visible');
          // Позиционируем меню рядом с кнопкой
          const rect = iconEdit2.getBoundingClientRect();
-         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Ниже кнопки
-         contextMenu.style.left = `${rect.left + window.scrollX}px`; // Слева от кнопки
+         const menuWidth = contextMenu.offsetWidth; // Ширина меню
+
+        // Позиционируем меню слева от кнопки
+        contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
+        contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
 
     });
 
