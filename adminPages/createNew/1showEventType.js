@@ -12,7 +12,7 @@
 // let partyName = ''
 // let partyImg = ''
 
-
+// const contextMenu = document.getElementById('context-menu');
 
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
@@ -34,6 +34,8 @@ function hideloader() {
   loader.classList.add('nonvisible')
 }
 
+
+const contextMenu = document.getElementById('context-menu');
 
 // showloader()
 
@@ -93,7 +95,7 @@ function renderFront(){
 
     divTextPlusIcon.addEventListener('click',()=>{
         localStorage.setItem('eventType','theatre')
-        window.location.href='1editEventType.html'
+        // window.location.href='1editEventType.html'
     })
 
     newPtheatre = document.createElement('div')
@@ -136,10 +138,8 @@ function renderFront(){
     divTextPlusIcon2 = document.createElement('div')
     divTextPlusIcon2.classList.add('admin1showEventType_divTextPlusIcon')
 
-    divTextPlusIcon2.addEventListener('click',()=>{
-        localStorage.setItem('eventType','party')
-        window.location.href='1editEventType.html'
-    })
+    
+
 
     newPparty = document.createElement('div')
     newPparty.textContent = partyName
@@ -155,6 +155,20 @@ function renderFront(){
     iconEdit2.appendChild(iconEditPen2)
     iconEdit2.appendChild(iconEditText2)
 
+    iconEdit2.addEventListener('click',function(e){
+        localStorage.setItem('eventType','party')
+        // window.location.href='1editEventType.html'
+
+        e.stopPropagation(); 
+        contextMenu.style.display = 'block';
+        contextMenu.classList.add('visible');
+        // Позиционируем меню рядом с кнопкой
+        const rect = iconEdit2.getBoundingClientRect();
+        contextMenu.style.top = `${rect.bottom + window.scrollY}px`; // Ниже кнопки
+        contextMenu.style.left = `${rect.left + window.scrollX}px`; // Слева от кнопки
+
+
+        });
 
     divTextPlusIcon2.appendChild(newPparty)
     divTextPlusIcon2.appendChild(iconEdit2)
@@ -187,11 +201,14 @@ function renderFront(){
 
 
 
-
-
-
-
-
+document.addEventListener('click', function (e) {
+    if (!contextMenu.contains(e.target)) {
+      contextMenu.classList.remove('visible');
+      setTimeout(() => {
+        contextMenu.style.display = 'none';
+      }, 300); // Задержка для завершения анимации
+    }
+  });
 
 
 

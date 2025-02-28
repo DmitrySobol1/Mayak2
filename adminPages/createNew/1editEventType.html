@@ -22,22 +22,36 @@
         <!-- <input> -->
         
         <div id = "eventstypediv"></div>
-        <div class="adminEdit_DivSaveCancellBtn">
-            <button class="adminEdit_btnSave" id="adminEdit_btnSave">сохранить изменения</button>
-            <button class="adminEdit_btnCnl" id="adminEdit_btnCnl">вернуть, как было</button>
-        </div>
+        
 
 
         <!-- <img id="preview" src="#" alt="Предпросмотр" style="max-width: 300px; display: none;"> -->
 
     <form action="/upload" method="POST" enctype="multipart/form-data" id="imgform">
-        <div>
+        <!-- <div>
             <label for="photo">Выберите новую фотографию:</label>
             <input type="file" id="photo" name="photo" accept="image/*" required>
+        </div> -->
+
+        <div class="file-input-container">
+            <input type="file" id="photo" name="photo" accept="image/*" required class="hidden-input">
+            
+            <label for="photo" class="custom-button">
+                <img src="../../assets/camera.png" class="file-input-container_img">
+                <span>новое фото</span>
+            </label>
+            
         </div>
         
         <button type="submit" style="border:2px solid black">Загрузить</button>
     </form>
+
+    <div class="adminEdit_DivSaveCancellBtn">
+        <button class="adminEdit_btnSave" id="adminEdit_btnSave">сохранить изменения</button>
+        <button class="adminEdit_btnCnl" id="adminEdit_btnCnl">вернуть, как было</button>
+    </div>
+
+
         
        
         <div class="wrapper__routingbtn">

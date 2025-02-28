@@ -766,4 +766,71 @@ margin-bottom: 40px;
     background-color: salmon;
     /* width:30%; */
   }
+
+
+/* Скрываем стандартный input */
+.hidden-input {
+    display: none;
+  }
+  
+  /* Стили для кастомной кнопки */
+  .custom-button {
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #ffd43f;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: #ffd43f;
+  }
+  
+  /* Стили для текста с именем файла */
+  .file-name {
+    margin-left: 10px;
+    font-style: italic;
+    color: #666;
+  }
+
+  .file-input-container_img{
+    width:20px;
+    height:20px;
+  }
+
+  .context-menu {
+    display: none; /* Скрываем меню по умолчанию */
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0; /* Начальная прозрачность для анимации */
+    transform: translateY(-10px); /* Начальное смещение для анимации */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Анимация */
+  }
+
+  .context-menu.visible {
+    opacity: 1; /* Полная видимость */
+    transform: translateY(0); /* Смещение в исходное положение */
+  }
+
+  .context-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .context-menu ul li {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+
+  .context-menu ul li:hover {
+    background-color: #f1f1f1;
+  }
 /* АДМИН - ФИНИШ */
