@@ -12,8 +12,6 @@
 // let partyName = ''
 // let partyImg = ''
 
-// const contextMenu = document.getElementById('context-menu');
-
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='dateinterval.html'
@@ -93,11 +91,6 @@ function renderFront(){
     divTextPlusIcon = document.createElement('div')
     divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
 
-    divTextPlusIcon.addEventListener('click',()=>{
-        localStorage.setItem('eventType','theatre')
-        // window.location.href='1editEventType.html'
-    })
-
     newPtheatre = document.createElement('div')
     newPtheatre.textContent = theatreName
 
@@ -106,7 +99,7 @@ function renderFront(){
     iconEditPen = document.createElement('img')
     iconEditPen.src = "../../assets/setting.png"
     iconEditPen.classList.add('iconEditPen')
-    iconEdit.dataset.id='aaa'
+   
    
 
     iconEdit.addEventListener('click',function(e){

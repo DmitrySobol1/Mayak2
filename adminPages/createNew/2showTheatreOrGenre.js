@@ -11,6 +11,7 @@ const eventType = localStorage.getItem('eventType')
 const title = document.querySelector('.title')
 title.textContent = eventType === 'theatre'? 'Театры' : 'Вечеринки'
 
+const contextMenu = document.getElementById('context-menu');
 
 let allTheatres = []
 let renderArray = []
@@ -157,20 +158,74 @@ async function render() {
       img.alt = item.name;
       img.classList.add('getEventsFilteredByTheatre_img');
   
-      const p = document.createElement('p');
-      p.textContent = item.name;
+      // const p = document.createElement('p');
+      // p.textContent = item.name;
+
+
+      divTextPlusIcon = document.createElement('div')
+      divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
+  
+      newPtheatre = document.createElement('div')
+      newPtheatre.textContent = item.name
+  
+      iconEdit = document.createElement('div')
+      iconEdit.classList.add('iconEdit')
+      iconEditPen = document.createElement('img')
+      iconEditPen.src = "../../assets/setting.png"
+      iconEditPen.classList.add('iconEditPen')
+      iconEditPen.id = item.id
+
+      iconEdit.appendChild(iconEditPen)
+
+      divTextPlusIcon.appendChild(newPtheatre)
+      divTextPlusIcon.appendChild(iconEdit)
+
+       
+      iconEdit.addEventListener('click',function(e){
+        localStorage.setItem('choosedTheatreGenre',e.target.id)
+        
+        console.log(e.target.id)
+
+         const links = contextMenu.querySelectorAll('a');
+         
+         // Устанавливаем новые ссылки
+         links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
+         links[1].href = "2editTheatreOrGenre.html"; // Ссылка для "Редактировать"
+
+         e.stopPropagation(); 
+         contextMenu.style.display = 'block';
+         contextMenu.classList.add('visible');
+        //  Позиционируем меню рядом с кнопкой
+        //  const rect = iconEdit.getBoundingClientRect();
+          const rect = document.getElementById(e.target.id).getBoundingClientRect();
+
+         const menuWidth = contextMenu.offsetWidth; // Ширина меню
+
+         // Позиционируем меню слева от кнопки
+         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
+         contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
+
+    });
+    
+
+    
+    
+
+
+
   
       imgDiv.appendChild(img)
     //   imgDiv.appendChild(qtyDiv)
 
       newDiv.appendChild(imgDiv)
-      newDiv.appendChild(p);
+      newDiv.appendChild(divTextPlusIcon)
+      // newDiv.appendChild(p);
       
-      newDiv.addEventListener('click', () => {
-        localStorage.setItem('choosedTheatreGenre',item.id)
-        localStorage.setItem('choosedName',item.name)
-        window.location.href= '3getSpectaclesAtCurrentTheatre.html'
-    });
+    //   newDiv.addEventListener('click', () => {
+    //     localStorage.setItem('choosedTheatreGenre',item.id)
+    //     localStorage.setItem('choosedName',item.name)
+    //     window.location.href= '3getSpectaclesAtCurrentTheatre.html'
+    // });
       
       // Добавляем div в fragment
       fragment.appendChild(newDiv);
