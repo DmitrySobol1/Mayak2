@@ -769,6 +769,16 @@ margin-bottom: 40px;
   }
 
 
+ 
+
+.adminEdit_divForImg {
+    width: 100%;
+    /* overflow: hidden; */
+}
+
+
+
+
 /* Скрываем стандартный input */
 .hidden-input {
     display: none;
@@ -834,4 +844,49 @@ margin-bottom: 40px;
   .context-menu ul li:hover {
     background-color: #f1f1f1;
   }
+
+
+  .loaderSave_div {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    /* width: 100%;
+    height: 100%; */
+    background-color: #dbdbdb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+
+.loaderSave {
+    border: 6px solid #000000;
+    border-top: 6px solid #fff500;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loaderSave_div p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #000000;
+}
+
+
+.adminEditEvent_divForm {
+    margin-bottom:20px;
+}
+
 /* АДМИН - ФИНИШ */
