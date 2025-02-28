@@ -697,6 +697,7 @@ margin-bottom: 40px;
 .iconEdit {
     background-color: #ffd43f;
     border-radius: 10px;
+    border:1px solid black;
     padding: 5px;
     display: flex;
     gap:5px; 

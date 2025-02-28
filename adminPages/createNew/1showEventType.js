@@ -104,14 +104,32 @@ function renderFront(){
     iconEdit = document.createElement('div')
     iconEdit.classList.add('iconEdit')
     iconEditPen = document.createElement('img')
-    iconEditPen.src = "../../assets/pencil.png"
+    iconEditPen.src = "../../assets/setting.png"
     iconEditPen.classList.add('iconEditPen')
-    iconEditText = document.createElement('span')
-    iconEditText.textContent = 'редактировать'
+    iconEdit.dataset.id='aaa'
+   
+
+    iconEdit.addEventListener('click',function(e){
+        localStorage.setItem('eventType','theatre')
+        
+         const links = contextMenu.querySelectorAll('a');
+         
+         // Устанавливаем новые ссылки
+         links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
+         links[1].href = "1editEventType.html"; // Ссылка для "Редактировать"
+
+         e.stopPropagation(); 
+         contextMenu.style.display = 'block';
+         contextMenu.classList.add('visible');
+         // Позиционируем меню рядом с кнопкой
+         const rect = iconEdit.getBoundingClientRect();
+         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Ниже кнопки
+         contextMenu.style.left = `${rect.left + window.scrollX}px`; // Слева от кнопки
+
+    });
+
 
     iconEdit.appendChild(iconEditPen)
-    iconEdit.appendChild(iconEditText)
-
 
     divTextPlusIcon.appendChild(newPtheatre)
     divTextPlusIcon.appendChild(iconEdit)
@@ -147,28 +165,32 @@ function renderFront(){
     iconEdit2 = document.createElement('div')
     iconEdit2.classList.add('iconEdit')
     iconEditPen2 = document.createElement('img')
-    iconEditPen2.src = "../../assets/pencil.png"
+    iconEditPen2.src = "../../assets/setting.png"
     iconEditPen2.classList.add('iconEditPen')
-    iconEditText2 = document.createElement('span')
-    iconEditText2.textContent = 'редактировать'
+    // iconEditText2 = document.createElement('span')
+    // iconEditText2.textContent = 'редактировать'
 
     iconEdit2.appendChild(iconEditPen2)
-    iconEdit2.appendChild(iconEditText2)
+    // iconEdit2.appendChild(iconEditText2)
 
     iconEdit2.addEventListener('click',function(e){
         localStorage.setItem('eventType','party')
-        // window.location.href='1editEventType.html'
+        
+         const links = contextMenu.querySelectorAll('a');
+         
+         // Устанавливаем новые ссылки
+         links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
+         links[1].href = "1editEventType.html"; // Ссылка для "Редактировать"
 
-        e.stopPropagation(); 
-        contextMenu.style.display = 'block';
-        contextMenu.classList.add('visible');
-        // Позиционируем меню рядом с кнопкой
-        const rect = iconEdit2.getBoundingClientRect();
-        contextMenu.style.top = `${rect.bottom + window.scrollY}px`; // Ниже кнопки
-        contextMenu.style.left = `${rect.left + window.scrollX}px`; // Слева от кнопки
+         e.stopPropagation(); 
+         contextMenu.style.display = 'block';
+         contextMenu.classList.add('visible');
+         // Позиционируем меню рядом с кнопкой
+         const rect = iconEdit2.getBoundingClientRect();
+         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Ниже кнопки
+         contextMenu.style.left = `${rect.left + window.scrollX}px`; // Слева от кнопки
 
-
-        });
+    });
 
     divTextPlusIcon2.appendChild(newPparty)
     divTextPlusIcon2.appendChild(iconEdit2)
