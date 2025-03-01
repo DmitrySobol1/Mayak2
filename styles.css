@@ -940,4 +940,24 @@ margin-bottom: 40px;
     /* box-shadow: 0 0 5px rgba(186, 230, 11, 0.5); */
   }
 
+.theatre-item-small {
+  background-color: #b1b1b1;   
+  border-radius:10px;
+  padding: 5px 10px;
+}
+
+.theatre-item-small-addnew {
+    background-color:#ffd43f;   
+    border-radius:10px;
+    padding: 15px 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+
+.plus{
+    font-weight: 800;
+    font-size: 25px;
+}
 /* АДМИН - ФИНИШ */

@@ -153,7 +153,8 @@ async function render() {
 
       imgDiv.addEventListener('click',()=>{
         localStorage.setItem('choosedSpectaclePlace',item.id)
-        window.location.href='3editSpectacleOrPlace.html'
+        localStorage.setItem('choosedTheatreGenreName',item.name)
+        window.location.href='4showSchedule.html'
       })  
 
       const img = document.createElement('img');
@@ -174,6 +175,7 @@ async function render() {
       iconEdit = document.createElement('div')
       iconEdit.classList.add('iconEdit')
       iconEditPen = document.createElement('img')
+      iconEditPen.dataset.name = item.name
       iconEditPen.src = "../../assets/setting.png"
       iconEditPen.classList.add('iconEditPen')
       iconEditPen.id = item.id
@@ -186,6 +188,7 @@ async function render() {
        
       iconEdit.addEventListener('click',function(e){
         localStorage.setItem('choosedTheatreGenre',e.target.id)
+        localStorage.setItem('choosedTheatreGenreName',e.target.dataset.name)
         
         console.log(e.target.id)
 
