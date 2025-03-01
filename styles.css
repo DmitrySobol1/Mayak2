@@ -759,6 +759,7 @@ margin-bottom: 40px;
 
 .adminEdit_DivSaveCancellBtn {
     text-align: center;
+    
 
 }
 
@@ -769,6 +770,7 @@ margin-bottom: 40px;
     background-color: rgb(14, 191, 14);
     /* width:30%; */
     font-weight: 500;
+    margin-bottom:100px;
   }
 
   .adminEdit_btnCnl{
@@ -897,7 +899,7 @@ margin-bottom: 40px;
 
 
 .adminEditEvent_divForm {
-    margin-bottom:40px;
+    margin-bottom:140px;
 }
 
 
