@@ -757,8 +757,9 @@ margin-bottom: 40px;
     border:1px solid black;
     border-radius: 10px;
     padding:10px 10px;
-    background-color: green;
+    background-color: rgb(14, 191, 14);
     /* width:30%; */
+    font-weight: 500;
   }
 
   .adminEdit_btnCnl{
@@ -887,7 +888,7 @@ margin-bottom: 40px;
 
 
 .adminEditEvent_divForm {
-    margin-bottom:20px;
+    margin-bottom:40px;
 }
 
 
