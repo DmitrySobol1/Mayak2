@@ -246,3 +246,13 @@ async function render() {
 const addNewItemdiv2=document.getElementById('addNewItemdiv2').addEventListener('click',()=>{
   window.location.href='2createTheatreOrGenre.html'
 })
+
+
+document.addEventListener('click', function (e) {
+  if (!contextMenu.contains(e.target)) {
+    contextMenu.classList.remove('visible');
+    setTimeout(() => {
+      contextMenu.style.display = 'none';
+    }, 300); // Задержка для завершения анимации
+  }
+});

@@ -151,9 +151,10 @@ async function render() {
       const imgDiv = document.createElement('div');
       imgDiv.classList.add('img-div');  
 
-    //   const qtyDiv = document.createElement('div');
-    //   qtyDiv.classList.add('qty-div');
-    //   qtyDiv.textContent = item.qty ;
+      imgDiv.addEventListener('click',()=>{
+        localStorage.setItem('choosedSpectaclePlace',item.id)
+        window.location.href='3editSpectacleOrPlace.html'
+      })  
 
       const img = document.createElement('img');
       img.src = item.img;
@@ -192,7 +193,7 @@ async function render() {
          
          // Устанавливаем новые ссылки
          links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
-         links[1].href = "2editTheatreOrGenre.html"; // Ссылка для "Редактировать"
+         links[1].href = "3editSpectacleOrPlace.html"; // Ссылка для "Редактировать"
 
          e.stopPropagation(); 
          contextMenu.style.display = 'block';
@@ -243,5 +244,14 @@ async function render() {
 
 
 const addNewItemdiv2=document.getElementById('addNewItemdiv2').addEventListener('click',()=>{
-  window.location.href='2createTheatreOrGenre.html'
+  window.location.href='3createSpectacleOrPlace.html'
 })
+
+document.addEventListener('click', function (e) {
+    if (!contextMenu.contains(e.target)) {
+      contextMenu.classList.remove('visible');
+      setTimeout(() => {
+        contextMenu.style.display = 'none';
+      }, 300); // Задержка для завершения анимации
+    }
+  });

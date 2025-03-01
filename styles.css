@@ -747,6 +747,15 @@ margin-bottom: 40px;
     font-style: italic; /* Курсивный текст */
   }
 
+.admin_textarea {
+    resize: none; /* Запретить изменение размера */
+    overflow: hidden; /* Скрыть полосу прокрутки */
+    white-space: pre-wrap; /* Сохранять переносы строк */
+    font-family: inherit; /* Наследовать шрифт */
+  /* font-size: inherit;  */
+     font-size: 16px
+}
+
 
 .adminEdit_DivSaveCancellBtn {
     text-align: center;
@@ -905,5 +914,24 @@ margin-bottom: 40px;
    
  }
 
+
+.admin_select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin: 10px 0px 20px 0px;
+      
+}
+
+.admin_select:focus {
+    /* outline: none; */
+    border: 2px solid #ffd43f;
+    border-color: #ffd43f;
+    /* width: 100%; */
+    /* box-shadow: 0 0 5px rgba(186, 230, 11, 0.5); */
+  }
 
 /* АДМИН - ФИНИШ */
