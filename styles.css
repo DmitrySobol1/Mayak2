@@ -766,24 +766,27 @@ margin-bottom: 40px;
 .adminEdit_DivSaveCancellBtn {
     position:fixed;
     top:100px;
-    right:0px;
+    right:-20px;
     display:block;
+    
 }
 
   .adminEdit_btnSave{
-    border:1px solid black;
+    /* border:1px solid black; */
+    font-size: 10px;
     border-radius: 10px;
-    padding:10px 10px;
+    padding:10px 20px 10px 5px;
     background-color: rgb(14, 191, 14);
     /* width:30%; */
-    font-weight: 500;
-    /* margin-bottom:100px; */
+    /* font-weight: 500; */
+    margin-bottom:10px;
   }
 
   .adminEdit_btnCnl{
-    border:1px solid black;
+    /* border:1px solid black; */
+    font-size: 10px;
     border-radius: 10px;
-    padding:10px 20px;
+    padding:10px 20px 10px 5px;
     background-color: salmon;
     /* width:30%; */
   }
