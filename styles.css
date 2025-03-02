@@ -1008,5 +1008,39 @@ margin-bottom: 40px;
     margin-bottom: 15px;
 }
 
-
 /* АДМИН - ФИНИШ */
+
+
+
+
+/* NOTIFICATION ПРИ УДАЛЕНИИ - СТАРТ */
+
+
+.notification{
+    position: fixed;
+    top:-50px;
+    background-color: salmon;
+    padding: 150px 10px 20px 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-weight: 500; 
+    width: 100%;
+    display: none;
+    opacity: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: top 0.5s ease, opacity 0.5s ease;
+}
+
+.notification_text {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification_btn {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* NOTIFICATION ПРИ УДАЛЕНИИ - ФИНИШ */
