@@ -341,48 +341,26 @@ function isValidDate(dateString) {
   
 
 
-// Notification при удалении
-  const showNotificationButton = document.getElementById('deleteBtnDiv');
-  const notification = document.getElementById('notification');
-  const okButton = document.getElementById('okButton');
-  const cancelButton = document.getElementById('cancelButton');
 
-  // Функция для показа сообщения
-  function showNotification() {
-    notification.style.display='flex'
-    notification.style.opacity = '1'; // Делаем его полностью видимым
+  const deleteBtn = document.getElementById('deleteBtn')
+  const div_deleteNotification = document.getElementById('div_deleteNotification')
+  const deleteContent = document.getElementById('deleteContent')
+  
+  function showDeleteNotification() {
+    deleteContent.style.top = 0
+
+    setTimeout(()=>{
+        hideDeleteNotification()
+    },3000)
   }
 
-  // Функция для скрытия сообщения
-  function hideNotification() {
-    notification.style.top = '-50px'; // Прячем сообщение
-    notification.style.opacity = '0'; // Делаем его прозрачным
+  
+  deleteBtn.addEventListener('click',()=>{
+    showDeleteNotification()
+  })
+
+
+
+  function hideDeleteNotification() {
+    deleteContent.style.top = '-300px'
   }
-
-  // Обработчик клика на кнопку "Показать сообщение"
-  showNotificationButton.addEventListener('click', function () {
-    showNotification();
-    setTimeout(hideNotification, 5000);
-  });
-
-  // Обработчик клика на кнопку "ОК"
-  okButton.addEventListener('click', function () {
-    
-    hideNotification();
-  });
-
-  // Обработчик клика на кнопку "Отмена"
-  cancelButton.addEventListener('click', function () {
-    // alert('Вы нажали Отмена');
-    hideNotification();
-  });
-
-//   Закрытие сообщения по клику вне его области
-//   document.addEventListener('click', function (e) {
-//     if (
-//       !notification.contains(e.target) && // Клик вне сообщения
-//       e.target !== showNotificationButton // И не на кнопке "Показать сообщение"
-//     ) {
-//       hideNotification();
-//     }
-//   });
