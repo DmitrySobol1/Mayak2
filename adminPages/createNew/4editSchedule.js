@@ -182,18 +182,32 @@ function renderFront(dateString,timeString){
 
 
 
-const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-    location.reload();
-})
+// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
+//     location.reload();
+// })
 
 
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
     if (dateOk==false || timeOk==false) {
         // console.log('укажите верно')
-        const successText = document.getElementById('successText')
-        successText.textContent =  'Введи дату и время корректно!'
-        setTimeout(()=>successText.textContent = '',1500)
+        // const successText = document.getElementById('successText')
+        // successText.textContent =  'Введи дату и время корректно!'
+        // setTimeout(()=>successText.textContent = '',1500)
+
+
+        const div_successText = document.getElementById('div_successText')
+       const successText = document.getElementById('successText')
+       successText.textContent = 'Введи дату и время корректно!'
+       div_successText.style.display = 'flex'
+
+       setTimeout(()=>{
+           div_successText.style.display = 'none'
+       },2000)
+
+
+
+
     } else {
 
         const inputDate = document.getElementById('inputDate').value
@@ -242,32 +256,60 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-    const buttons = document.getElementById('DivSaveCancellBtn')
-    buttons.classList.remove('nonvisible')
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.remove('nonvisible')
+
+
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    DivSaveCancellBtn.style.display = 'block'
     
 }
 
 function hide_DivSaveCancellBtn(){
-    const buttons = document.getElementById('DivSaveCancellBtn')
-    buttons.classList.add('nonvisible')
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.add('nonvisible')
+
+
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    DivSaveCancellBtn.style.display = 'none'
     
 }
 
 
 function showSaveLoader() {
     const buttons = document.getElementById('DivSaveCancellBtn')
-    buttons.classList.add('nonvisible')
-    const loaderSave_div = document.getElementById('loaderSave_div')
-    loaderSave_div.style.display='flex'
+    // buttons.classList.add('nonvisible')
+    // const loaderSave_div = document.getElementById('loaderSave_div')
+    // loaderSave_div.style.display='flex'
+
+
+    const div_successText = document.getElementById('div_successText')
+    const successText = document.getElementById('successText')
+    successText.textContent = 'сохраняю ...'
+    div_successText.style.display = 'flex'
+
+    setTimeout(()=>{
+        div_successText.style.display = 'none'
+    },2000)
+
 }
 
 function hideSaveLoader() {
-    const loaderSave_div = document.getElementById('loaderSave_div')
-    loaderSave_div.style.display='none';
+    // const loaderSave_div = document.getElementById('loaderSave_div')
+    // loaderSave_div.style.display='none';
+
+    // const successText = document.getElementById('successText')
+    // successText.textContent =  'Успешно сохранено!'
+    // setTimeout(()=>successText.textContent = '',1500)
+
 
     const successText = document.getElementById('successText')
-    successText.textContent =  'Успешно сохранено!'
-    setTimeout(()=>successText.textContent = '',1500)
+    successText.textContent = 'Успешно сохранено!'
+    div_successText.style.display = 'flex'
+
+    setTimeout(()=>{
+        div_successText.style.display = 'none'
+    },2000)
     
 }
 

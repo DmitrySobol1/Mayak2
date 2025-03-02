@@ -108,7 +108,12 @@ function renderFront(name,img){
     input.placeholder = 'укажите название'
 
     input.addEventListener('input',()=>{
-        show_DivSaveCancellBtn()
+
+        if (input.value != ''){
+            show_DivSaveCancellBtn()
+        } else {
+            hide_DivSaveCancellBtn()
+        }
     })
 
     // divTextPlusIcon = document.createElement('div')
@@ -157,9 +162,9 @@ function renderFront(name,img){
 
 
 
-const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-    location.reload();
-})
+// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
+//     location.reload();
+// })
 
 
 
@@ -183,6 +188,20 @@ document.getElementById('photo').addEventListener('change', function(event) {
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
     const inputEventTypeName = document.getElementById('inputEventTypeName').value
+
+    if (inputEventTypeName == ''){
+        // console.log('ПУСТО')
+
+        const div_successText = document.getElementById('div_successText')
+        const successText = document.getElementById('successText')
+        successText.textContent = 'заполните все поля'
+        div_successText.style.display = 'flex'
+
+        setTimeout(()=>{
+            div_successText.style.display = 'none'
+        },2000)
+
+    } else {
 
     if (imgIsChanged){
         showSaveLoader()
@@ -232,33 +251,65 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
             hideSaveLoader();
 
     }
-
+}
 })
 
 
 
 
 function show_DivSaveCancellBtn(){
-    const buttons = document.getElementById('DivSaveCancellBtn')
-    buttons.classList.remove('nonvisible')
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.remove('nonvisible')
+
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    DivSaveCancellBtn.style.display = 'block'
+    
+}
+
+
+function hide_DivSaveCancellBtn(){
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.add('nonvisible')
+
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    DivSaveCancellBtn.style.display = 'none'
     
 }
 
 
 function showSaveLoader() {
-    const buttons = document.getElementById('DivSaveCancellBtn')
-    buttons.classList.add('nonvisible')
-    const loaderSave_div = document.getElementById('loaderSave_div')
-    loaderSave_div.style.display='flex'
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.add('nonvisible')
+    // const loaderSave_div = document.getElementById('loaderSave_div')
+    // loaderSave_div.style.display='flex'
+
+    const div_successText = document.getElementById('div_successText')
+        const successText = document.getElementById('successText')
+        successText.textContent = 'сохраняю ...'
+        div_successText.style.display = 'flex'
+
+        setTimeout(()=>{
+            div_successText.style.display = 'none'
+        },2000)
 }
 
 function hideSaveLoader() {
-    const loaderSave_div = document.getElementById('loaderSave_div')
-    loaderSave_div.style.display='none';
+    // const loaderSave_div = document.getElementById('loaderSave_div')
+    // loaderSave_div.style.display='none';
 
-    const successText = document.getElementById('successText')
-    successText.textContent =  'Успешно сохранено!'
-    setTimeout(()=>successText.textContent = '',1500)
+    // const successText = document.getElementById('successText')
+    // successText.textContent =  'Успешно сохранено!'
+    // setTimeout(()=>successText.textContent = '',1500)
     
+    
+
+    const div_successText = document.getElementById('div_successText')
+        const successText = document.getElementById('successText')
+        successText.textContent = 'Успешно сохранено!'
+        div_successText.style.display = 'flex'
+
+        setTimeout(()=>{
+            div_successText.style.display = 'none'
+        },2000)
 }
 
