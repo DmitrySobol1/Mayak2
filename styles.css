@@ -757,10 +757,17 @@ margin-bottom: 40px;
 }
 
 
-.adminEdit_DivSaveCancellBtn {
+/* .adminEdit_DivSaveCancellBtn {
     text-align: center;
     
 
+} */
+
+.adminEdit_DivSaveCancellBtn {
+    position:fixed;
+    top:100px;
+    right:0px;
+    display:block;
 }
 
   .adminEdit_btnSave{
@@ -770,7 +777,7 @@ margin-bottom: 40px;
     background-color: rgb(14, 191, 14);
     /* width:30%; */
     font-weight: 500;
-    margin-bottom:100px;
+    /* margin-bottom:100px; */
   }
 
   .adminEdit_btnCnl{
@@ -959,5 +966,18 @@ margin-bottom: 40px;
 .plus{
     font-weight: 800;
     font-size: 25px;
+}
+
+.delete_div {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.delete_btn {
+    background-color: salmon;
+    padding: 10px 30px;
+    border:1px solid black;
+    border-radius: 10px;
+    /* margin-bottom: 100px; */
 }
 /* АДМИН - ФИНИШ */

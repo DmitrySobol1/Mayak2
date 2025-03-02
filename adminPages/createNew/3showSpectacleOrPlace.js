@@ -2,6 +2,7 @@ const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
 const choosedEvent = localStorage.getItem('choosedEvent')
+const choosedName = localStorage.getItem('choosedName')
 
 
 // const subtitle = document.getElementById('subtitle')
@@ -11,7 +12,7 @@ const choosedEvent = localStorage.getItem('choosedEvent')
 // subtitle.textContent = subtitleFull
 
 const title = document.querySelector('.title')
-title.textContent = eventType === 'theatre'? 'Спектакли' : 'Локации'
+title.textContent = eventType === 'theatre'? `Спектакли в ${choosedName}` : `${choosedName}`
 
 const contextMenu = document.getElementById('context-menu');
 
@@ -23,7 +24,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 
@@ -189,13 +190,13 @@ async function render() {
       iconEdit.addEventListener('click',function(e){
         localStorage.setItem('choosedTheatreGenre',e.target.id)
         localStorage.setItem('choosedTheatreGenreName',e.target.dataset.name)
+        localStorage.setItem('choosedSpectaclePlace',e.target.id)
         
-        console.log(e.target.id)
 
          const links = contextMenu.querySelectorAll('a');
          
          // Устанавливаем новые ссылки
-         links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
+         links[0].href = "4showSchedule.html"; // Ссылка для "Открыть"
          links[1].href = "3editSpectacleOrPlace.html"; // Ссылка для "Редактировать"
 
          e.stopPropagation(); 

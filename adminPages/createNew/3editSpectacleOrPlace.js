@@ -25,7 +25,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 
@@ -83,6 +83,12 @@ async function getTheatreOrGenre(){
     newImgTheatre.classList.add('getAllEvents_img')
     newImgTheatre.id = 'preview'
 
+    deleteDiv = document.createElement('div')
+    deleteDiv.classList.add('delete_div')
+    deleteBtn = document.createElement('button')
+    deleteBtn.textContent = 'удалить'
+    deleteBtn.classList.add('delete_btn')
+    deleteDiv.appendChild(deleteBtn)
     
     inputName = document.createElement('input')
     inputName.id = 'inputName'
@@ -166,8 +172,8 @@ async function getTheatreOrGenre(){
 
 
     newDivForImgTheatre.appendChild(newImgTheatre)
-
     newDivTheatre.appendChild(newDivForImgTheatre)
+    newDivTheatre.appendChild(deleteDiv)
     newDivTheatre.appendChild(inputName)
     newDivTheatre.appendChild(inputDescription)
     newDivTheatre.appendChild(inputMainActor)

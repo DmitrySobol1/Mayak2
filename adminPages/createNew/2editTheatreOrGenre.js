@@ -23,7 +23,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 

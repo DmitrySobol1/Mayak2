@@ -4,6 +4,12 @@ const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
 const choosedEvent  = localStorage.getItem('choosedEvent')
 const choosedSpectaclePlace  = localStorage.getItem('choosedSpectaclePlace')
+const choosedTheatreGenreName  = localStorage.getItem('choosedTheatreGenreName')
+const choosedName  = localStorage.getItem('choosedName')
+
+
+const subtitle = document.getElementById('subtitle')
+subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
 
 
 // const subtitle = document.getElementById('subtitle')
@@ -26,7 +32,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 

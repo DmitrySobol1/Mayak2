@@ -21,7 +21,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 
@@ -191,13 +191,15 @@ async function render() {
       iconEdit.addEventListener('click',function(e){
         localStorage.setItem('choosedTheatreGenre',e.target.id)
         localStorage.setItem('choosedName',e.target.dataset.name)
+        localStorage.setItem('choosedEvent',e.target.id)
         
-        console.log(e.target)
+        
+        // console.log(e.target)
 
          const links = contextMenu.querySelectorAll('a');
          
          // Устанавливаем новые ссылки
-         links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
+         links[0].href = "3showSpectacleOrPlace.html"; // Ссылка для "Открыть"
          links[1].href = "2editTheatreOrGenre.html"; // Ссылка для "Редактировать"
 
          e.stopPropagation(); 

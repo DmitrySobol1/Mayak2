@@ -26,7 +26,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 
@@ -229,7 +229,7 @@ async function render() {
       // newDiv.appendChild(p);
       
       newDiv.addEventListener('click', () => {
-        localStorage.setItem('choosedEvent',item.id)
+        localStorage.setItem('choosedSchedule',item.id)
         window.location.href= '4editSchedule.html'
     });
       

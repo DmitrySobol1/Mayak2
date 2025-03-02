@@ -23,9 +23,11 @@
         
         <div id = "eventstypediv"></div>
         
+        <!-- <div>
+            <button class="delete_btn">Удалить</button>
+        </div> -->
 
-
-        <!-- <img id="preview" src="#" alt="Предпросмотр" style="max-width: 300px; display: none;"> -->
+        
     <div class="adminEditEvent_divForm">  
     <form action="/upload" method="POST" enctype="multipart/form-data" id="imgform">
         
@@ -39,12 +41,14 @@
             
         </div>
         
+        
+
         <!-- <button type="submit" style="border:2px solid black">Загрузить</button> -->
     </form>
     </div>  
     <div class="adminEdit_DivSaveCancellBtn nonvisible" id = 'DivSaveCancellBtn'>
-        <button class="adminEdit_btnSave" id="adminEdit_btnSave">сохранить изменения</button>
-        <button class="adminEdit_btnCnl" id="adminEdit_btnCnl">вернуть, как было</button>
+        <div><button class="adminEdit_btnSave" id="adminEdit_btnSave">сохранить</button></div>
+        <div><button class="adminEdit_btnCnl" id="adminEdit_btnCnl">вернуть</button></div>
     </div>
         <div class="loaderSave_div" id = 'loaderSave_div'>
         <div class="loaderSave "></div>

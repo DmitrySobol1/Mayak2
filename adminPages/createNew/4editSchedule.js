@@ -2,14 +2,14 @@
 // const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
+const choosedTheatreGenreName = localStorage.getItem('choosedTheatreGenreName')
 const choosedEvent  = localStorage.getItem('choosedEvent')
+const choosedName  = localStorage.getItem('choosedName')
+const choosedSchedule  = localStorage.getItem('choosedSchedule')
 
 
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
+const subtitle = document.getElementById('subtitle')
+subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
 
 // let theatreName = ''
 // let theatreImg = ''
@@ -25,7 +25,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='index.html'
+    window.location.href='../adminMainMenu.html'
 })
 
 
@@ -50,7 +50,7 @@ getTheatreOrGenre()
 async function getTheatreOrGenre(){
    
 
-    const response = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getCurrentScheduleForAdminAction?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&item_id=${choosedEvent}`, {
+    const response = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getCurrentScheduleForAdminAction?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&item_id=${choosedSchedule}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -217,7 +217,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
                     'timeString':inputTime,
                     'whatIsChanged': 'ChangeSchedule',
                     'newImg_id': 'no',
-                    'schedule_id': choosedEvent,
+                    'schedule_id': choosedSchedule,
                     'unix':unixTime
                     
                 }),
