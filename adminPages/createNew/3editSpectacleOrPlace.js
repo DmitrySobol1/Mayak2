@@ -60,22 +60,13 @@ async function getTheatreOrGenre(){
      const json = await response.json()
      const item  = json.payload[0]
 
-    //  console.log(array)
-
-        // const name = array[0].name
-        // const img = array[0].img
-
-       
-    //  renderFront(name,img)
-
-    const eventstypediv = document.querySelector('#eventstypediv')
+     const eventstypediv = document.querySelector('#eventstypediv')
 
 
     newDivTheatre = document.createElement('div')
     newDivTheatre.classList.add('getAllEvents_div')
 
     newDivForImgTheatre = document.createElement('div')
-    // newDivForImgTheatre.classList.add('getAllEvents_divForImg')
     newDivForImgTheatre.classList.add('adminEdit_divForImg')
     
     newImgTheatre =  document.createElement('img')
@@ -167,99 +158,28 @@ async function getTheatreOrGenre(){
 
     newDivForImgTheatre.appendChild(newImgTheatre)
     newDivTheatre.appendChild(newDivForImgTheatre)
-    // newDivTheatre.appendChild(deleteDiv)
     newDivTheatre.appendChild(inputName)
     newDivTheatre.appendChild(inputDescription)
     newDivTheatre.appendChild(inputMainActor)
     newDivTheatre.appendChild(inputAge)
     newDivTheatre.appendChild(inputDuration)
     newDivTheatre.appendChild(subcategory)
-    
-    // newDivTheatre.addEventListener('click',()=>{
-    //     localStorage.setItem('eventType','theatre')
-    //     window.location.href = '2showTheatreOrGenre.html'
-    // })
-
-    
     eventstypediv.appendChild(newDivTheatre)
    
-
     hideloader()
-
 }
 
 
-
-
-
-// function renderFront(name,img){
-//     showloader()
-
-//     const eventstypediv = document.querySelector('#eventstypediv')
-
-
-//     newDivTheatre = document.createElement('div')
-//     newDivTheatre.classList.add('getAllEvents_div')
-
-//     newDivForImgTheatre = document.createElement('div')
-//     // newDivForImgTheatre.classList.add('getAllEvents_divForImg')
-//     newDivForImgTheatre.classList.add('adminEdit_divForImg')
-    
-//     newImgTheatre =  document.createElement('img')
-//     newImgTheatre.src = img
-//     newImgTheatre.classList.add('getAllEvents_img')
-//     newImgTheatre.id = 'preview'
-
-//     input = document.createElement('input')
-//     input.id = 'inputEventTypeName'
-//     input.value = name
-//     input.type = 'text'
-//     input.required = true
-//     input.classList.add('admin_input')
-//     input.placeholder = 'укажите название'
-
-//     input.addEventListener('input',()=>{
-//         show_DivSaveCancellBtn()
-//     })
-
-
-//     input = document.createElement('input')
-//     input.id = 'inputDescription'
-//     input.value = description
-//     input.type = 'text'
-//     input.required = true
-//     input.classList.add('admin_input')
-//     input.placeholder = 'укажите название'
-
-    
-
-
-//     newDivForImgTheatre.appendChild(newImgTheatre)
-
-//     newDivTheatre.appendChild(newDivForImgTheatre)
-//     newDivTheatre.appendChild(input)
-//     // newDivTheatre.appendChild(divTextPlusIcon)
-    
-
-
-
-//     // newDivTheatre.addEventListener('click',()=>{
-//     //     localStorage.setItem('eventType','theatre')
-//     //     window.location.href = '2showTheatreOrGenre.html'
-//     // })
-
-    
-//     eventstypediv.appendChild(newDivTheatre)
-   
-
-//     hideloader()
-    
-// }
-
-
-
 const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-    location.reload();
+    // location.reload();
+    const div_successText = document.getElementById('div_successText')
+    const successText = document.getElementById('successText')
+    successText.textContent = 'нажата restore'
+    div_successText.style.display = 'flex'
+
+    setTimeout(()=>{
+        div_successText.style.display = 'none'
+    },1500)
 })
 
 
@@ -283,7 +203,6 @@ document.getElementById('photo').addEventListener('change', function(event) {
 
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
-   
 
  const emptyOk = await checkEmpty()
  console.log(emptyOk)
@@ -424,21 +343,6 @@ document.body.addEventListener('input', (e) => {
   });
 
 
-
-//   function checkEmpty() {
-//     const inputs = document.querySelectorAll('input'); // Получаем все input
-//     const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
-  
-//     if (allFilled) {
-//       console.log('Все поля заполнены');
-//     } else {
-//       console.log('Есть пустые поля');
-//     }
-//   }
-
-
-
-  
  
     function checkEmpty() {
         const inputs = document.querySelectorAll('input[type="text"], textarea');
