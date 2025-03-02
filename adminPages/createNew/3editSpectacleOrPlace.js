@@ -170,17 +170,17 @@ async function getTheatreOrGenre(){
 }
 
 
-const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-    // location.reload();
-    const div_successText = document.getElementById('div_successText')
-    const successText = document.getElementById('successText')
-    successText.textContent = 'нажата restore'
-    div_successText.style.display = 'flex'
+// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
+//     // location.reload();
+//     const div_successText = document.getElementById('div_successText')
+//     const successText = document.getElementById('successText')
+//     successText.textContent = 'нажата restore'
+//     div_successText.style.display = 'flex'
 
-    setTimeout(()=>{
-        div_successText.style.display = 'none'
-    },2000)
-})
+//     setTimeout(()=>{
+//         div_successText.style.display = 'none'
+//     },2000)
+// })
 
 
 
