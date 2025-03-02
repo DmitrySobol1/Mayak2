@@ -83,13 +83,7 @@ async function getTheatreOrGenre(){
     newImgTheatre.classList.add('getAllEvents_img')
     newImgTheatre.id = 'preview'
 
-    deleteDiv = document.createElement('div')
-    deleteDiv.classList.add('delete_div')
-    deleteBtn = document.createElement('button')
-    deleteBtn.textContent = 'удалить'
-    deleteBtn.classList.add('delete_btn')
-    deleteDiv.appendChild(deleteBtn)
-    
+       
     inputName = document.createElement('input')
     inputName.id = 'inputName'
     inputName.value = item.name
@@ -173,7 +167,7 @@ async function getTheatreOrGenre(){
 
     newDivForImgTheatre.appendChild(newImgTheatre)
     newDivTheatre.appendChild(newDivForImgTheatre)
-    newDivTheatre.appendChild(deleteDiv)
+    // newDivTheatre.appendChild(deleteDiv)
     newDivTheatre.appendChild(inputName)
     newDivTheatre.appendChild(inputDescription)
     newDivTheatre.appendChild(inputMainActor)
