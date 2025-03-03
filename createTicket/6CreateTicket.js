@@ -172,6 +172,8 @@ const deleteBtn = document.getElementById('deleteBtn')
 
 
 
-    if (username == ''){
-        showDeleteNotification()   
-    }
+    // if (username == ''){
+    //     showDeleteNotification()   
+    // }
+
+    showDeleteNotification()
