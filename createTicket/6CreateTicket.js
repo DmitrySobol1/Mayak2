@@ -58,10 +58,14 @@ hideloader()
 
 
 document.getElementById('ticketForm').addEventListener('submit', function(event) {
+    
+    if (username == undefined) {
+        showDeleteNotification() 
+    } else {
     // Предотвращаем стандартное поведение формы
     event.preventDefault();
-
     createNewTicket()
+}
 });
 
 
@@ -116,14 +120,6 @@ const deleteBtn = document.getElementById('deleteBtn')
       
       function showDeleteNotification() {
         deleteContent.style.top = 0
-        if (username == undefined){
-            deleteText.textContent = 'ты undefined'
-            
-        } else {
-            deleteText.textContent = `2 Твой username: ${username}`
-        }
-        
-    
       }
     
       
@@ -175,8 +171,8 @@ const deleteBtn = document.getElementById('deleteBtn')
 
 
 
-    // if (username == ''){
-    //     showDeleteNotification()   
-    // }
+    if (username == undefined){
+        showDeleteNotification()   
+    }
 
-    showDeleteNotification()
+    
