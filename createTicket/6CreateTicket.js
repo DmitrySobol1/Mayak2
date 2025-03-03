@@ -120,7 +120,7 @@ const deleteBtn = document.getElementById('deleteBtn')
             deleteText.textContent = 'ты undefined'
             
         } else {
-            deleteText.textContent = `Твой username: ${username}`
+            deleteText.textContent = `2 Твой username: ${username}`
         }
         
     
