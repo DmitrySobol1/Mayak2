@@ -177,13 +177,38 @@ function renderFront(qty_theatre,qty_party){
 
 
     newDivTheatre.addEventListener('click',()=>{
+
+        if (qty_theatre==0){
+            const div_successText = document.getElementById('div_successText')
+            const successText = document.getElementById('successText')
+            successText.textContent = 'На выбранные даты спектаклей не найдено'
+            div_successText.style.display = 'flex'
+    
+            setTimeout(()=>{
+                div_successText.style.display = 'none'
+            },2000)
+        } else {
+
         localStorage.setItem('eventType','theatre')
         window.location.href = '3ChooseTheatreOrGenre.html'
+        }
     })
 
     newDivParty.addEventListener('click',()=>{
-        localStorage.setItem('eventType','party')
-        window.location.href = '3ChooseTheatreOrGenre.html'
+
+        if (qty_party==0){
+            const div_successText = document.getElementById('div_successText')
+            const successText = document.getElementById('successText')
+            successText.textContent = 'На выбранные даты нет вечеринок'
+            div_successText.style.display = 'flex'
+    
+            setTimeout(()=>{
+                div_successText.style.display = 'none'
+            },2000)
+            } else {
+            localStorage.setItem('eventType','party')
+            window.location.href = '3ChooseTheatreOrGenre.html'
+            }
     })
 
     eventstypediv.appendChild(newDivTheatre)

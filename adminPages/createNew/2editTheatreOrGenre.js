@@ -313,3 +313,70 @@ function hideSaveLoader() {
         },2000)
 }
 
+
+
+
+const deleteBtn = document.getElementById('deleteBtn')
+      const div_deleteNotification = document.getElementById('div_deleteNotification')
+      const deleteContent = document.getElementById('deleteContent')
+      const noDelete_btn = document.getElementById('noDelete_btn')
+      const yesDelete_btn = document.getElementById('yesDelete_btn')
+      const deleteText = document.getElementById('deleteText')
+      
+      
+      function showDeleteNotification() {
+        deleteContent.style.top = 0
+    
+        setTimeout(()=>{
+            hideDeleteNotification()
+        },5000)
+      }
+    
+      
+      deleteBtn.addEventListener('click',()=>{
+        showDeleteNotification()
+      })
+    
+    
+    
+      function hideDeleteNotification() {
+        deleteContent.style.top = '-300px'
+    
+        setTimeout(()=>{
+            deleteText.textContent = 'Уверены, что хотите удалить?'
+        },1500)
+      }
+    
+      noDelete_btn.addEventListener('click',()=>{
+        hideDeleteNotification()
+        
+      })
+    
+    
+    
+      yesDelete_btn.addEventListener('click',async ()=>{
+    
+      const resp = await fetch('https://api.directual.com/good/api/v5/data/adminrqsttodeleteobjects/adminRqstToDelete?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+        method: 'POST',
+            body: JSON.stringify({
+            'whatDelete': 'theatreOrGenre',
+            'theatreOrGenre_id': choosedTheatreGenre
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        })
+    
+        const json = await resp.json()
+        console.log(json)
+    
+        deleteText.textContent = 'удалено!'
+    
+        setTimeout(()=>{
+            // hideDeleteNotification()
+    
+            window.location.href = '2showTheatreOrGenre.html'
+        },1000)
+        
+    
+    })
