@@ -130,7 +130,7 @@ const deleteBtn = document.getElementById('deleteBtn')
     
     
       function hideDeleteNotification() {
-        deleteContent.style.top = '-300px'
+        deleteContent.style.top = '-400px'
     
         
       }
