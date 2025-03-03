@@ -116,8 +116,13 @@ const deleteBtn = document.getElementById('deleteBtn')
       
       function showDeleteNotification() {
         deleteContent.style.top = 0
-
-        deleteText.textContent = `Твой username: ${username}`
+        if (username == undefined){
+            deleteText.textContent = 'ты undefined'
+            
+        } else {
+            deleteText.textContent = `Твой username: ${username}`
+        }
+        
     
       }
     
@@ -131,9 +136,7 @@ const deleteBtn = document.getElementById('deleteBtn')
       function hideDeleteNotification() {
         deleteContent.style.top = '-300px'
     
-        setTimeout(()=>{
-            deleteText.textContent = 'Уверены, что хотите удалить?'
-        },1500)
+        
       }
     
       noDelete_btn.addEventListener('click',()=>{
