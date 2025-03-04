@@ -26,7 +26,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', (
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='../adminMainMenu.html'
+    window.location.href='mainPage.html'
 })
 
 
@@ -57,7 +57,7 @@ document.getElementById('photo').addEventListener('change', function(event) {
         reader.readAsDataURL(file);
     }
     imgIsChanged = true
-    console.log('textIsChanged=',textIsChanged)
+    // console.log('textIsChanged=',textIsChanged)
     if (textIsChanged){
        
     show_DivSaveCancellBtn()
@@ -87,7 +87,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
     const emptyOk = await checkEmpty()
-    console.log(emptyOk)
+    // console.log(emptyOk)
  
   
   if (emptyOk == false){
@@ -110,7 +110,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
        
     } else {
-        console.log('все ок')
+        // console.log('все ок')
 
 
     const inputName = document.getElementById('text').value
@@ -147,7 +147,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         formData.append('creator_id', tlgid); 
         
     
-        const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+        const response = await fetch('https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             
             method: 'POST', // Должен быть POST
             body: formData // Отправляем FormData
@@ -157,7 +157,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
     } else {
 
-        console.log('заполните все данные')
+        // console.log('заполните все данные')
 
         // showSaveLoader()
 
@@ -278,7 +278,7 @@ function checkEmpty() {
         console.log(array)
 
         array.forEach((e)=>{
-            console.log(e.subcategory_name)
+            // console.log(e.subcategory_name)
 
             const option = document.createElement('option')
             option.value = e.id

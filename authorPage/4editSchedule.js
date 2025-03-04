@@ -1,31 +1,15 @@
-// Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
-
-// тесты
-const tlgid = 777
-const username = 'my777name'
-
-
 // const dstart = localStorage.getItem('dstart')
 // const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
+const choosedTheatreGenreName = localStorage.getItem('choosedTheatreGenreName')
 const choosedEvent  = localStorage.getItem('choosedEvent')
-const choosedSpectaclePlace  = localStorage.getItem('choosedSpectaclePlace')
-const choosedTheatreGenreName  = localStorage.getItem('choosedTheatreGenreName')
 const choosedName  = localStorage.getItem('choosedName')
+const choosedSchedule  = localStorage.getItem('choosedSchedule')
 
 
 const subtitle = document.getElementById('subtitle')
 subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
-
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
 
 // let theatreName = ''
 // let theatreImg = ''
@@ -33,15 +17,15 @@ subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в 
 // let partyImg = ''
 
 // let imgIsChanged = false
-let dateOk = false
-let timeOk = false
+let dateOk = true
+let timeOk = true
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='4showSchedule.html'
 })
 
 const btn_gotomainmenu = document.getElementById('btn_gotomainmenu').addEventListener('click', ()=>{
-    window.location.href='../adminMainMenu.html'
+    window.location.href='mainPage.html'
 })
 
 
@@ -61,46 +45,46 @@ function hideloader() {
 
 
 
-// getTheatreOrGenre()
+getTheatreOrGenre()
 
-// async function getTheatreOrGenre(){
+async function getTheatreOrGenre(){
    
 
-//     const response = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getCurrentScheduleForAdminAction?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&item_id=${choosedEvent}`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         })
+    const response = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getCurrentScheduleForAdminAction?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&item_id=${choosedSchedule}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        })
 
-//      const json = await response.json()
-//      const array  = json.payload
+     const json = await response.json()
+     const array  = json.payload
 
-//      console.log(array)
+     console.log(array)
 
-//         const timeString = array[0].timeString
-//         const dateString = array[0].dateString
-//         // const img = array[0].img
+        const timeString = array[0].timeString
+        const dateString = array[0].dateString
+        // const img = array[0].img
 
-//     //  array.forEach(item =>{
-//     //     if (item.id == 'theatre'){
-//     //         theatreName = item.name
-//     //         theatreImg = item.img
-//     //     } else if (item.id == 'party'){
-//     //         partyName = item.name
-//     //         partyImg = item.img
-//     //     }
-//     //  })
+    //  array.forEach(item =>{
+    //     if (item.id == 'theatre'){
+    //         theatreName = item.name
+    //         theatreImg = item.img
+    //     } else if (item.id == 'party'){
+    //         partyName = item.name
+    //         partyImg = item.img
+    //     }
+    //  })
      
-//      renderFront(dateString,timeString)
+     renderFront(dateString,timeString)
      
-// }
-
-renderFront()
+}
 
 
 
-function renderFront(){
+
+
+function renderFront(dateString,timeString){
     showloader()
 
     const eventstypediv = document.querySelector('#eventstypediv')
@@ -120,11 +104,11 @@ function renderFront(){
 
     inputDate = document.createElement('input')
     inputDate.id = 'inputDate'
-    // inputDate.value = ''
+    inputDate.value = dateString
     inputDate.type = 'text'
     inputDate.required = true
     inputDate.classList.add('admin_input')
-    inputDate.placeholder = 'укажите дату в формате 01.01.2025'
+    inputDate.placeholder = 'укажите дату'
 
     // inputDate.addEventListener('input',()=>{
     //     if (inputDate.value != ''){
@@ -158,11 +142,11 @@ function renderFront(){
 
     inputTime = document.createElement('input')
     inputTime.id = 'inputTime'
-    // inputTime.value = timeString
+    inputTime.value = timeString
     inputTime.type = 'text'
     inputTime.required = true
     inputTime.classList.add('admin_input')
-    inputTime.placeholder = 'укажите время в формате 19:00'
+    inputTime.placeholder = 'укажите время'
 
     // inputTime.addEventListener('input',()=>{
     //     if (inputTime.value != ''){
@@ -211,14 +195,16 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         // successText.textContent =  'Введи дату и время корректно!'
         // setTimeout(()=>successText.textContent = '',1500)
 
+
         const div_successText = document.getElementById('div_successText')
-        const successText = document.getElementById('successText')
-        successText.textContent = 'Введи дату и время корректно!'
-        div_successText.style.display = 'flex'
- 
-        setTimeout(()=>{
-            div_successText.style.display = 'none'
-        },2000)
+       const successText = document.getElementById('successText')
+       successText.textContent = 'Введи дату и время корректно!'
+       div_successText.style.display = 'flex'
+
+       setTimeout(()=>{
+           div_successText.style.display = 'none'
+       },2000)
+
 
 
 
@@ -243,13 +229,10 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
                 body: JSON.stringify({
                     'dateString':inputDate,
                     'timeString':inputTime,
-                    'whatIsChanged': 'createSchedule',
+                    'whatIsChanged': 'ChangeSchedule',
                     'newImg_id': 'no',
-                    'theatreOrGenre_id': choosedEvent,
-                    'unix':unixTime,
-                    'spectacleOrPlace_id':choosedSpectaclePlace,
-                    'eventType_id':eventType,
-                    'creator_id':tlgid
+                    'schedule_id': choosedSchedule,
+                    'unix':unixTime
                     
                 }),
                 headers: {
@@ -273,12 +256,20 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-      const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.remove('nonvisible')
+
+
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
     
 }
 
 function hide_DivSaveCancellBtn(){
+    // const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.add('nonvisible')
+
+
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'none'
     
@@ -286,18 +277,33 @@ function hide_DivSaveCancellBtn(){
 
 
 function showSaveLoader() {
-  const div_successText = document.getElementById('div_successText')
-  const successText = document.getElementById('successText')
-  successText.textContent = 'сохраняю ...'
-  div_successText.style.display = 'flex'
+    const buttons = document.getElementById('DivSaveCancellBtn')
+    // buttons.classList.add('nonvisible')
+    // const loaderSave_div = document.getElementById('loaderSave_div')
+    // loaderSave_div.style.display='flex'
 
-  setTimeout(()=>{
-      div_successText.style.display = 'none'
-  },2000)
+
+    const div_successText = document.getElementById('div_successText')
+    const successText = document.getElementById('successText')
+    successText.textContent = 'сохраняю ...'
+    div_successText.style.display = 'flex'
+
+    setTimeout(()=>{
+        div_successText.style.display = 'none'
+    },2000)
+
 }
 
 function hideSaveLoader() {
-  const successText = document.getElementById('successText')
+    // const loaderSave_div = document.getElementById('loaderSave_div')
+    // loaderSave_div.style.display='none';
+
+    // const successText = document.getElementById('successText')
+    // successText.textContent =  'Успешно сохранено!'
+    // setTimeout(()=>successText.textContent = '',1500)
+
+
+    const successText = document.getElementById('successText')
     successText.textContent = 'Успешно сохранено!'
     div_successText.style.display = 'flex'
 
@@ -333,3 +339,70 @@ function isValidDate(dateString) {
   }
 
   
+
+
+
+  const deleteBtn = document.getElementById('deleteBtn')
+  const div_deleteNotification = document.getElementById('div_deleteNotification')
+  const deleteContent = document.getElementById('deleteContent')
+  const noDelete_btn = document.getElementById('noDelete_btn')
+  const yesDelete_btn = document.getElementById('yesDelete_btn')
+  const deleteText = document.getElementById('deleteText')
+  
+  
+  function showDeleteNotification() {
+    deleteContent.style.top = 0
+
+    setTimeout(()=>{
+        hideDeleteNotification()
+    },5000)
+  }
+
+  
+  deleteBtn.addEventListener('click',()=>{
+    showDeleteNotification()
+  })
+
+
+
+  function hideDeleteNotification() {
+    deleteContent.style.top = '-300px'
+
+    setTimeout(()=>{
+        deleteText.textContent = 'Уверены, что хотите удалить?'
+    },1500)
+  }
+
+  noDelete_btn.addEventListener('click',()=>{
+    hideDeleteNotification()
+    
+  })
+
+
+
+  yesDelete_btn.addEventListener('click',async ()=>{
+
+  const resp = await fetch('https://api.directual.com/good/api/v5/data/adminrqsttodeleteobjects/adminRqstToDelete?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+    method: 'POST',
+        body: JSON.stringify({
+        'whatDelete': 'schedule',
+        'schedule_id': choosedSchedule
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    })
+
+    const json = await resp.json()
+    console.log(json)
+
+    deleteText.textContent = 'удалено!'
+
+    setTimeout(()=>{
+        // hideDeleteNotification()
+
+        window.location.href = '4showSchedule.html'
+    },1000)
+    
+
+})

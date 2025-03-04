@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+</head>
+<body>
+   
+    <div class="appspace">
+
+        <div id="loader_div" class="loader_div">
+            <div class="loader"></div>
+            <p>Ищем информацию ...</p>
+        </div>
+            
+        <div class="title" id="title"></div>
+        <div class="subtitle" id="subtitle"></div>
+        
+        <!-- <input> -->
+        
+        <div id = "eventstypediv"></div>
+        
+        <div>
+            <img src="../../assets/no image.png" class="getAllEvents_img" id="preview">
+        </div>
+        
+        <div class="adminEditEvent_divForm">  
+        <form action="/upload" method="POST" enctype="multipart/form-data" id="imgform">
+            
+            <div class="file-input-container">
+
+                <input type="file" id="photo" name="photo" accept="image/*" required class="hidden-input">
+                <input type="text" id="text" name="name" required class="admin_input" placeholder="укажите название">
+                <input type="text" id="description" name="description" required class="admin_input" placeholder="описание">
+                <input type="text" id="mainActor" name="mainActor" required class="admin_input" placeholder="главные актеры">
+                <input type="text" id="age" name="age" required class="admin_input" placeholder="возрастные ограничения">
+                <input type="text" id="duration" name="duration" required class="admin_input" placeholder="продолжительность">
+                
+                <label for="subcategory">Выберите категорию:</label>
+                <select id="subcategory" name="cars" class="admin_select">
+                    <!-- <option value="no"></option> -->
+                </select>
+
+                <label for="photo" class="custom-button">
+                    <img src="../../assets/camera.png" class="file-input-container_img">
+                    <span>добавить фото</span>
+                </label>
+                
+            </div>
+        
+        <!-- <button type="submit" style="border:2px solid black">Загрузить</button> -->
+        </form>
+        </div>  
+    
+        <!-- <div class="adminEdit_DivSaveCancellBtn nonvisible" id = 'DivSaveCancellBtn'>
+            <button class="adminEdit_btnSave" id="adminEdit_btnSave">добавить</button>
+             <button class="adminEdit_btnCnl" id="adminEdit_btnCnl">вернуть, как было</button> -->
+        <!-- </div>  -->
+
+        <div class="adminEdit_DivSaveCancellBtn" id='DivSaveCancellBtn'>
+            <div id="adminEdit_btnSave"><button class="adminEdit_btnSave" ><span><img src="../../assets/save.png" class="rightIcons"></span></button></div>
+            <!-- <div><button class="adminEdit_btnCnl" id="adminEdit_btnCnl"><span><img src="../../assets/restore.png" class="rightIcons"></span></button></div> -->
+        </div>
+
+
+
+        <!-- <div class="loaderSave_div" id = 'loaderSave_div'>
+        <div class="loaderSave "></div>
+        <p>сохраняю ...</p>
+        <p ></p>
+      </div> -->
+      
+      <!-- <div id='successText' style="text-align:center"></div> -->
+
+      <div class="div_successText" id="div_successText">
+        <div id='successText' class="successText">successText</div>
+      </div>
+
+        
+       
+        <div class="wrapper__routingbtn">
+            <div class="routingbtn">
+                <button class="btn_back" id="btn_back"><img src="../assets/back.png" class="btn_backmenuicon"></button>
+                <button class="btn_gotomainmenu" id="btn_gotomainmenu"><span><img src="../assets/menu.png" class="gotomainmenuicon"></span><span>главное меню</span></button>
+            </div>
+         </div>
+
+        
+    </div>
+
+    <script src="3createSpectacleOrPlace.js"></script>
+</body>
+</html>

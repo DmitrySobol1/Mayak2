@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+</head>
+<body>
+   
+    <div class="appspace">
+
+        <div id="loader_div" class="loader_div">
+            <div class="loader"></div>
+            <p>Ищем информацию ...</p>
+        </div>
+            
+        <div class="title">Выберите направление</div>
+        <div class="subtitle" id="subtitle"></div>
+        
+        <div class="index_nofound nonvisible" id="index_nofound">На указанные даты событий не найдено</div>
+        
+        <div id="context-menu" class="context-menu">
+            <ul>
+              <li><a href="#">Открыть</a></li>
+              <li><a href="#">Редактировать</a></li>
+            </ul>
+          </div>
+
+
+        <div id = "eventstypediv"></div>
+
+        
+       
+        <div class="wrapper__routingbtn">
+            <div class="routingbtn">
+                <button class="btn_back" id="btn_back"><img src="../assets/back.png" class="btn_backmenuicon"></button>
+                <button class="btn_gotomainmenu" id="btn_gotomainmenu"><span><img src="../assets/menu.png" class="gotomainmenuicon"></span><span>главное меню</span></button>
+            </div>
+         </div>
+
+        
+    </div>
+
+    <script src="1showEventType.js"></script>
+</body>
+</html>

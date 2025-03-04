@@ -6,7 +6,6 @@
 const tlgid = 777
 const username = 'my777name'
 
-
 // const dstart = localStorage.getItem('dstart')
 // const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
@@ -238,7 +237,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         
             showSaveLoader()
     
-            const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+            const response = await fetch('https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
                 method: 'POST',
                 body: JSON.stringify({
                     'dateString':inputDate,
