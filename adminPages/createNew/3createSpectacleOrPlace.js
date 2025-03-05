@@ -155,6 +155,10 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         const json = response.json();
         hideSaveLoader();
 
+        setTimeout(()=>{
+            window.location.href='3showSpectacleOrPlace.html'
+        },2000)
+
     } else {
 
         console.log('заполните все данные')

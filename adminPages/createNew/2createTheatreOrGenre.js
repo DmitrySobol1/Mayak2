@@ -100,6 +100,10 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         const json = response.json();
         hideSaveLoader();
 
+        setTimeout(()=>{
+            window.location.href='2showTheatreOrGenre.html'
+        },2000)
+
     } else {
 
         console.log('заполните все данные')
@@ -149,12 +153,6 @@ function hide_DivSaveCancellBtn(){
 
 
 function showSaveLoader() {
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='flex'
-
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'сохраняю ...'
@@ -167,12 +165,6 @@ function showSaveLoader() {
 }
 
 function hideSaveLoader() {
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='none';
-    // const successText = document.getElementById('successText')
-    // successText.textContent =  'Успешно сохранено!'
-    // setTimeout(()=>successText.textContent = '',1500)
-
 
     const div_successText = document.getElementById('div_successText')
     const successText = document.getElementById('successText')
@@ -181,6 +173,7 @@ function hideSaveLoader() {
 
     setTimeout(()=>{
         div_successText.style.display = 'none'
+        // window.location.href='2showTheatreOrGenre.html'
     },2000)
     
 }

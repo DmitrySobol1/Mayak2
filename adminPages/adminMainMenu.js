@@ -1,8 +1,8 @@
 localStorage.clear();
 
-// const index__btn_searchevent = document.getElementById('index__btn_searchevent').addEventListener('click',()=>{
-//     window.location.href = "createNew/1showEventType.html";
-// })
+const index__btn_searchevent = document.getElementById('index__btn_searchevent').addEventListener('click',()=>{
+    window.location.href = "ticketModeration/showTicketShouldBeModerated.html";
+})
 
 
 

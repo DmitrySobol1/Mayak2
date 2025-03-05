@@ -285,6 +285,8 @@ font-size: 18px;
 .getAllEvents_img{
     width: 100%;
     border-radius:10px;
+    max-height: 250px;
+    object-fit: contain;
 }
 
 
@@ -1054,4 +1056,54 @@ margin-bottom: 40px;
     padding:10px 20px;
     background-color: #fff;
 }
+
+
+.ticketModerationBtn_yes {
+    background-color: #ffd43f;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0px 0px 15px 0px;
+    width:100%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189);
+    font-size:16px;
+    font-weight: 500;
+}
+
+.ticketModerationBtn_yes:active {
+    transform: translateY(1px); 
+    /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2); */
+}
+
+.ticketModerationBtn_no {
+    background-color: salmon;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    width:100%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.189);
+    font-size:16px;
+    font-weight: 500;
+}
+
+.ticketModerationBtn_no:active {
+    transform: translateY(1px); 
+    /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2); */
+}
+
+.ticketModeration_div {
+    margin-bottom: 5px;
+}
+
+.ticketModeration2_div {
+    margin-bottom: 15px;
+}
+
+.ticketModeration_title {
+    font-weight: 600;
+}
+
+
+
+
+
 /* NOTIFICATION ПРИ УДАЛЕНИИ - ФИНИШ */

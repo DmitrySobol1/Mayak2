@@ -237,12 +237,24 @@ async function render() {
       newDiv.appendChild(divTextPlusIcon)
       // newDiv.appendChild(p);
       
-      if (item.creator_id.id == tlgid) {
+     
       newDiv.addEventListener('click', () => {
+
+        if (item.creator_id.id == tlgid) {
         localStorage.setItem('choosedSchedule',item.id)
         window.location.href= '4editSchedule.html'
+      } else {
+        const div_successText = document.getElementById('div_successText')
+        const successText = document.getElementById('successText')
+        successText.textContent = 'Вы можете редактировать только события, созданные вами'
+        div_successText.style.display = 'flex'
+ 
+        setTimeout(()=>{
+            div_successText.style.display = 'none'
+        },2000)
+      }
     });
-}
+// } 
       
       // Добавляем div в fragment
       fragment.appendChild(newDiv);
