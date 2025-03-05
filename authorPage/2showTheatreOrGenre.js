@@ -172,6 +172,7 @@ async function render() {
   
       newPtheatre = document.createElement('div')
       newPtheatre.textContent = item.name
+      newPtheatre.classList.add('createNew')
   
     //   iconEdit = document.createElement('div')
     //   iconEdit.classList.add('iconEdit')

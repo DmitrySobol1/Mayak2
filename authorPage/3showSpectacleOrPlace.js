@@ -180,8 +180,9 @@ async function render() {
       divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
   
       newPtheatre = document.createElement('div')
+      newPtheatre.classList.add('createNew');
       item.creator_id.id == tlgid ? newPtheatre.textContent = `${item.name} (добавлен вами)`: newPtheatre.textContent = item.name
-  
+      
       
       
       if (item.creator_id.id == tlgid){

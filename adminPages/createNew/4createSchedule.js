@@ -107,7 +107,7 @@ function renderFront(){
 
 
     newDivTheatre = document.createElement('div')
-    newDivTheatre.classList.add('getAllEvents_div')
+    newDivTheatre.classList.add('getAllEvents2_div')
 
     // newDivForImgTheatre = document.createElement('div')
     // // newDivForImgTheatre.classList.add('getAllEvents_divForImg')

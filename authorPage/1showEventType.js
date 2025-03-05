@@ -93,7 +93,7 @@ function renderFront(){
 
     newPtheatre = document.createElement('div')
     newPtheatre.textContent = theatreName
-
+    newPtheatre.classList.add('createNew')
     // iconEdit = document.createElement('div')
     // iconEdit.classList.add('iconEdit')
     // iconEditPen = document.createElement('img')
@@ -157,6 +157,7 @@ function renderFront(){
 
     newPparty = document.createElement('div')
     newPparty.textContent = partyName
+    newPparty.classList.add('createNew')
 
     // iconEdit2 = document.createElement('div')
     // iconEdit2.classList.add('iconEdit')
