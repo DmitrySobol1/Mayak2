@@ -127,7 +127,7 @@ function renderFront(qty_theatre,qty_party){
 
 
     newDivTheatre = document.createElement('div')
-    newDivTheatre.classList.add('getAllEvents_div')
+    newDivTheatre.classList.add('getAllEventsClient_div')
 
     newDivForImgTheatre = document.createElement('div')
     newDivForImgTheatre.classList.add('getAllEvents_divForImg')
@@ -154,7 +154,7 @@ function renderFront(qty_theatre,qty_party){
     
 
     newDivParty = document.createElement('div')
-    newDivParty.classList.add('getAllEvents_div')
+    newDivParty.classList.add('getAllEventsClient_div')
 
     newDivForImgParty = document.createElement('div')
     newDivForImgParty.classList.add('getAllEvents_divForImg')
