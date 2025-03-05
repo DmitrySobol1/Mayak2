@@ -36,13 +36,21 @@ body {
 }
 
 .appspace {
-    
     width:100%;
     max-width: 400px;
    
     padding: 0px 20px 0px 20px;
     height: 100vh;
     /* position:relative; */
+}
+
+.appspaceMain {
+    width:100%;
+    max-width: 400px;
+    padding: 0px 20px 0px 20px;
+    height: 100vh; 
+    margin-top: 100px;
+    
 }
 
 
@@ -74,7 +82,7 @@ body {
     /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  */
 }
 
-.btn_gotomainmenu{
+/* .btn_gotomainmenu{
     background-color: #fff500;
     border-radius: 10px;
     padding: 15px 30px;
@@ -83,7 +91,18 @@ body {
     align-items: center; 
     justify-content: center; 
     gap: 8px; 
-    
+} */
+
+.btn_gotomainmenu{
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size:14px;
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+    color:white;
 }
 
 .btn_gotomainmenu:active {
@@ -101,7 +120,7 @@ body {
 
 
 .btn_back {
-    background-color: #ffffff;
+    background-color: #000000;
     border-radius: 10px;
     border:1px solid black;
     padding: 15px 30px;
@@ -139,7 +158,7 @@ body {
 
 
 .index__btndiv {
-    margin: 50px 0px;
+    margin: 20px 0px;
 }
 
 .index__btn {
