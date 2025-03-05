@@ -254,12 +254,7 @@ text-align:center;
 
 
 
-.getAllEvents_div {
-margin-bottom:30px;
-font-weight: 500;
-font-size: 18px;
 
-}
 
 .getAllEvents_divForImg {
     position:relative;
@@ -1002,12 +997,33 @@ margin-bottom: 40px;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3)
   }
 
+  .theatre-itemClient {
+    padding-bottom:5px;
+   
+  }
+
   .getAllEvents_div {
     /* border:1px solid black; */
     padding-bottom:5px;
     border-radius: 10px;
     background: linear-gradient(to right, #fff, #fde07d );
-    box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.3)
+    box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.3);
+    margin-bottom:30px;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  
+
+  .getAllEventsClient_div {
+     /* border:1px solid black; */
+     padding-bottom:5px;
+     border-radius: 10px;
+     /* background: linear-gradient(to right, #fff, #fde07d );
+     box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.3); */
+     margin-bottom:30px;
+     font-weight: 500;
+     font-size: 18px;
   }
 
 .theatre-item-small {

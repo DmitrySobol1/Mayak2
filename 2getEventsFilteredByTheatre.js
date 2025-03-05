@@ -131,7 +131,7 @@ function render() {
     // Проходим по массиву и создаем элементы
     renderArray.forEach((item) => {
       const newDiv = document.createElement('div')
-      newDiv.classList.add('theatre-item'); 
+      newDiv.classList.add('theatre-itemClient'); 
   
       const imgDiv = document.createElement('div');
       imgDiv.classList.add('img-div');  
