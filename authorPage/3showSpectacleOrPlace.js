@@ -190,7 +190,7 @@ async function render() {
       iconEdit.classList.add('iconEdit')
       iconEditPen = document.createElement('img')
       iconEditPen.dataset.name = item.name
-      iconEditPen.src = "../../assets/setting.png"
+      iconEditPen.src = "../assets/setting.png"
       iconEditPen.classList.add('iconEditPen')
       iconEditPen.id = item.id
       iconEdit.appendChild(iconEditPen)
