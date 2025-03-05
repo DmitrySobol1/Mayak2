@@ -64,8 +64,6 @@ async function getEventImgAndName(){
 }
 
 
-
-
 getAllSchedule(dstart,dfinish)
 showloader()
 
@@ -82,7 +80,6 @@ function getAllSchedule(dstart,dfinish){
             let length = Number(data.payload.length)
                 
             if (length > 0){
-                // console.log ('есть события')
 
                 const array = data.payload
                 let qty_theatre = 0
@@ -147,9 +144,6 @@ function renderFront(qty_theatre,qty_party){
 
     newDivTheatre.appendChild(newDivForImgTheatre)
     newDivTheatre.appendChild(newPtheatre)
-
-
-    
 
     newDivParty = document.createElement('div')
     newDivParty.classList.add('getAllEventsClient_div')

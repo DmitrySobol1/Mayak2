@@ -1,10 +1,10 @@
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-const tlgid = 777
-const username = 'my777name'
+// const tlgid = 777
+// const username = 'my777name'
 
 let typeTicket = ''
 let ticketId = ''
@@ -22,33 +22,14 @@ const openBtn = document.getElementById("openPopup");
 const closeBtn = document.querySelector(".close");
 
 
-
-// let allTheatres = []
-// let theatreEventCounts = []
-
-// // let heartarray = localStorage.getItem('heartarray')
-// let heartarray = []
-// let manarray = []
-
-// const title = document.querySelector('.title')
-// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
-
-
-
-
 const btn_back = document.getElementById('btn_back').addEventListener('click', async () => {
     window.location.href = '../doska.html';
 });
 
 
-
-
-
 const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', async () => {
     window.location.href='../index.html'
 });
-
-
 
 
 const loader = document.getElementById('loader_div')
@@ -62,10 +43,8 @@ function hideloader() {
 }
 
 
-
 getMyPublishedTickets()
 getMyNotPublishedTickets()
-
 
 
 async function getMyPublishedTickets(){
@@ -138,7 +117,6 @@ async function getMyPublishedTickets(){
                 })
         
         
-             // Добавляем элементы в newDiv
                 newDiv.appendChild(title);
                 newDiv.appendChild(placeLocation);
                 newDiv.appendChild(row);
@@ -152,7 +130,7 @@ async function getMyPublishedTickets(){
     })
         }
 
-            hideloader()
+        hideloader()
     
 }
 
@@ -230,7 +208,6 @@ async function getMyNotPublishedTickets(){
                 })
         
         
-             // Добавляем элементы в newDiv
                 newDiv.appendChild(title);
                 newDiv.appendChild(placeLocation);
                 newDiv.appendChild(row);

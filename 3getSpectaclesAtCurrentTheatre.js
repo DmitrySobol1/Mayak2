@@ -54,16 +54,13 @@ async function getScheduleGroupByTheatreOrGenre() {
       }
     );
 
-    // Проверка ответа
     if (!response.ok) {
       throw new Error(`Ошибка HTTP: ${response.status}`);
     }
    
     const data = await response.json();
     allTheatres = data.payload;
-    // console.log(allTheatres)
 
-    // Создаем объект для подсчета событий по театрам/жанрам
     const theatreEventCounts = allTheatres.reduce((acc, event) => {
       const theatreId = event.spectacleOrPlace_id.id;
       acc[theatreId] = (acc[theatreId] || 0) + 1;
@@ -71,12 +68,10 @@ async function getScheduleGroupByTheatreOrGenre() {
     }, {});
 
    
-    // Сохраняем данные в localStorage
     Object.entries(theatreEventCounts).forEach(([theatreId, count]) => {
       localStorage.setItem(theatreId, count);
     });
 
-    // Рендерим 
     preparingToRenderTheatre();
 
   } catch (error) {
@@ -88,19 +83,16 @@ async function getScheduleGroupByTheatreOrGenre() {
 
 function preparingToRenderTheatre() {
     try {
-      // Проверка наличия allTheatres
       if (!allTheatres || !Array.isArray(allTheatres)) {
         throw new Error('allTheatres должен быть массивом');
       }
   
-      // Создаем массив уникальных театров/жанров
       const uniqueTheatres = [
         ...new Map(
           allTheatres.map(item => [item.spectacleOrPlace_id.id, item.spectacleOrPlace_id])
         ).values()
       ];
 
-      // Добавляем количество событий для каждого театра/жанра
       renderArray = uniqueTheatres.map(theatre => ({
         ...theatre,
         qty: Number(localStorage.getItem(theatre.id)) || 0 // Преобразуем в число
@@ -114,7 +106,6 @@ function preparingToRenderTheatre() {
   }
 
 
-
 function render() {
     
     const theatrediv = document.getElementById('theatrediv');
@@ -124,13 +115,10 @@ function render() {
       return;
     }
   
-    // Очищаем контейнер перед добавлением новых элементов
     theatrediv.innerHTML = '';
   
-    // Создаем DocumentFragment для оптимизации
     const fragment = document.createDocumentFragment();
   
-    // Проходим по массиву и создаем элементы
     renderArray.forEach((item) => {
       const newDiv = document.createElement('div')
       newDiv.classList.add('theatre-itemClient'); 
@@ -162,12 +150,9 @@ function render() {
         window.location.href= '4ShowChoosedEvent.html'
     });
       
-      // Добавляем div в fragment
       fragment.appendChild(newDiv);
     });
-  
     
-    // Добавляем fragment в контейнер
     theatrediv.appendChild(fragment);
     
     hideloader()

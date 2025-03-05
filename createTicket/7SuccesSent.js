@@ -1,6 +1,4 @@
 
-
-
 const dstart = localStorage.getItem('dstart')
 const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
@@ -12,13 +10,6 @@ const choosedSchedule = localStorage.getItem('choosedSchedule')
 const subtitle = document.getElementById('subtitle')
 const dstartString = localStorage.getItem('dstartString')
 const timeString = localStorage.getItem('timeString')
-// const subtitleFull = `${dstartString} в ${timeString}`
-// subtitle.textContent = subtitleFull
-
-
-// const title = document.querySelector('.title')
-// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
-
 
 const loader = document.getElementById('loader_div')
 

@@ -1,5 +1,3 @@
-// const dstart = localStorage.getItem('dstart')
-// const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
 const choosedTheatreGenreName = localStorage.getItem('choosedTheatreGenreName')
@@ -11,12 +9,6 @@ const choosedSchedule  = localStorage.getItem('choosedSchedule')
 const subtitle = document.getElementById('subtitle')
 subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
 
-// let theatreName = ''
-// let theatreImg = ''
-// let partyName = ''
-// let partyImg = ''
-
-// let imgIsChanged = false
 let dateOk = true
 let timeOk = true
 
@@ -40,11 +32,6 @@ function hideloader() {
 }
 
 
-// showloader()
-
-
-
-
 getTheatreOrGenre()
 
 async function getTheatreOrGenre(){
@@ -64,17 +51,6 @@ async function getTheatreOrGenre(){
 
         const timeString = array[0].timeString
         const dateString = array[0].dateString
-        // const img = array[0].img
-
-    //  array.forEach(item =>{
-    //     if (item.id == 'theatre'){
-    //         theatreName = item.name
-    //         theatreImg = item.img
-    //     } else if (item.id == 'party'){
-    //         partyName = item.name
-    //         partyImg = item.img
-    //     }
-    //  })
      
      renderFront(dateString,timeString)
      
@@ -93,15 +69,6 @@ function renderFront(dateString,timeString){
     newDivTheatre = document.createElement('div')
     newDivTheatre.classList.add('getAllEvents2_div')
 
-    // newDivForImgTheatre = document.createElement('div')
-    // // newDivForImgTheatre.classList.add('getAllEvents_divForImg')
-    // newDivForImgTheatre.classList.add('adminEdit_divForImg')
-    
-    // newImgTheatre =  document.createElement('img')
-    // newImgTheatre.src = img
-    // newImgTheatre.classList.add('getAllEvents_img')
-    // newImgTheatre.id = 'preview'
-
     inputDate = document.createElement('input')
     inputDate.id = 'inputDate'
     inputDate.value = dateString
@@ -110,30 +77,19 @@ function renderFront(dateString,timeString){
     inputDate.classList.add('admin_input')
     inputDate.placeholder = 'укажите дату'
 
-    // inputDate.addEventListener('input',()=>{
-    //     if (inputDate.value != ''){
-    //         show_DivSaveCancellBtn()
-    //     } else {
-    //         hide_DivSaveCancellBtn()
-    //     }
-    // })
-
-
     inputDate.addEventListener('input', function () {
         const isValid = isValidDate(this.value);
       
         if (isValid) {
-        //   errorMessage.style.display = 'none';
          
           dateOk = true
           console.log (dateOk)
           show_DivSaveCancellBtn()
         
         } else {
-        //   errorMessage.style.display = 'block';
+       
         dateOk = false
           console.log (dateOk)
-        //   console.log ('не ok')
         }
       });
 
@@ -147,15 +103,6 @@ function renderFront(dateString,timeString){
     inputTime.required = true
     inputTime.classList.add('admin_input')
     inputTime.placeholder = 'укажите время'
-
-    // inputTime.addEventListener('input',()=>{
-    //     if (inputTime.value != ''){
-    //         show_DivSaveCancellBtn()
-    //     } else {
-    //         hide_DivSaveCancellBtn()
-    //     }
-    // })
-
 
     inputTime.addEventListener('input', function () {
         const isValid = isValidTime(this.value);
@@ -181,20 +128,9 @@ function renderFront(dateString,timeString){
 }
 
 
-
-// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-//     location.reload();
-// })
-
-
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
     if (dateOk==false || timeOk==false) {
-        // console.log('укажите верно')
-        // const successText = document.getElementById('successText')
-        // successText.textContent =  'Введи дату и время корректно!'
-        // setTimeout(()=>successText.textContent = '',1500)
-
 
         const div_successText = document.getElementById('div_successText')
        const successText = document.getElementById('successText')
@@ -245,31 +181,18 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
     
     }
    
-    
-    
-    
-    
-  
 })
 
 
 
 
 function show_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.remove('nonvisible')
-
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
     
 }
 
 function hide_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'none'
     
@@ -278,10 +201,6 @@ function hide_DivSaveCancellBtn(){
 
 function showSaveLoader() {
     const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='flex'
-
 
     const div_successText = document.getElementById('div_successText')
     const successText = document.getElementById('successText')
@@ -295,14 +214,6 @@ function showSaveLoader() {
 }
 
 function hideSaveLoader() {
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='none';
-
-    // const successText = document.getElementById('successText')
-    // successText.textContent =  'Успешно сохранено!'
-    // setTimeout(()=>successText.textContent = '',1500)
-
-
     const successText = document.getElementById('successText')
     successText.textContent = 'Успешно сохранено!'
     div_successText.style.display = 'flex'
@@ -337,9 +248,6 @@ function isValidDate(dateString) {
     const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
     return timeRegex.test(timeString);
   }
-
-  
-
 
 
   const deleteBtn = document.getElementById('deleteBtn')
@@ -399,10 +307,7 @@ function isValidDate(dateString) {
     deleteText.textContent = 'удалено!'
 
     setTimeout(()=>{
-        // hideDeleteNotification()
-
         window.location.href = '4showSchedule.html'
     },1000)
-    
 
 })

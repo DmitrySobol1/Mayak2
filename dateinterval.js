@@ -9,8 +9,6 @@ const btn_back = document.getElementById('btn_back').addEventListener('click',()
 })
 
 
-
-// Функция для создания поля даты
 function createDatePicker(inputId,labelText) {
     const dateContainer = document.createElement("div");
     dateContainer.classList.add("date-container");
@@ -44,20 +42,15 @@ function formatDate(dateString,type) {
 }
 
 
-// Создаем поля для даты начала и окончания
 const startDate = createDatePicker("startDateInput","Дата начала:");
 const endDate = createDatePicker("endDateInput","Дата окончания:");
 
-
-     
-// Кнопка для подтверждения
 const submitBtn = document.createElement("button");
 submitBtn.textContent = "Далее >";
 submitBtn.setAttribute("id", "submitBtn");
 submitBtn.setAttribute("disabled", true);
 submitBtn.setAttribute("class", "nextBtn");
   			
- // Обработчик событий для активации кнопки
 function validateDates(type) {
     const startValue = startDate.input.value;
     const endValue = endDate.input.value;
@@ -80,11 +73,9 @@ function validateDates(type) {
 				textunderbutton.classList.remove('nonvisible')
             }
 
-    // const res = type==='start' ? formatDate(startValue,type) : formatDate(endValue,type)
     type==='start' ? formatDate(startValue,type) : formatDate(endValue,type)
 }
 
-// startDate.input.addEventListener("change", validateDates);
 startDate.input.addEventListener("change", () => validateDates('start'));
 endDate.input.addEventListener("change", () => validateDates('finish'));
 
@@ -99,22 +90,14 @@ submitBtn.addEventListener("click", () => {
         localStorage.setItem('dstart',startToUnix)
         localStorage.setItem('dfinish',finishToUnixEndOfDay)
 
-        // const start = document.getElementById('start')
-        // start.textContent = 'start='+startToUnix
-
-        // const finish = document.getElementById('finish')
-        // finish.textContent = 'finish='+finishToUnix
-
         window.location.href = "1getAllEvents.html"
 
 });
 
-// Добавляем элементы в контейнер
 container.appendChild(startDate.dateContainer);
 container.appendChild(endDate.dateContainer);
 
 
-// Создаем контейнер для кнопок
 const buttonContainer = document.createElement("div");
 buttonContainer.setAttribute("class", "button-container");
 
@@ -124,10 +107,7 @@ textunderbtn.id = "textunderbutton";
 textunderbtn.classList.add('textunderbtnclass');
 
 
-// Добавляем кнопки в контейнер
 buttonContainer.appendChild(submitBtn);
 buttonContainer.appendChild(textunderbtn);
 
-
-// Добавляем контейнер в основной контейнер
 container.appendChild(buttonContainer); 

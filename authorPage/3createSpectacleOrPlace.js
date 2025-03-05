@@ -1,10 +1,10 @@
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-const tlgid = 777
-const username = 'my777name'
+// const tlgid = 777
+// const username = 'my777name'
 
 
 const eventType = localStorage.getItem('eventType')
@@ -79,24 +79,13 @@ textValue.addEventListener('input',()=>{
 })
 
 
-
-
-
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
-
-
-    const emptyOk = await checkEmpty()
+const emptyOk = await checkEmpty()
     // console.log(emptyOk)
  
   
   if (emptyOk == false){
-    //    const successText = document.getElementById('successText')
-    //    successText.textContent = 'Заполните все поля'  
-    //    setTimeout(()=>{
-    //     successText.textContent = '' 
-    //    },1500)
-
 
        const div_successText = document.getElementById('div_successText')
        const successText = document.getElementById('successText')
@@ -110,9 +99,6 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
        
     } else {
-        // console.log('все ок')
-
-
     const inputName = document.getElementById('text').value
     const inputDescription = document.getElementById('description').value
     const inputMainActor = document.getElementById('mainActor').value
@@ -123,20 +109,20 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
     if (imgIsChanged && textIsChanged ){
         showSaveLoader()
-        const imgInput = document.getElementById('photo'); // Получаем input
-        const file = imgInput.files[0]; // Берём загруженный файл
+        const imgInput = document.getElementById('photo'); 
+        const file = imgInput.files[0]; 
     
         if (!file) {
             console.log("Файл не выбран!");
             return;
         }
     
-        // Создаём объект FormData
+       
         const formData = new FormData();
        
         formData.append('theatreOrGenre_id', choosedEvent); 
         formData.append('whatIsChanged', 'createSpectacleOrPlace'); 
-        formData.append('newImg_id', file); // Добавляем файл
+        formData.append('newImg_id', file); 
         formData.append('age', inputAge); 
         formData.append('mainActor', inputMainActor); 
         formData.append('duration', inputDuration); 
@@ -149,8 +135,8 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
     
         const response = await fetch('https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             
-            method: 'POST', // Должен быть POST
-            body: formData // Отправляем FormData
+            method: 'POST', 
+            body: formData 
         }).catch(error => console.error("Ошибка:", error));
         const json = response.json();
         hideSaveLoader();
@@ -162,28 +148,6 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
     } else {
 
-        // console.log('заполните все данные')
-
-        // showSaveLoader()
-
-        // const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-        //     method: 'POST',
-        //     // specify id if you want to edit existing objects
-        //     body: JSON.stringify({
-        //         'theatreOrGenre_id':choosedTheatreGenre,
-        //         'whatIsChanged': 'TheatreOrGenre',
-        //         'eventTypeName': inputEventTypeName,
-        //         'newImg_id': 'no'
-                
-        //     }),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     })
-
-        //     const json = response.json();
-        //     hideSaveLoader();
-
     }
     }
 })
@@ -191,29 +155,17 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.remove('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
 }
 
 function hide_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'none'
 }
 
 
 function showSaveLoader() {
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='flex'
-
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'сохраняю ...'
@@ -227,13 +179,6 @@ function showSaveLoader() {
 }
 
 function hideSaveLoader() {
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='none';
-    // const successText = document.getElementById('successText')
-    // successText.textContent =  'Успешно сохранено!'
-    // setTimeout(()=>successText.textContent = '',1500)
-
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'Успешно сохранено!'
@@ -283,7 +228,6 @@ function checkEmpty() {
         console.log(array)
 
         array.forEach((e)=>{
-            // console.log(e.subcategory_name)
 
             const option = document.createElement('option')
             option.value = e.id

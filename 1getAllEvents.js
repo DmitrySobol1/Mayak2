@@ -13,8 +13,6 @@ let partyName = ''
 let partyImg = ''
 
 
-
-
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='dateinterval.html'
 })
@@ -65,11 +63,6 @@ async function getEventImgAndName(){
      getAllSchedule(dstart,dfinish)
 }
 
-
-
-
-
-// showloader()
 
 function getAllSchedule(dstart,dfinish){
     fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getAllSchedule?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&pageSize=100`, {
@@ -150,9 +143,6 @@ function renderFront(qty_theatre,qty_party){
     newDivTheatre.appendChild(newDivForImgTheatre)
     newDivTheatre.appendChild(newPtheatre)
 
-
-    
-
     newDivParty = document.createElement('div')
     newDivParty.classList.add('getAllEventsClient_div')
 
@@ -214,7 +204,6 @@ function renderFront(qty_theatre,qty_party){
     eventstypediv.appendChild(newDivParty)
 
     hideloader()
-    
 }
 
 

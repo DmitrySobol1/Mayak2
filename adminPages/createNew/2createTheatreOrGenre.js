@@ -108,26 +108,6 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
         console.log('заполните все данные')
 
-        // showSaveLoader()
-
-        // const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-        //     method: 'POST',
-        //     // specify id if you want to edit existing objects
-        //     body: JSON.stringify({
-        //         'theatreOrGenre_id':choosedTheatreGenre,
-        //         'whatIsChanged': 'TheatreOrGenre',
-        //         'eventTypeName': inputEventTypeName,
-        //         'newImg_id': 'no'
-                
-        //     }),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     })
-
-        //     const json = response.json();
-        //     hideSaveLoader();
-
     }
 
 })
@@ -135,18 +115,12 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.remove('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
 
 }
 
 function hide_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'none'
 }
@@ -173,7 +147,6 @@ function hideSaveLoader() {
 
     setTimeout(()=>{
         div_successText.style.display = 'none'
-        // window.location.href='2showTheatreOrGenre.html'
     },2000)
     
 }

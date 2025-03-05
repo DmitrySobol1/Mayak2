@@ -40,14 +40,12 @@ function formatDate(dateString,type) {
     const str = `${day}.${month}`; // Возвращаем в нужном формате
     
     type === 'start' ? localStorage.setItem('dstartString',str) : localStorage.setItem('dfinishString',str)
-    // console.log(type,str);
+  
 }
 
 
 // Создаем поля для даты начала и окончания
 const startDate = createDatePicker("startDateInput","Дата начала:");
-// const endDate = createDatePicker("endDateInput","Дата окончания:");
-
 
      
 // Кнопка для подтверждения
@@ -57,19 +55,16 @@ submitBtn.setAttribute("id", "submitBtn");
 submitBtn.setAttribute("disabled", true);
 submitBtn.setAttribute("class", "nextBtn");
   			
- // Обработчик событий для активации кнопки
+
 function validateDates(type) {
     const startValue = startDate.input.value;
-    // const endValue = endDate.input.value;
     const today = new Date().toISOString().split("T")[0]; // Сегодняшняя дата в формате YYYY-MM-DD
 
             
     if (
         startValue &&
-        // endValue &&
-        // startValue <= endValue &&
         startValue >= today 
-        // endValue >= today
+       
        ) {
             submitBtn.disabled = false;
             const textunderbutton = document.getElementById("textunderbutton");
@@ -80,41 +75,25 @@ function validateDates(type) {
 				textunderbutton.classList.remove('nonvisible')
             }
 
-    // const res = type==='start' ? formatDate(startValue,type) : formatDate(endValue,type)
     type==='start' ? formatDate(startValue,type) : formatDate(endValue,type)
 }
 
-// startDate.input.addEventListener("change", validateDates);
 startDate.input.addEventListener("change", () => validateDates('start'));
-// endDate.input.addEventListener("change", () => validateDates('finish'));
 
         
 submitBtn.addEventListener("click", () => {
         const startToUnix =  Math.floor(new Date(startDate.input.value).getTime() / 1000);
-        // const finishToUnix =  Math.floor(new Date(endDate.input.value).getTime() / 1000);
-
-        // чтобы в выборку попадали все мероприятия dstart
         const finishToUnixEndOfDay = Number(startToUnix) + 86300
 
         localStorage.setItem('dstart',startToUnix)
         localStorage.setItem('dfinish',finishToUnixEndOfDay)
 
-        // const start = document.getElementById('start')
-        // start.textContent = 'start='+startToUnix
-
-        // const finish = document.getElementById('finish')
-        // finish.textContent = 'finish='+finishToUnix
-
         window.location.href = "2ChooseEventType.html"
 
 });
 
-// Добавляем элементы в контейнер
 container.appendChild(startDate.dateContainer);
-// container.appendChild(endDate.dateContainer);
 
-
-// Создаем контейнер для кнопок
 const buttonContainer = document.createElement("div");
 buttonContainer.setAttribute("class", "button-container");
 
@@ -123,11 +102,7 @@ textunderbtn.textContent = "*Укажите корректные даты для
 textunderbtn.id = "textunderbutton";
 textunderbtn.classList.add('textunderbtnclass');
 
-
-// Добавляем кнопки в контейнер
 buttonContainer.appendChild(submitBtn);
 buttonContainer.appendChild(textunderbtn);
 
-
-// Добавляем контейнер в основной контейнер
 container.appendChild(buttonContainer); 

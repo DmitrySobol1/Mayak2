@@ -1,18 +1,4 @@
-// const dstart = localStorage.getItem('dstart')
-// const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
-
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
-// let theatreName = ''
-// let theatreImg = ''
-// let partyName = ''
-// let partyImg = ''
 
 let imgIsChanged = false
 
@@ -37,9 +23,6 @@ function hideloader() {
 }
 
 
-// showloader()
-
-
 
 
 getEventImgAndName()
@@ -57,19 +40,9 @@ async function getEventImgAndName(){
      const json = await response.json()
      const array  = json.payload
 
-        const name = array[0].name
-        const img = array[0].img
+     const name = array[0].name
+     const img = array[0].img
 
-    //  array.forEach(item =>{
-    //     if (item.id == 'theatre'){
-    //         theatreName = item.name
-    //         theatreImg = item.img
-    //     } else if (item.id == 'party'){
-    //         partyName = item.name
-    //         partyImg = item.img
-    //     }
-    //  })
-     
      renderFront(name,img)
      
 }
@@ -88,7 +61,6 @@ function renderFront(name,img){
     newDivTheatre.classList.add('getAllEvents2_div')
 
     newDivForImgTheatre = document.createElement('div')
-    // newDivForImgTheatre.classList.add('getAllEvents_divForImg')
     newDivForImgTheatre.classList.add('adminEdit_divForImg')
     
     newImgTheatre =  document.createElement('img')
@@ -113,42 +85,11 @@ function renderFront(name,img){
 
     })
 
-    // divTextPlusIcon = document.createElement('div')
-    // divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
-
-    // newPtheatre = document.createElement('div')
-    // newPtheatre.textContent = name
-
-    // iconEdit = document.createElement('div')
-    // iconEdit.classList.add('iconEdit')
-    // iconEditPen = document.createElement('img')
-    // iconEditPen.src = "../../assets/pencil.png"
-    // iconEditPen.classList.add('iconEditPen')
-    // iconEditText = document.createElement('span')
-    // iconEditText.textContent = 'редактировать'
-
-    // iconEdit.appendChild(iconEditPen)
-    // iconEdit.appendChild(iconEditText)
-
-
-    // divTextPlusIcon.appendChild(newPtheatre)
-    // divTextPlusIcon.appendChild(iconEdit)
-
 
     newDivForImgTheatre.appendChild(newImgTheatre)
 
     newDivTheatre.appendChild(newDivForImgTheatre)
     newDivTheatre.appendChild(input)
-    // newDivTheatre.appendChild(divTextPlusIcon)
-    
-
-
-
-    // newDivTheatre.addEventListener('click',()=>{
-    //     localStorage.setItem('eventType','theatre')
-    //     window.location.href = '2showTheatreOrGenre.html'
-    // })
-
     
     eventstypediv.appendChild(newDivTheatre)
    
@@ -156,12 +97,6 @@ function renderFront(name,img){
     hideloader()
     
 }
-
-
-
-// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-//     location.reload();
-// })
 
 
 
@@ -218,12 +153,12 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         formData.append('eventType_id', eventType); 
         formData.append('whatIsChanged', 'EventTypeName'); 
         formData.append('eventTypeName', inputEventTypeName); 
-        formData.append('newImg_id', file); // Добавляем файл
+        formData.append('newImg_id', file); 
     
         const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             
-            method: 'POST', // Должен быть POST
-            body: formData // Отправляем FormData
+            method: 'POST', 
+            body: formData 
         }).catch(error => console.error("Ошибка:", error));
         const json = response.json();
         hideSaveLoader();
@@ -234,7 +169,6 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
         const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             method: 'POST',
-            // specify id if you want to edit existing objects
             body: JSON.stringify({
                 'eventType_id':eventType,
                 'whatIsChanged': 'EventTypeName',
@@ -258,11 +192,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.remove('nonvisible')
-
-
-     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
     
 }
@@ -270,9 +200,6 @@ function show_DivSaveCancellBtn(){
 
 
 function hide_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'none'
     
@@ -280,11 +207,6 @@ function hide_DivSaveCancellBtn(){
 
 
 function showSaveLoader() {
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='flex'
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'сохраняю ...'
@@ -296,15 +218,6 @@ function showSaveLoader() {
 }
 
 function hideSaveLoader() {
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='none';
-
-    // const successText = document.getElementById('successText')
-    // successText.textContent =  'Успешно сохранено!'
-    // setTimeout(()=>successText.textContent = '',1500)
-
-
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'Успешно сохранено!'

@@ -4,13 +4,6 @@ const eventType = localStorage.getItem('eventType')
 const choosedEvent = localStorage.getItem('choosedEvent')
 const choosedName = localStorage.getItem('choosedName')
 
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
 const title = document.querySelector('.title')
 title.textContent = eventType === 'theatre'? `Спектакли в ${choosedName}` : `${choosedName}`
 
@@ -39,81 +32,6 @@ function hideloader() {
 }
 
 
-// getScheduleGroupByTheatreOrGenre()
-
-
-// async function getScheduleGroupByTheatreOrGenre() {
-//   try {
-  
-  
-//     const response = await fetch(
-//       `https://api.directual.com/good/api/v5/data/3_schedule/getScheduleGroupByTheatreOrGenre?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&dstart=${dstart}&dfinish=${dfinish}&eventType=${eventType}&pageSize=100`,
-//       {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       }
-//     );
-
-//     // Проверка ответа
-//     if (!response.ok) {
-//       throw new Error(`Ошибка HTTP: ${response.status}`);
-//     }
-   
-//     const data = await response.json();
-//     allTheatres = data.payload;
-//     // console.log(allTheatres)
-
-//     // Создаем объект для подсчета событий по театрам/жанрам
-//     const theatreEventCounts = allTheatres.reduce((acc, event) => {
-//       const theatreId = event.theatreOrGenre_id.id;
-//       acc[theatreId] = (acc[theatreId] || 0) + 1;
-//       return acc;
-//     }, {});
-
-   
-//     // Сохраняем данные в localStorage
-//     Object.entries(theatreEventCounts).forEach(([theatreId, count]) => {
-//       localStorage.setItem(theatreId, count);
-//     });
-
-//     // Рендерим 
-//     preparingToRenderTheatre();
-
-//   } catch (error) {
-//     console.error('Ошибка при получении данных:', error);
-//   }
-// }
-
-
-
-// function preparingToRenderTheatre() {
-//     try {
-//       // Проверка наличия allTheatres
-//       if (!allTheatres || !Array.isArray(allTheatres)) {
-//         throw new Error('allTheatres должен быть массивом');
-//       }
-  
-//       // Создаем массив уникальных театров/жанров
-//       const uniqueTheatres = [
-//         ...new Map(
-//           allTheatres.map(item => [item.theatreOrGenre_id.id, item.theatreOrGenre_id])
-//         ).values()
-//       ];
-
-//       // Добавляем количество событий для каждого театра/жанра
-//       renderArray = uniqueTheatres.map(theatre => ({
-//         ...theatre,
-//         qty: Number(localStorage.getItem(theatre.id)) || 0 // Преобразуем в число
-//       }));
-  
-//       render()
-
-//     } catch (error) {
-//       console.error('Ошибка при рендеринге театров:', error);
-//     }
-//   }
 
 render()
 
@@ -138,13 +56,10 @@ async function render() {
       return;
     }
   
-    // Очищаем контейнер перед добавлением новых элементов
     theatrediv.innerHTML = '';
   
-    // Создаем DocumentFragment для оптимизации
     const fragment = document.createDocumentFragment();
   
-    // Проходим по массиву и создаем элементы
     renderArray.forEach((item) => {
       const newDiv = document.createElement('div')
       newDiv.classList.add('theatre-item'); 
@@ -163,10 +78,6 @@ async function render() {
       img.alt = item.name;
       img.classList.add('getEventsFilteredByTheatre_img');
   
-      // const p = document.createElement('p');
-      // p.textContent = item.name;
-
-
       divTextPlusIcon = document.createElement('div')
       divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')
   
@@ -202,13 +113,10 @@ async function render() {
          e.stopPropagation(); 
          contextMenu.style.display = 'block';
          contextMenu.classList.add('visible');
-        //  Позиционируем меню рядом с кнопкой
-        //  const rect = iconEdit.getBoundingClientRect();
-          const rect = document.getElementById(e.target.id).getBoundingClientRect();
+         const rect = document.getElementById(e.target.id).getBoundingClientRect();
 
          const menuWidth = contextMenu.offsetWidth; // Ширина меню
 
-         // Позиционируем меню слева от кнопки
          contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
          contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
 
@@ -222,17 +130,8 @@ async function render() {
 
   
       imgDiv.appendChild(img)
-    //   imgDiv.appendChild(qtyDiv)
-
       newDiv.appendChild(imgDiv)
       newDiv.appendChild(divTextPlusIcon)
-      // newDiv.appendChild(p);
-      
-    //   newDiv.addEventListener('click', () => {
-    //     localStorage.setItem('choosedTheatreGenre',item.id)
-    //     localStorage.setItem('choosedName',item.name)
-    //     window.location.href= '3getSpectaclesAtCurrentTheatre.html'
-    // });
       
       // Добавляем div в fragment
       fragment.appendChild(newDiv);
@@ -256,6 +155,6 @@ document.addEventListener('click', function (e) {
       contextMenu.classList.remove('visible');
       setTimeout(() => {
         contextMenu.style.display = 'none';
-      }, 300); // Задержка для завершения анимации
+      }, 300); 
     }
   });

@@ -1,13 +1,12 @@
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-const tlgid = 777
-const username = 'my777name'
+// const tlgid = 777
+// const username = 'my777name'
 
-// const dstart = localStorage.getItem('dstart')
-// const dfinish = localStorage.getItem('dfinish')
+
 const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
 const choosedEvent  = localStorage.getItem('choosedEvent')
@@ -19,19 +18,6 @@ const choosedName  = localStorage.getItem('choosedName')
 const subtitle = document.getElementById('subtitle')
 subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
 
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
-// let theatreName = ''
-// let theatreImg = ''
-// let partyName = ''
-// let partyImg = ''
-
-// let imgIsChanged = false
 let dateOk = false
 let timeOk = false
 
@@ -55,48 +41,7 @@ function hideloader() {
 }
 
 
-// showloader()
-
-
-
-
-// getTheatreOrGenre()
-
-// async function getTheatreOrGenre(){
-   
-
-//     const response = await fetch(`https://api.directual.com/good/api/v5/data/3_schedule/getCurrentScheduleForAdminAction?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&item_id=${choosedEvent}`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         })
-
-//      const json = await response.json()
-//      const array  = json.payload
-
-//      console.log(array)
-
-//         const timeString = array[0].timeString
-//         const dateString = array[0].dateString
-//         // const img = array[0].img
-
-//     //  array.forEach(item =>{
-//     //     if (item.id == 'theatre'){
-//     //         theatreName = item.name
-//     //         theatreImg = item.img
-//     //     } else if (item.id == 'party'){
-//     //         partyName = item.name
-//     //         partyImg = item.img
-//     //     }
-//     //  })
-     
-//      renderFront(dateString,timeString)
-     
-// }
-
 renderFront()
-
 
 
 function renderFront(){
@@ -108,15 +53,6 @@ function renderFront(){
     newDivTheatre = document.createElement('div')
     newDivTheatre.classList.add('getAllEvents2_div')
 
-    // newDivForImgTheatre = document.createElement('div')
-    // // newDivForImgTheatre.classList.add('getAllEvents_divForImg')
-    // newDivForImgTheatre.classList.add('adminEdit_divForImg')
-    
-    // newImgTheatre =  document.createElement('img')
-    // newImgTheatre.src = img
-    // newImgTheatre.classList.add('getAllEvents_img')
-    // newImgTheatre.id = 'preview'
-
     inputDate = document.createElement('input')
     inputDate.id = 'inputDate'
     // inputDate.value = ''
@@ -125,30 +61,17 @@ function renderFront(){
     inputDate.classList.add('admin_input')
     inputDate.placeholder = 'укажите дату в формате 01.01.2025'
 
-    // inputDate.addEventListener('input',()=>{
-    //     if (inputDate.value != ''){
-    //         show_DivSaveCancellBtn()
-    //     } else {
-    //         hide_DivSaveCancellBtn()
-    //     }
-    // })
-
-
     inputDate.addEventListener('input', function () {
         const isValid = isValidDate(this.value);
       
         if (isValid) {
-        //   errorMessage.style.display = 'none';
-         
           dateOk = true
           console.log (dateOk)
           show_DivSaveCancellBtn()
         
         } else {
-        //   errorMessage.style.display = 'block';
         dateOk = false
           console.log (dateOk)
-        //   console.log ('не ok')
         }
       });
 
@@ -157,19 +80,10 @@ function renderFront(){
 
     inputTime = document.createElement('input')
     inputTime.id = 'inputTime'
-    // inputTime.value = timeString
     inputTime.type = 'text'
     inputTime.required = true
     inputTime.classList.add('admin_input')
     inputTime.placeholder = 'укажите время в формате 19:00'
-
-    // inputTime.addEventListener('input',()=>{
-    //     if (inputTime.value != ''){
-    //         show_DivSaveCancellBtn()
-    //     } else {
-    //         hide_DivSaveCancellBtn()
-    //     }
-    // })
 
 
     inputTime.addEventListener('input', function () {
@@ -196,19 +110,9 @@ function renderFront(){
 }
 
 
-
-// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-//     location.reload();
-// })
-
-
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
     if (dateOk==false || timeOk==false) {
-        // console.log('укажите верно')
-        // const successText = document.getElementById('successText')
-        // successText.textContent =  'Введи дату и время корректно!'
-        // setTimeout(()=>successText.textContent = '',1500)
 
         const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
@@ -231,11 +135,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         const date = new Date(year, month - 1, day, hours, minutes);
         const unixTime = Math.floor(date.getTime() / 1000);
 
-
-
-    
-        
-            showSaveLoader()
+        showSaveLoader()
     
             const response = await fetch('https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
                 method: 'POST',
@@ -265,12 +165,6 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
     
     }
-   
-    
-    
-    
-    
-  
 })
 
 

@@ -1,17 +1,3 @@
-// const dstart = localStorage.getItem('dstart')
-// const dfinish = localStorage.getItem('dfinish')
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
-// let theatreName = ''
-// let theatreImg = ''
-// let partyName = ''
-// let partyImg = ''
-
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='mainPage.html'
@@ -34,8 +20,6 @@ function hideloader() {
 
 
 const contextMenu = document.getElementById('context-menu');
-
-// showloader()
 
 
 getEventImgAndName()
@@ -68,9 +52,6 @@ async function getEventImgAndName(){
 }
 
 
-
-
-
 function renderFront(){
     showloader()
 
@@ -94,50 +75,14 @@ function renderFront(){
     newPtheatre = document.createElement('div')
     newPtheatre.textContent = theatreName
     newPtheatre.classList.add('createNew')
-    // iconEdit = document.createElement('div')
-    // iconEdit.classList.add('iconEdit')
-    // iconEditPen = document.createElement('img')
-    // iconEditPen.src = "../../assets/setting.png"
-    // iconEditPen.classList.add('iconEditPen')
-   
-   
-
-    // iconEdit.addEventListener('click',function(e){
-    //     localStorage.setItem('eventType','theatre')
-        
-    //      const links = contextMenu.querySelectorAll('a');
-         
-    //      // Устанавливаем новые ссылки
-    //      links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
-    //      links[1].href = "1editEventType.html"; // Ссылка для "Редактировать"
-
-    //      e.stopPropagation(); 
-    //      contextMenu.style.display = 'block';
-    //      contextMenu.classList.add('visible');
-    //      // Позиционируем меню рядом с кнопкой
-    //      const rect = iconEdit.getBoundingClientRect();
-    //      const menuWidth = contextMenu.offsetWidth; // Ширина меню
-
-    //      // Позиционируем меню слева от кнопки
-    //      contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
-    //      contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
-
-    // });
-
-
-    // iconEdit.appendChild(iconEditPen)
-
+    
     divTextPlusIcon.appendChild(newPtheatre)
-    // divTextPlusIcon.appendChild(iconEdit)
-
 
     newDivForImgTheatre.appendChild(newImgTheatre)
 
     newDivTheatre.appendChild(newDivForImgTheatre)
     newDivTheatre.appendChild(divTextPlusIcon)
     
-
-
     newDivParty = document.createElement('div')
     newDivParty.classList.add('getAllEvents_div')
 
@@ -152,57 +97,15 @@ function renderFront(){
     divTextPlusIcon2 = document.createElement('div')
     divTextPlusIcon2.classList.add('admin1showEventType_divTextPlusIcon')
 
-    
-
-
     newPparty = document.createElement('div')
     newPparty.textContent = partyName
     newPparty.classList.add('createNew')
 
-    // iconEdit2 = document.createElement('div')
-    // iconEdit2.classList.add('iconEdit')
-    // iconEditPen2 = document.createElement('img')
-    // iconEditPen2.src = "../../assets/setting.png"
-    // iconEditPen2.classList.add('iconEditPen')
-    // iconEditText2 = document.createElement('span')
-    // iconEditText2.textContent = 'редактировать'
-
-    // iconEdit2.appendChild(iconEditPen2)
-    // iconEdit2.appendChild(iconEditText2)
-
-    // iconEdit2.addEventListener('click',function(e){
-    //     localStorage.setItem('eventType','party')
-        
-    //      const links = contextMenu.querySelectorAll('a');
-         
-    //      // Устанавливаем новые ссылки
-    //      links[0].href = "2showTheatreOrGenre.html"; // Ссылка для "Открыть"
-    //      links[1].href = "1editEventType.html"; // Ссылка для "Редактировать"
-
-    //      e.stopPropagation(); 
-    //      contextMenu.style.display = 'block';
-    //      contextMenu.classList.add('visible');
-    //      // Позиционируем меню рядом с кнопкой
-    //      const rect = iconEdit2.getBoundingClientRect();
-    //      const menuWidth = contextMenu.offsetWidth; // Ширина меню
-
-    //     // Позиционируем меню слева от кнопки
-    //     contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
-    //     contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
-
-    // });
-
     divTextPlusIcon2.appendChild(newPparty)
-    // divTextPlusIcon2.appendChild(iconEdit2)
-
-
     newDivForImgParty.appendChild(newImgParty)
 
     newDivParty.appendChild(newDivForImgParty)
     newDivParty.appendChild(divTextPlusIcon2)
-
-
-
 
     newDivForImgTheatre.addEventListener('click',()=>{
         localStorage.setItem('eventType','theatre')

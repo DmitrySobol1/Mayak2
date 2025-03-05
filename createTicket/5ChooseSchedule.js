@@ -14,7 +14,6 @@ subtitle.textContent = subtitleFull
 let allTheatres = []
 let theatreEventCounts = []
 
-// let heartarray = localStorage.getItem('heartarray')
 let heartarray = []
 let manarray = []
 
@@ -22,21 +21,14 @@ const title = document.querySelector('.title')
 title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
 
 
-
-
 const btn_back = document.getElementById('btn_back').addEventListener('click', async () => {
     window.location.href = '4ChooseSpectacleOrPlace.html';
 });
 
 
-
-
-
 const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', async () => {
     window.location.href='../index.html'
 });
-
-
 
 
 const loader = document.getElementById('loader_div')
@@ -85,10 +77,6 @@ async function getInfoSchedule(){
                 title.classList.add('scheduleItemContainer_title'); 
 
        
-                // const description = document.createElement('p');
-                // description.textContent = 'Места в кассах: нет'
-                // description.classList.add('ShowChoosedEvent_descriptionKassa'); 
-
                 let ticketsQty = 0
                 if (item.ticketsArray_ids){    
                 ticketsQty = item.ticketsArray_ids.length
@@ -118,29 +106,7 @@ async function getInfoSchedule(){
             
                 const imgheart = document.createElement('img');
                 imgheart.src = '../assets/heart.png'
-                // imgheart.id = item.id
-                // imgheart.dataset.status = 'no'
-                // imgheart.dataset.id = item.id
                 imgheart.classList.add ('ShowChoosedEvent_icon')
-                // imgheart.addEventListener('click',(event)=>{
-                //     if (imgheart.dataset.status == 'no'){
-                //         imgheart.dataset.status = 'yes'
-                //         imgheart.src = 'assets/heartpressed.png'
-                //         qtyInteresting ++ 
-                //         qtyheart.textContent = qtyInteresting
-                //         heartarray.push(event.target.dataset.id);
-                        
-                //         localStorage.setItem('heartarray',heartarray)
-                // } else {
-                //     imgheart.dataset.status = 'no'
-                //     imgheart.src = 'assets/heart.png'
-                //     qtyInteresting -- 
-                //     qtyheart.textContent = qtyInteresting
-                //     heartarray = heartarray.filter(item => item !== event.target.dataset.id);
-                    
-                //     localStorage.setItem('heartarray',heartarray)
-                // }
-                // })
 
                 const qtyheart = document.createElement('span');
                 let qtyInteresting = item.qtyInteresting
@@ -148,39 +114,14 @@ async function getInfoSchedule(){
 
                 const textheart = document.createElement('span');
                 textheart.textContent = ' - интересно'
-
-
             
                 const iconrightdiv = document.createElement('div');
                 iconrightdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
 
                 const imgman = document.createElement('img');
                 imgman.src = '../assets/man.png'
-                // imgman.id = item.id
-                // imgman.dataset.status = 'no'
-                // imgman.dataset.id = item.id
+                imgman.dataset.id = item.id
                 imgman.classList.add ('ShowChoosedEvent_icon')
-                // imgman.addEventListener('click',(event)=>{
-                //     if (imgman.dataset.status == 'no'){
-                //         imgman.dataset.status = 'yes'
-                //         imgman.src = 'assets/manpressed.png'
-                //         qtyWantGo ++ 
-                //         qtyman.textContent = qtyWantGo
-                //         manarray.push(event.target.dataset.id);
-                //         console.log(manarray)
-                //         localStorage.setItem('manarray',manarray)
-                // } else {
-                //     imgman.dataset.status = 'no'
-                //     imgman.src = 'assets/man.png'
-                //     qtyWantGo -- 
-                //     qtyman.textContent = qtyWantGo
-                //     manarray = manarray.filter(item => item !== event.target.dataset.id);
-                //     console.log(manarray)
-                //     localStorage.setItem('manarray',manarray)
-                // }
-                // })
-            
-
 
                 const qtyman = document.createElement('span');
                 let qtyWantGo = item.qtyWantGo
@@ -188,9 +129,6 @@ async function getInfoSchedule(){
 
                 const textman = document.createElement('span');
                 textman.textContent = ' - идут'
-
-
-
 
                 iconleftdiv.appendChild(imgheart);
                 iconleftdiv.appendChild(qtyheart);
@@ -205,14 +143,11 @@ async function getInfoSchedule(){
                 iconsdiv.appendChild(iconrightdiv);
 
         
-             // Добавляем элементы в newDiv
                 newDiv.appendChild(title);
-                // newDiv.appendChild(description);
                 newDiv.appendChild(description2);
                 newDiv.appendChild(btn) 
                 newDiv.appendChild(iconsdiv);
 
-                // Добавляем newDiv в infodiv
                 schedulediv.appendChild(newDiv);
 
     })

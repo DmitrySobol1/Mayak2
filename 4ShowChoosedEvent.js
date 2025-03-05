@@ -14,7 +14,6 @@ subtitle.textContent = subtitleFull
 let allTheatres = []
 let theatreEventCounts = []
 
-// let heartarray = localStorage.getItem('heartarray')
 let heartarray = []
 let manarray = []
 
@@ -22,13 +21,10 @@ const title = document.querySelector('.title')
 title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
 
 
-
-
 const btn_back = document.getElementById('btn_back').addEventListener('click', async () => {
     try {
 
         if (heartarray.length > 0){
-        // Выполняем запрос
         const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             method: 'POST',
             body: JSON.stringify({
@@ -47,7 +43,6 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', a
     } 
 
     if (manarray.length > 0){
-        // Выполняем запрос
         const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             method: 'POST',
             body: JSON.stringify({
@@ -65,9 +60,7 @@ const btn_back = document.getElementById('btn_back').addEventListener('click', a
 
     } 
 
-    // Перенаправляем пользователя
     window.location.href = '3getSpectaclesAtCurrentTheatre.html';
-
 
     } catch (error) {
         console.error('Произошла ошибка:', error);
@@ -82,7 +75,6 @@ const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventLi
     try {
 
         if (heartarray.length > 0){
-        // Выполняем запрос
         const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             method: 'POST',
             body: JSON.stringify({
@@ -101,7 +93,6 @@ const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventLi
     } 
 
     if (manarray.length > 0){
-        // Выполняем запрос
         const response = await fetch('https://api.directual.com/good/api/v5/data/changeqtyinterestingandqtywantgo/postToChangeQty?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             method: 'POST',
             body: JSON.stringify({
@@ -119,7 +110,6 @@ const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventLi
 
     } 
 
-    // Перенаправляем пользователя
     window.location.href='index.html'
 
 
@@ -165,7 +155,6 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
 
     const infodiv = document.getElementById('infodiv')
 
-
     const img = document.createElement('img')
     img.src = item.img
     img.classList.add('ShowChoosedEvent_img')
@@ -178,13 +167,6 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
     description.textContent = item.description
     description.classList.add('ShowChoosedEvent_text')
     
-
-    // const subCategory_title = document.createElement('div')
-    // subCategory_title.classList.add('ShowChoosedEvent_title')
-    // subCategory_title.textContent = 'Подкатегория:'
-    // const subCategory = document.createElement('div')
-    // subCategory.textContent = item.subCategory_id.subcategory_name
-    // subCategory.classList.add('ShowChoosedEvent_text')
 
     const subCategory_title = document.createElement('div')
     subCategory_title.classList.add('ShowChoosedEvent_title')
@@ -214,11 +196,6 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
     duration.textContent = item.duration
     duration.classList.add('ShowChoosedEvent_text')
 
-
-
-    
-
-    
     infodiv.appendChild(img)
     infodiv.appendChild(description_title)
     infodiv.appendChild(description)
@@ -232,9 +209,6 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
     infodiv.appendChild(age)
     infodiv.appendChild(duration_title)
     infodiv.appendChild(duration)
-    
-
-
 
 }
 
@@ -384,9 +358,6 @@ async function getInfoSchedule(){
                 const textman = document.createElement('span');
                 textman.textContent = ' - идут'
 
-
-
-
                 iconleftdiv.appendChild(imgheart);
                 iconleftdiv.appendChild(qtyheart);
                 iconleftdiv.appendChild(textheart);
@@ -399,15 +370,12 @@ async function getInfoSchedule(){
                 iconsdiv.appendChild(iconleftdiv);
                 iconsdiv.appendChild(iconrightdiv);
 
-        
-             // Добавляем элементы в newDiv
                 newDiv.appendChild(title);
                 newDiv.appendChild(description);
                 newDiv.appendChild(description2);
                 item.ticketsArray_ids ? newDiv.appendChild(btn) : ''
                 newDiv.appendChild(iconsdiv);
 
-                // Добавляем newDiv в infodiv
                 schedulediv.appendChild(newDiv);
 
     })

@@ -1,17 +1,3 @@
-// const dstart = localStorage.getItem('dstart')
-// const dfinish = localStorage.getItem('dfinish')
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
-// let theatreName = ''
-// let theatreImg = ''
-// let partyName = ''
-// let partyImg = ''
-
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='../adminMainMenu.html'
@@ -34,8 +20,6 @@ function hideloader() {
 
 
 const contextMenu = document.getElementById('context-menu');
-
-// showloader()
 
 
 getEventImgAndName()
@@ -114,13 +98,12 @@ function renderFront(){
          e.stopPropagation(); 
          contextMenu.style.display = 'block';
          contextMenu.classList.add('visible');
-         // Позиционируем меню рядом с кнопкой
          const rect = iconEdit.getBoundingClientRect();
-         const menuWidth = contextMenu.offsetWidth; // Ширина меню
+         const menuWidth = contextMenu.offsetWidth; 
 
          // Позиционируем меню слева от кнопки
-         contextMenu.style.top = `${rect.top + window.scrollY}px`; // Оставляем top без изменений
-         contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; // Смещаем влево
+         contextMenu.style.top = `${rect.top + window.scrollY}px`; 
+         contextMenu.style.left = `${rect.left + window.scrollX - menuWidth}px`; 
 
     });
 
@@ -163,11 +146,8 @@ function renderFront(){
     iconEditPen2 = document.createElement('img')
     iconEditPen2.src = "../../assets/setting.png"
     iconEditPen2.classList.add('iconEditPen')
-    // iconEditText2 = document.createElement('span')
-    // iconEditText2.textContent = 'редактировать'
 
     iconEdit2.appendChild(iconEditPen2)
-    // iconEdit2.appendChild(iconEditText2)
 
     iconEdit2.addEventListener('click',function(e){
         localStorage.setItem('eventType','party')
@@ -227,7 +207,7 @@ document.addEventListener('click', function (e) {
       contextMenu.classList.remove('visible');
       setTimeout(() => {
         contextMenu.style.display = 'none';
-      }, 300); // Задержка для завершения анимации
+      }, 300); 
     }
   });
 

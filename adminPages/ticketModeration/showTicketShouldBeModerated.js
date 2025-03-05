@@ -5,38 +5,15 @@ const choosedEvent = localStorage.getItem('choosedEvent')
 const choosedEventName = localStorage.getItem('choosedEventName')
 const choosedName = localStorage.getItem('choosedName')
 
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
-// let allTheatres = []
-// let theatreEventCounts = []
-
-// // let heartarray = localStorage.getItem('heartarray')
-// let heartarray = []
-// let manarray = []
-
-// const title = document.querySelector('.title')
-// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
-
-
-
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', () => {
         window.location.href = '../adminMainMenu.html';
 });
 
 
-
-
-
 const btn_gotomainmenuk = document.getElementById('btn_gotomainmenu').addEventListener('click', () => {
     window.location.href='../adminMainMenu.html'
 });
-
-
 
 
 const loader = document.getElementById('loader_div')
@@ -48,12 +25,6 @@ function showloader() {
 function hideloader() {
   loader.classList.add('nonvisible')
 }
-
-
-
-
-
-
 
 
 getInfoAboutTicket()
@@ -107,10 +78,6 @@ async function getInfoAboutTicket(){
                 row.textContent = `Ряд: ${item.row} ${'\u00A0\u00A0\u00A0'} Номер места: ${item.placeNumber}`
                 row.classList.add('ticketModeration2_div'); 
                 
-                // const placeNumber = document.createElement('p');
-                // placeNumber.textContent = `Номер места: ${item.placeNumber}`
-                // placeNumber.classList.add('ShowChoosedEvent_descriptionKassa'); 
-                
                 const qty = document.createElement('div');
                 qty.textContent = `Количество билетов: ${item.qty}`
                 qty.classList.add('ticketModeration_div'); 
@@ -137,7 +104,6 @@ async function getInfoAboutTicket(){
 
                     const resp = await fetch('https://api.directual.com/good/api/v5/data/rqstfromadminticketmoderation/rqstfromAdminTicketModeration?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
                         method: 'POST',
-                        // specify id if you want to edit existing objects
                         body: JSON.stringify({
                             'action': 'approve',
                             'rqstToTicket_id': uid
@@ -175,7 +141,6 @@ async function getInfoAboutTicket(){
 
                     const resp = await fetch('https://api.directual.com/good/api/v5/data/rqstfromadminticketmoderation/rqstfromAdminTicketModeration?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
                         method: 'POST',
-                        // specify id if you want to edit existing objects
                         body: JSON.stringify({
                             'action': 'reject',
                             'rqstToTicket_id': uid
@@ -199,137 +164,19 @@ async function getInfoAboutTicket(){
 
                 })
 
-
-
-                
-                // btn.addEventListener('click', ()=>{
-                //     localStorage.setItem('choosedSchedule',item.id)
-                //     window.location.href = '5ShowCurrentEventTickets.html'
-                // })
-        
-        
-                // const iconsdiv = document.createElement('div');
-                // iconsdiv.classList.add('ShowChoosedEvent_iconsdiv'); 
-       
-
-
-                // const iconleftdiv = document.createElement('div');
-                // iconleftdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
-
             
-                // const imgheart = document.createElement('img');
-                // imgheart.src = 'assets/heart.png'
-                // imgheart.id = item.id
-                // imgheart.dataset.status = 'no'
-                // imgheart.dataset.id = item.id
-                // imgheart.classList.add ('ShowChoosedEvent_icon')
-                // imgheart.addEventListener('click',(event)=>{
-                //     if (imgheart.dataset.status == 'no'){
-                //         imgheart.dataset.status = 'yes'
-                //         imgheart.src = 'assets/heartpressed.png'
-                //         qtyInteresting ++ 
-                //         qtyheart.textContent = qtyInteresting
-                //         heartarray.push(event.target.dataset.id);
-                        
-                //         localStorage.setItem('heartarray',heartarray)
-                // } else {
-                //     imgheart.dataset.status = 'no'
-                //     imgheart.src = 'assets/heart.png'
-                //     qtyInteresting -- 
-                //     qtyheart.textContent = qtyInteresting
-                //     heartarray = heartarray.filter(item => item !== event.target.dataset.id);
-                    
-                //     localStorage.setItem('heartarray',heartarray)
-                // }
-                // })
-
-                // const qtyheart = document.createElement('span');
-                // let qtyInteresting = item.qtyInteresting
-                // qtyheart.textContent = qtyInteresting
-
-                // const textheart = document.createElement('span');
-                // textheart.textContent = ' - интересно'
-
-
-            
-                // const iconrightdiv = document.createElement('div');
-                // iconrightdiv.classList.add('ShowChoosedEvent_iconleftdiv'); 
-
-                // const imgman = document.createElement('img');
-                // imgman.src = 'assets/man.png'
-                // imgman.id = item.id
-                // imgman.dataset.status = 'no'
-                // imgman.dataset.id = item.id
-                // imgman.classList.add ('ShowChoosedEvent_icon')
-                // imgman.addEventListener('click',(event)=>{
-                //     if (imgman.dataset.status == 'no'){
-                //         imgman.dataset.status = 'yes'
-                //         imgman.src = 'assets/manpressed.png'
-                //         qtyWantGo ++ 
-                //         qtyman.textContent = qtyWantGo
-                //         manarray.push(event.target.dataset.id);
-                //         console.log(manarray)
-                //         localStorage.setItem('manarray',manarray)
-                // } else {
-                //     imgman.dataset.status = 'no'
-                //     imgman.src = 'assets/man.png'
-                //     qtyWantGo -- 
-                //     qtyman.textContent = qtyWantGo
-                //     manarray = manarray.filter(item => item !== event.target.dataset.id);
-                //     console.log(manarray)
-                //     localStorage.setItem('manarray',manarray)
-                // }
-                // })
-            
-
-
-                // const qtyman = document.createElement('span');
-                // let qtyWantGo = item.qtyWantGo
-                // qtyman.textContent = qtyWantGo
-
-                // const textman = document.createElement('span');
-                // textman.textContent = ' - идут'
-
-
-
-
-                // iconleftdiv.appendChild(imgheart);
-                // iconleftdiv.appendChild(qtyheart);
-                // iconleftdiv.appendChild(textheart);
-
-
-                // iconrightdiv.appendChild(imgman);
-                // iconrightdiv.appendChild(qtyman);
-                // iconrightdiv.appendChild(textman);
-
-                // iconsdiv.appendChild(iconleftdiv);
-                // iconsdiv.appendChild(iconrightdiv);
-
-        
-             // Добавляем элементы в newDiv
                 newDiv.appendChild(title);
                 newDiv.appendChild(description);
                 newDiv.appendChild(placeLocation);
                 newDiv.appendChild(row);
-                // newDiv.appendChild(placeNumber);
                 newDiv.appendChild(qty);
                 newDiv.appendChild(pricePerTicket);
                 newDiv.appendChild(sellerUsername);
                 newDiv.appendChild(btnYes);
                 newDiv.appendChild(btnNo);
-                // newDiv.appendChild(description2);
-                // item.ticketsArray_ids ? newDiv.appendChild(btn) : ''
-                // newDiv.appendChild(iconsdiv);
-
-                // Добавляем newDiv в infodiv
                 schedulediv.appendChild(newDiv);
 
     })
 
     hideloader()
 }
-
-
-
-
-

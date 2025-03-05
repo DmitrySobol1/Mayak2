@@ -1,21 +1,6 @@
-// const dstart = localStorage.getItem('dstart')
-// const dfinish = localStorage.getItem('dfinish')
 const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
 const choosedSpectaclePlace = localStorage.getItem('choosedSpectaclePlace')
-
-
-
-// const subtitle = document.getElementById('subtitle')
-// const dstartString = localStorage.getItem('dstartString')
-// const dfinishString = localStorage.getItem('dfinishString')
-// const subtitleFull = `c ${dstartString} по ${dfinishString}`
-// subtitle.textContent = subtitleFull
-
-// let theatreName = ''
-// let theatreImg = ''
-// let partyName = ''
-// let partyImg = ''
 
 let imgIsChanged = false
 
@@ -38,10 +23,6 @@ function showloader() {
 function hideloader() {
   loader.classList.add('nonvisible')
 }
-
-
-// showloader()
-
 
 
 
@@ -170,20 +151,6 @@ async function getTheatreOrGenre(){
 }
 
 
-// const adminEdit_btnCnl = document.getElementById('adminEdit_btnCnl').addEventListener('click',()=>{
-//     // location.reload();
-//     const div_successText = document.getElementById('div_successText')
-//     const successText = document.getElementById('successText')
-//     successText.textContent = 'нажата restore'
-//     div_successText.style.display = 'flex'
-
-//     setTimeout(()=>{
-//         div_successText.style.display = 'none'
-//     },2000)
-// })
-
-
-
 document.getElementById('photo').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
@@ -209,11 +176,6 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
  
   
   if (emptyOk == false){
-    //    const successText = document.getElementById('successText')
-    //    successText.textContent = 'Заполните все поля'  
-    //    setTimeout(()=>{
-    //     successText.textContent = '' 
-    //    },1500)
 
         const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
@@ -264,8 +226,8 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
     
         const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             
-            method: 'POST', // Должен быть POST
-            body: formData // Отправляем FormData
+            method: 'POST', 
+            body: formData 
         }).catch(error => console.error("Ошибка:", error));
         const json = response.json();
         hideSaveLoader();
@@ -306,18 +268,12 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.remove('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
     
 }
 
 function hide_DivSaveCancellBtn(){
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-
     const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'none'
     
@@ -325,12 +281,6 @@ function hide_DivSaveCancellBtn(){
 
 
 function showSaveLoader() {
-    // const buttons = document.getElementById('DivSaveCancellBtn')
-    // buttons.classList.add('nonvisible')
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='flex'
-
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'сохраняю ...'
@@ -344,14 +294,6 @@ function showSaveLoader() {
 }
 
 function hideSaveLoader() {
-    // const loaderSave_div = document.getElementById('loaderSave_div')
-    // loaderSave_div.style.display='none';
-
-    // const successText = document.getElementById('successText')
-    // successText.textContent =  'Успешно сохранено!'
-    // setTimeout(()=>successText.textContent = '',1500)
-
-
     const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
         successText.textContent = 'Успешно сохранено!'
@@ -360,8 +302,6 @@ function hideSaveLoader() {
         setTimeout(()=>{
             div_successText.style.display = 'none'
         },2000)
-
-    
 }
 
 
@@ -459,8 +399,6 @@ document.body.addEventListener('input', (e) => {
         deleteText.textContent = 'удалено!'
     
         setTimeout(()=>{
-            // hideDeleteNotification()
-    
             window.location.href = '3showSpectacleOrPlace.html'
         },1000)
         
