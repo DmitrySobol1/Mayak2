@@ -1,5 +1,5 @@
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
 const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
