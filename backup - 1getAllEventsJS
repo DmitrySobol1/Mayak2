@@ -13,8 +13,6 @@ let partyName = ''
 let partyImg = ''
 
 
-
-
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='dateinterval.html'
 })
@@ -104,7 +102,6 @@ function getAllSchedule(dstart,dfinish){
                 });
                 
                 renderFront(qty_theatre,qty_party)
-                
 
             } else {
                 console.log ('нет событий')
@@ -116,10 +113,6 @@ function getAllSchedule(dstart,dfinish){
         })
 }
 
-
-
-
-
 function renderFront(qty_theatre,qty_party){
     showloader()
 
@@ -128,7 +121,6 @@ function renderFront(qty_theatre,qty_party){
 
     newDivTheatre = document.createElement('div')
     newDivTheatre.classList.add('getAllEventsClient_div')
-
 
     newDivForImgTheatre = document.createElement('div')
     newDivForImgTheatre.classList.add('getAllEvents_divForImg')
@@ -213,6 +205,11 @@ function renderFront(qty_theatre,qty_party){
 
     hideloader()
 }
+
+
+
+
+
 
 
 

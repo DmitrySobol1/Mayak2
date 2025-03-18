@@ -256,7 +256,8 @@ async function getInfoSchedule(){
 
        
                 const description = document.createElement('p');
-                description.textContent = `Места в кассах: ${item.linkToTicketOffice}`
+                // description.textContent = `Места в кассах: ${item.linkToTicketOffice}`
+                description.innerHTML = `Места в кассах: <a href="${item.linkToTicketOffice}" target="_blank">${item.linkToTicketOffice}</a>`;
                 description.classList.add('ShowChoosedEvent_descriptionKassa'); 
 
                 let ticketsQty = 0
