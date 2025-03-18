@@ -76,12 +76,14 @@ async function getTheatreOrGenre(){
     inputDescription.placeholder = 'укажите описание'
 
    
-    inputMainActor = document.createElement('input')
+    inputMainActor = document.createElement('textarea')
+    inputMainActor.rows=4
     inputMainActor.id = 'inputMainActor'
     inputMainActor.value = item.main_actor
     inputMainActor.type = 'text'
-    inputMainActor.required = true
+    inputMainActor.required = true 
     inputMainActor.classList.add('admin_input')
+    inputMainActor.classList.add('admin_textarea')
     inputMainActor.placeholder = 'укажите главных актеров'
 
 

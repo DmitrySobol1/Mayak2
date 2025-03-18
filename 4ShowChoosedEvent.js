@@ -166,7 +166,7 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
     const description = document.createElement('div')
     description.textContent = item.description
     description.classList.add('ShowChoosedEvent_text')
-    
+
 
     const subCategory_title = document.createElement('div')
     subCategory_title.classList.add('ShowChoosedEvent_title')
