@@ -2,7 +2,7 @@ const eventType = localStorage.getItem('eventType')
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre')
 const choosedSpectaclePlace = localStorage.getItem('choosedSpectaclePlace')
 
-let imgIsChanged = false
+let imgIsChanged = false 
 
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
@@ -84,13 +84,51 @@ async function getTheatreOrGenre(){
     inputMainActor.placeholder = 'укажите главных актеров'
 
 
-    inputAge = document.createElement('input')
+    // inputAge = document.createElement('input')
+    // inputAge.id = 'inputAge'
+    // inputAge.value = item.age
+    // inputAge.type = 'text'
+    // inputAge.required = true
+    // inputAge.classList.add('admin_input')
+    // inputAge.placeholder = 'укажите возрастные ограничения'
+
+    inputAge = document.createElement('select')
     inputAge.id = 'inputAge'
-    inputAge.value = item.age
-    inputAge.type = 'text'
-    inputAge.required = true
-    inputAge.classList.add('admin_input')
-    inputAge.placeholder = 'укажите возрастные ограничения'
+    inputAge.classList.add('admin_select2')
+    inputAgeOption = document.createElement('option')
+    inputAgeOption.value = item.age.id
+    inputAgeOption.text = item.age.name
+    inputAge.appendChild(inputAgeOption)    
+
+    let isOptionsLoaded2 = false;
+    inputAge.addEventListener('click', async ()=> {
+        if (isOptionsLoaded2) return;
+        const resp = await fetch('https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            }) 
+            const json = await resp.json();
+    
+            const array = json.payload
+            // console.log(array)
+
+            inputAge.innerHTML = '';
+    
+            array.forEach((e)=>{
+                // console.log(e.name)
+    
+                const option = document.createElement('option')
+                option.value = e.id
+                option.text = e.name
+    
+                inputAge.appendChild(option)
+    
+            })
+            isOptionsLoaded2 = true
+}) 
+
 
 
     inputDuration = document.createElement('input')
@@ -110,8 +148,12 @@ async function getTheatreOrGenre(){
     subcategoryOption.text = item.subCategory_id.subcategory_name
     subcategory.appendChild(subcategoryOption)
 
+
+
+    let isOptionsLoaded = false;
     subcategory.addEventListener('click', async ()=> {
-               
+            if (isOptionsLoaded) return;    
+            
             const resp = await fetch(`https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`, {
                 method: 'GET',
                 headers: {
@@ -121,10 +163,10 @@ async function getTheatreOrGenre(){
                 const json = await resp.json();
         
                 const array = json.payload
-                console.log(array)
+                // console.log(array)
         
                 array.forEach((e)=>{
-                    console.log(e.subcategory_name)
+                    // console.log(e.subcategory_name)
         
                     const option = document.createElement('option')
                     option.value = e.id
@@ -133,6 +175,7 @@ async function getTheatreOrGenre(){
                     subcategory.appendChild(option)
         
                 })
+                isOptionsLoaded = true;
     })
 
 

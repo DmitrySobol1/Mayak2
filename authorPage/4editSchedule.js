@@ -11,6 +11,7 @@ subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в 
 
 let dateOk = true
 let timeOk = true
+let linkOk = true
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='4showSchedule.html'
@@ -51,8 +52,9 @@ async function getTheatreOrGenre(){
 
         const timeString = array[0].timeString
         const dateString = array[0].dateString
+        const linkString = array[0].linkToTicketOffice
      
-     renderFront(dateString,timeString)
+     renderFront(dateString,timeString,linkString)
      
 }
 
@@ -60,7 +62,7 @@ async function getTheatreOrGenre(){
 
 
 
-function renderFront(dateString,timeString){
+function renderFront(dateString,timeString,linkString){
     showloader()
 
     const eventstypediv = document.querySelector('#eventstypediv')
@@ -118,9 +120,33 @@ function renderFront(dateString,timeString){
       });
 
 
+      inputLink = document.createElement('input')
+      inputLink.id = 'inputLink'
+      inputLink.value = linkString
+      inputLink.type = 'text'
+      inputLink.required = true
+      inputLink.classList.add('admin_input')
+      inputLink.placeholder = 'ссылка на кассы в формате example.ru'
+
+      inputLink.addEventListener('input', function () {
+          const isValid = isValidLink(this.value);
+        
+          if (isValid) {
+              linkOk = true
+              console.log (linkOk)
+              show_DivSaveCancellBtn()
+          } else {
+              linkOk = false
+              console.log (linkOk)
+          }
+        });  
+
+
+
 
     newDivTheatre.appendChild(inputDate)
     newDivTheatre.appendChild(inputTime)
+    newDivTheatre.appendChild(inputLink)
    
     eventstypediv.appendChild(newDivTheatre)
    
@@ -130,11 +156,11 @@ function renderFront(dateString,timeString){
 
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
-    if (dateOk==false || timeOk==false) {
+    if (dateOk==false || timeOk==false || linkOk==false) {
 
         const div_successText = document.getElementById('div_successText')
        const successText = document.getElementById('successText')
-       successText.textContent = 'Введи дату и время корректно!'
+       successText.textContent = 'Введи дату,время,ссылку корректно!'
        div_successText.style.display = 'flex'
 
        setTimeout(()=>{
@@ -148,6 +174,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
         const inputDate = document.getElementById('inputDate').value
         const inputTime = document.getElementById('inputTime').value
+        const inputLink = document.getElementById('inputLink').value
     
         const [day, month, year] = inputDate.split('.').map(Number);
         const [hours, minutes] = inputTime.split(':').map(Number);
@@ -165,6 +192,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
                 body: JSON.stringify({
                     'dateString':inputDate,
                     'timeString':inputTime,
+                    'linkToTicketOffice':inputLink,
                     'whatIsChanged': 'ChangeSchedule',
                     'newImg_id': 'no',
                     'schedule_id': choosedSchedule,
@@ -247,6 +275,12 @@ function isValidDate(dateString) {
   function isValidTime(timeString) {
     const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
     return timeRegex.test(timeString);
+  }
+
+
+  function isValidLink(linkString) {
+    const linkRegex = /^[^\s/$.?#]+\.[^\s/]{2,}(?:\/[^\s]*)?$/i;
+    return linkRegex.test(linkString);
   }
 
 

@@ -1,10 +1,10 @@
 // Прод
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-const username = window.Telegram.WebApp.initDataUnsafe.user.username
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+// const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-// const tlgid = 777
-// const username = 'my777name'
+const tlgid = 777
+const username = 'my777name'  
 
 
 const eventType = localStorage.getItem('eventType')
@@ -238,5 +238,40 @@ function checkEmpty() {
         })
         
         subcategory.selectedIndex = 0;
+       
+  }
+
+
+
+
+  setAgeCategory()
+
+  async function setAgeCategory(){
+
+    const age = document.getElementById('age')
+
+    const resp = await fetch('https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        }) 
+        const json = await resp.json();
+
+        const array = json.payload
+        console.log(array)
+
+        array.forEach((e)=>{
+            console.log(e.name)
+
+            const option = document.createElement('option')
+            option.value = e.id
+            option.text = e.name
+
+            age.appendChild(option)
+
+        })
+        
+        age.selectedIndex = 0;
        
   }

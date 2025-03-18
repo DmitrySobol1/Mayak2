@@ -1,10 +1,10 @@
 // Прод
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-const username = window.Telegram.WebApp.initDataUnsafe.user.username
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+// const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-// const tlgid = 777
-// const username = 'my777name'
+const tlgid = 777
+const username = 'my777name'
 
 
 const eventType = localStorage.getItem('eventType')
@@ -20,6 +20,7 @@ subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в 
 
 let dateOk = false
 let timeOk = false
+let linkOk = false
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', ()=>{
     window.location.href='4showSchedule.html'
@@ -101,8 +102,34 @@ function renderFront(){
 
 
 
+      inputLink = document.createElement('input')
+      inputLink.id = 'inputLink'
+      inputLink.type = 'text'
+      inputLink.required = true
+      inputLink.classList.add('admin_input')
+      inputLink.placeholder = 'ссылка на кассы в формате example.ru'
+
+      inputLink.addEventListener('input', function () {
+          const isValid = isValidLink(this.value);
+        
+          if (isValid) {
+              linkOk = true
+              console.log (linkOk)
+              show_DivSaveCancellBtn()
+          } else {
+              linkOk = false
+              console.log (linkOk)
+          }
+        });
+
+
+
+
+
+
     newDivTheatre.appendChild(inputDate)
     newDivTheatre.appendChild(inputTime)
+    newDivTheatre.appendChild(inputLink)
    
     eventstypediv.appendChild(newDivTheatre)
    
@@ -112,11 +139,11 @@ function renderFront(){
 
 const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEventListener('click',async function() {
 
-    if (dateOk==false || timeOk==false) {
+    if (dateOk==false || timeOk==false || linkOk==false) {
 
         const div_successText = document.getElementById('div_successText')
         const successText = document.getElementById('successText')
-        successText.textContent = 'Введи дату и время корректно!'
+        successText.textContent = 'Введи дату, время, ссылку корректно!'
         div_successText.style.display = 'flex'
  
         setTimeout(()=>{
@@ -129,6 +156,8 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
         const inputDate = document.getElementById('inputDate').value
         const inputTime = document.getElementById('inputTime').value
+        const inputLink = document.getElementById('inputLink').value
+
     
         const [day, month, year] = inputDate.split('.').map(Number);
         const [hours, minutes] = inputTime.split(':').map(Number);
@@ -146,6 +175,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
                 body: JSON.stringify({
                     'dateString':inputDate,
                     'timeString':inputTime,
+                    'linkToTicketOffice':inputLink,
                     'whatIsChanged': 'createSchedule',
                     'newImg_id': 'no',
                     'theatreOrGenre_id': choosedEvent,
@@ -173,7 +203,7 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
 
 function show_DivSaveCancellBtn(){
-      const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
+    const DivSaveCancellBtn = document.getElementById('DivSaveCancellBtn')
     DivSaveCancellBtn.style.display = 'block'
     
 }
@@ -230,4 +260,10 @@ function isValidDate(dateString) {
   function isValidTime(timeString) {
     const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
     return timeRegex.test(timeString);
+  }
+
+
+  function isValidLink(linkString) {
+    const linkRegex = /^[^\s/$.?#]+\.[^\s/]{2,}(?:\/[^\s]*)?$/i;
+    return linkRegex.test(linkString);
   }

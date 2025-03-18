@@ -20,7 +20,7 @@
         <div class="subtitle" id="subtitle"></div>
         
         
-        <div id = "eventstypediv"></div>
+        <div id = "eventstypediv"></div> 
         
         <div>
             <img src="../../assets/no image.png" class="getAllEvents_img" id="preview">
@@ -35,12 +35,14 @@
                 <input type="text" id="text" name="name" required class="admin_input" placeholder="укажите название">
                 <input type="text" id="description" name="description" required class="admin_input" placeholder="описание">
                 <input type="text" id="mainActor" name="mainActor" required class="admin_input" placeholder="главные актеры">
-                <input type="text" id="age" name="age" required class="admin_input" placeholder="возрастные ограничения">
+                <!-- <input type="text" id="age" name="age" required class="admin_input" placeholder="возрастные ограничения"> -->
                 <input type="text" id="duration" name="duration" required class="admin_input" placeholder="продолжительность">
+                <label for="age">Возрастные ограничения:</label>
+                <select id="age" name="age" class="admin_select2"></select>
                 
                 <label for="subcategory">Выберите категорию:</label>
-                <select id="subcategory" name="cars" class="admin_select">
-                </select>
+                <select id="subcategory" name="cars" class="admin_select"></select>
+            
 
                 <label for="photo" class="custom-button">
                     <img src="../../assets/camera.png" class="file-input-container_img">

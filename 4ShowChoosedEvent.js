@@ -186,7 +186,7 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
     age_title.classList.add('ShowChoosedEvent_title')
     age_title.textContent = 'Возраст:'
     const age = document.createElement('div')
-    age.textContent = item.age
+    age.textContent = item.age.name
     age.classList.add('ShowChoosedEvent_text')
 
     const duration_title = document.createElement('div')
@@ -256,7 +256,7 @@ async function getInfoSchedule(){
 
        
                 const description = document.createElement('p');
-                description.textContent = 'Места в кассах: нет'
+                description.textContent = `Места в кассах: ${item.linkToTicketOffice}`
                 description.classList.add('ShowChoosedEvent_descriptionKassa'); 
 
                 let ticketsQty = 0
