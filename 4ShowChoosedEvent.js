@@ -337,7 +337,7 @@ async function getInfoSchedule(){
                         qtyWantGo ++ 
                         qtyman.textContent = qtyWantGo
                         manarray.push(event.target.dataset.id);
-                        console.log(manarray)
+                        // console.log(manarray)
                         localStorage.setItem('manarray',manarray)
                 } else {
                     imgman.dataset.status = 'no'
@@ -345,7 +345,7 @@ async function getInfoSchedule(){
                     qtyWantGo -- 
                     qtyman.textContent = qtyWantGo
                     manarray = manarray.filter(item => item !== event.target.dataset.id);
-                    console.log(manarray)
+                    // console.log(manarray)
                     localStorage.setItem('manarray',manarray)
                 }
                 })
@@ -381,10 +381,40 @@ async function getInfoSchedule(){
 
     })
 
-    hideloader()
+    // hideloader()
+    showContent()
 }
 
 
 
 
 
+function showContent() {
+   
+    const images = document.querySelectorAll('img');
+    let loadedImages = 0;
+
+    images.forEach(img => {
+    if (img.complete) {
+        loadedImages++;
+    } else {
+        img.addEventListener('load', () => {
+        loadedImages++;
+        if (loadedImages === images.length) {
+            // console.log('Все изображения загружены');
+            document.getElementById('wrapper').classList.remove('nonvisible')
+            // console.log ('loaded')
+            hideloader()
+        }
+        });
+    }
+    });
+
+    if (loadedImages === images.length) {
+    // console.log('Все изображения уже загружены');
+    document.getElementById('wrapper').classList.remove('nonvisible')
+            // console.log ('loaded')
+            hideloader()
+    }
+
+}

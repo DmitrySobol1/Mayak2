@@ -234,9 +234,9 @@ function showContent() {
         img.addEventListener('load', () => {
         loadedImages++;
         if (loadedImages === images.length) {
-            console.log('Все изображения загружены');
+            // console.log('Все изображения загружены');
             document.getElementById('wrapper').classList.remove('nonvisible')
-            console.log ('loaded')
+            // console.log ('loaded')
             hideloader()
         }
         });
@@ -244,9 +244,9 @@ function showContent() {
     });
 
     if (loadedImages === images.length) {
-    console.log('Все изображения уже загружены');
+    // console.log('Все изображения уже загружены');
     document.getElementById('wrapper').classList.remove('nonvisible')
-            console.log ('loaded')
+            // console.log ('loaded')
             hideloader()
     }
 
