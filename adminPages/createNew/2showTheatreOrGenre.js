@@ -143,7 +143,8 @@ async function render() {
     // Добавляем fragment в контейнер
     theatrediv.appendChild(fragment);
     
-    hideloader()
+    // hideloader()
+    showContent()
 }
 
 
@@ -161,3 +162,36 @@ document.addEventListener('click', function (e) {
     }, 300); 
   }
 });
+
+
+
+
+function showContent() {
+   
+  const images = document.querySelectorAll('img');
+  let loadedImages = 0;
+
+  images.forEach(img => {
+  if (img.complete) {
+      loadedImages++;
+  } else {
+      img.addEventListener('load', () => {
+      loadedImages++;
+      if (loadedImages === images.length) {
+          // console.log('Все изображения загружены');
+          document.getElementById('wrapper').classList.remove('nonvisible')
+          // console.log ('loaded')
+          hideloader()
+      }
+      });
+  }
+  });
+
+  if (loadedImages === images.length) {
+  // console.log('Все изображения уже загружены');
+  document.getElementById('wrapper').classList.remove('nonvisible')
+          // console.log ('loaded')
+          hideloader()
+  }
+
+}

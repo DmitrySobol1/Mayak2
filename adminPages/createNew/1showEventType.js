@@ -196,7 +196,8 @@ function renderFront(){
     eventstypediv.appendChild(newDivTheatre)
     eventstypediv.appendChild(newDivParty)
 
-    hideloader()
+    // hideloader()
+    showContent()
     
 }
 
@@ -213,3 +214,33 @@ document.addEventListener('click', function (e) {
 
 
 
+
+  function showContent() {
+   
+    const images = document.querySelectorAll('img');
+    let loadedImages = 0;
+
+    images.forEach(img => {
+    if (img.complete) {
+        loadedImages++;
+    } else {
+        img.addEventListener('load', () => {
+        loadedImages++;
+        if (loadedImages === images.length) {
+            // console.log('Все изображения загружены');
+            document.getElementById('wrapper').classList.remove('nonvisible')
+            // console.log ('loaded')
+            hideloader()
+        }
+        });
+    }
+    });
+
+    if (loadedImages === images.length) {
+    // console.log('Все изображения уже загружены');
+    document.getElementById('wrapper').classList.remove('nonvisible')
+            // console.log ('loaded')
+            hideloader()
+    }
+
+}
