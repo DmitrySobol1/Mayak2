@@ -1,4 +1,4 @@
-window.Telegram.WebApp.BackButton.show()
+
 
 
 localStorage.clear();
