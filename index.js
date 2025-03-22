@@ -1,3 +1,6 @@
+window.Telegram.WebApp.BackButton.show()
+
+
 localStorage.clear();
 
 const index__btn_searchevent = document.getElementById('index__btn_searchevent').addEventListener('click',()=>{
