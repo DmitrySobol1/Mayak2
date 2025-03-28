@@ -1,6 +1,6 @@
 // Прод
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-const username = window.Telegram.WebApp.initDataUnsafe.user.username
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const username = window.Telegram.WebApp.initDataUnsafe.user.username;
 
 // тесты
 // const tlgid = 777;
@@ -101,7 +101,7 @@ function renderFront() {
   inputLink.type = 'text';
   inputLink.required = true;
   inputLink.classList.add('admin_input');
-  inputLink.placeholder = 'ссылка на кассы в формате example.ru';
+  inputLink.placeholder = 'ссылка на кассы в формате https://example.ru';
 
   inputLink.addEventListener('input', function () {
     const isValid = isValidLink(this.value);
@@ -232,6 +232,6 @@ function isValidTime(timeString) {
 }
 
 function isValidLink(linkString) {
-  const linkRegex = /^[^\s/$.?#]+\.[^\s/]{2,}(?:\/[^\s]*)?$/i;
+  const linkRegex = /^https?:\/\/(?:[^\s/$.?#]+\.)+[^\s/]{2,}(?:\/[^\s]*)?$/i;
   return linkRegex.test(linkString);
 }

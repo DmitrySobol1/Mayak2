@@ -283,7 +283,7 @@ function isValidDate(dateString) {
 
 
   function isValidLink(linkString) {
-    const linkRegex = /^[^\s/$.?#]+\.[^\s/]{2,}(?:\/[^\s]*)?$/i;
+    const linkRegex = /^https?:\/\/(?:[^\s/$.?#]+\.)+[^\s/]{2,}(?:\/[^\s]*)?$/i;
     return linkRegex.test(linkString);
   }
   
