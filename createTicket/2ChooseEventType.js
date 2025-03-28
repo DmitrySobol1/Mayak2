@@ -108,7 +108,7 @@ function getAllSchedule(dstart,dfinish){
             } else {
                 console.log ('нет событий')
                 const index_nofound=document.getElementById('index_nofound')
-                index_nofound.classList.remove('nonvisible')
+                index_nofound.classList.remove('nonvisible') 
                 hideloader()
             }
 

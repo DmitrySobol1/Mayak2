@@ -187,6 +187,11 @@ body {
     font-weight: 500;
 }
 
+.createTicket_nofound {
+    font-size:18px;
+    font-weight: 700;
+    margin-top: 50px;
+}
 
 /* стили для страницы dateinterval */
 .dateinterval__calendardiv{
