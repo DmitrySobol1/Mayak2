@@ -123,7 +123,7 @@ function render() {
       newDiv.classList.add('theatre-itemClient'); 
   
       const imgDiv = document.createElement('div');
-      imgDiv.classList.add('img-div');  
+      imgDiv.classList.add('img-div');   
 
       const qtyDiv = document.createElement('div');
       qtyDiv.classList.add('qty-div');
