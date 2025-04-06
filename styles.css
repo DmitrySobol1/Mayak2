@@ -600,6 +600,11 @@ margin-bottom: 40px;
    
 }
 
+.create_ticket_btn:disabled {
+    background-color: grey;
+    opacity: 50%;
+}
+
 /* Дополнительные стили для фокуса и валидации */
 .create_ticket_btn:invalid {
     border-color: #ff4d4d;
@@ -828,6 +833,11 @@ margin-bottom: 40px;
     /* width:30%; */
     /* font-weight: 500; */
     margin-bottom:20px;
+  }
+
+  .adminEdit_btnSave:disabled {
+    background-color: grey;
+    opacity: 50%;
   }
 
   .adminEdit_btnCnl{
@@ -1154,6 +1164,11 @@ margin-bottom: 40px;
     /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2); */
 }
 
+.ticketModerationBtn_yes:disabled {
+    background-color: grey;
+    opacity: 50%;
+}
+
 .ticketModerationBtn_no {
     background-color: salmon;
     padding: 10px;
@@ -1165,10 +1180,19 @@ margin-bottom: 40px;
     font-weight: 500;
 }
 
+
+
 .ticketModerationBtn_no:active {
     transform: translateY(1px); 
     /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2); */
 }
+
+
+.ticketModerationBtn_no:disabled {
+    background-color: grey;
+    opacity: 50%;
+}
+
 
 .ticketModeration_div {
     margin-bottom: 5px;
@@ -1181,6 +1205,12 @@ margin-bottom: 40px;
 .ticketModeration_title {
     font-weight: 600;
 }
+
+
+/* .adminEdit_btnSave:disabled {
+    background-color: grey;
+    opacity: 50%;
+} */
 
 
 /* NOTIFICATION ПРИ УДАЛЕНИИ - ФИНИШ */

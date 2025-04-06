@@ -234,7 +234,7 @@ async function getInfoSchedule(){
 
         const json = await response.json()
         payload = json.payload
-
+        console.log ('payload',payload)
 
         if (!payload ) {
             console.error('Некорректные данные в payload');

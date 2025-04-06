@@ -1,10 +1,13 @@
+// FIXME:
 // Прод
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-const username = window.Telegram.WebApp.initDataUnsafe.user.username;
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+// const username = window.Telegram.WebApp.initDataUnsafe.user.username;
 
 // тесты
-// const tlgid = 777;
-// const username = 'my777name';
+const tlgid = 777;
+const username = 'my777name';
+
+
 
 const eventType = localStorage.getItem('eventType');
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre');
@@ -148,6 +151,11 @@ const adminEdit_btnSave = document
       const unixTime = Math.floor(date.getTime() / 1000);
 
       showSaveLoader();
+
+
+      document.querySelector('.adminEdit_btnSave').disabled = true;
+      console.log('clicked')
+
 
       const response = await fetch(
         'https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
