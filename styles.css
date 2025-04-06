@@ -329,7 +329,7 @@ text-align:center;
     width:100%;
     border-radius: 10px;
     max-height: 100px;   /* TODO: CHECK IS OK*/
-    object-fit: contain;
+    
     
 }
 
@@ -430,7 +430,7 @@ margin-bottom: 40px;
     border-radius: 10px;
     margin-bottom: 10px;
     max-height: 250px;
-    object-fit: contain;
+    
 }
 
 .ShowChoosedEvent_title {
