@@ -34,25 +34,31 @@
 
                 <input type="file" id="photo" name="photo" accept="image/*" required class="hidden-input">
                 <input type="text" id="text" name="name" required class="admin_input" placeholder="укажите название">
-                <!-- <input type="text" id="description" name="description" required class="admin_input" placeholder="описание"> -->
                 <textarea id="description" rows="4" placeholder="описание" required class="admin_input admin_textarea"></textarea>
-                <!-- <input type="text" id="mainActor" name="mainActor" required class="admin_input" placeholder="главные актеры"> -->
                 <textarea id="mainActor" rows="4" placeholder="главные актеры" required class="admin_input admin_textarea"></textarea>
-                <!-- <input type="text" id="age" name="age" required class="admin_input" placeholder="возрастные ограничения"> -->
                 <input type="text" id="duration" name="duration" required class="admin_input" placeholder="продолжительность">
                 <label for="age">Возрастные ограничения:</label>
-                <select id="age" name="age" class="admin_select2"></select>
                 
-                <!-- inputDescription.classList.add('admin_textarea') -->
-
+                
+                <div id="ageBtn" class="btnIsoSelect">
+                    <div class="btnIsoSelect_div">
+                <span id="ageBtn_content">0+</span>    
+                <span>&#9660;</span>  
+                </div>  
+                </div>
+                
+                
+                <select id="age" name="age" class="admin_select2"></select> 
                 <label for="subcategory">Выберите категорию:</label>
                 <select id="subcategory" name="cars" class="admin_select"></select>
                 
                 <p>&thinsp;</p> <!-- для iphone*-->
 
                 <label for="photo" class="custom-button">
+                    <div class="custom-button_div">
                     <img src="../../assets/camera.png" class="file-input-container_img">
                     <span>добавить фото</span>
+                </div>
                 </label>
                 
             </div> 
@@ -61,7 +67,8 @@
         <p>&thinsp;</p> <!-- для iphone*-->
         </div>  
         <p>&thinsp;</p> <!-- для iphone*-->
-    
+        
+
 
         <div class="adminEdit_DivSaveCancellBtn" id='DivSaveCancellBtn'>
             <div id="adminEdit_btnSave">
@@ -76,6 +83,15 @@
         <div id='successText' class="successText">successText</div>
       </div>
 
+
+      <div id="modalAge" class="modalAge">
+        
+        <div id="modal-content" class="modal-content">
+          
+          <!-- <button class="modal-close-btn">Да</button>
+          <button class="modal-close-btn">Нет</button> -->
+        </div>
+      </div>
         
        
         <div class="wrapper__routingbtn">

@@ -84,7 +84,7 @@ async function render() {
       const img = document.createElement('img');
       img.src = item.img;
       img.alt = item.name;
-      img.classList.add('getEventsFilteredByTheatre_img');
+      img.classList.add('getEventsFilteredByTheatre_imgAdmin');
   
       divTextPlusIcon = document.createElement('div')
       divTextPlusIcon.classList.add('admin1showEventType_divTextPlusIcon')

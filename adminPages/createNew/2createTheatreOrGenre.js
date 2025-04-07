@@ -132,5 +132,5 @@ function hideSaveLoader() {
 
   setTimeout(() => {
     div_successText.style.display = 'none';
-  }, 2000);
+  }, 2000); 
 }

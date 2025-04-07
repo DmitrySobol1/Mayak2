@@ -257,3 +257,70 @@ async function setAgeCategory() {
 
   age.selectedIndex = 0;
 }
+
+
+const modalAge = document.getElementById('modalAge');
+const modalContent = document.getElementById('modal-content');
+
+
+document.getElementById('ageBtn').addEventListener('click', async () => {
+
+  console.log('clicked');
+
+  try {
+    const resp = await fetch(
+      'https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    const json = await resp.json();
+    const array = json.payload;
+
+    // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
+    modalContent.innerHTML = '';
+
+    const titleText =  document.createElement('div');
+    titleText.textContent = 'Возрастные ограничения:'
+    modalContent.appendChild(titleText);
+
+    array.forEach((e) => {
+      const btn = document.createElement('button');
+      btn.textContent = e.name;
+
+      // Добавим класс, если надо стилизовать
+      btn.className = 'modal-btn';
+
+      
+
+      
+      btn.addEventListener('click', () => {
+        console.log(`Выбрана категория: ${e.name}`);
+        ageBtn_content = document.getElementById('ageBtn_content')
+        ageBtn_content.textContent = e.name;
+        modalAge.style.display = 'none'; // Закрыть модалку
+      });
+
+      modalContent.appendChild(btn);
+    });
+
+    modalAge.style.display = 'block';
+  } catch (error) {
+    console.error('Ошибка при получении категорий:', error);
+  }
+});
+
+
+
+
+// const closeBtns = document.querySelectorAll('.modal-close-btn');
+
+// closeBtns.forEach(btn => {
+//   btn.addEventListener('click', () => {
+//     modalAge.style.display = 'none';
+//   });
+// });

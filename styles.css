@@ -329,7 +329,15 @@ text-align:center;
     width:100%;
     border-radius: 10px;
     max-height: 100px;   /* TODO: CHECK IS OK*/
+   
     
+}
+
+.getEventsFilteredByTheatre_imgAdmin{
+    width:100%;
+    border-radius: 10px;
+    max-height: 250px;   /* TODO: CHECK IS OK*/
+   
     
 }
 
@@ -886,6 +894,14 @@ margin-bottom: 40px;
     display: none;
   }
   
+  .custom-button_div {
+    display: flex;
+    gap:5px;
+    justify-content: center;
+    align-items: center;
+  }
+
+
   /* Стили для кастомной кнопки */
   .custom-button {
     display: inline-block;
@@ -896,7 +912,8 @@ margin-bottom: 40px;
     border: 1px solid black;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
+    
     
   }
   
@@ -1219,4 +1236,61 @@ margin-bottom: 40px;
 
 /* NOTIFICATION ПРИ УДАЛЕНИИ - ФИНИШ */
 
+
+/* КНОПКА ВМЕСТО ВЫПАДАЮЩЕГО СПИСКА - СТАРТ */
+
+.btnIsoSelect {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #f8f8f8;
+    color: #000000;
+
+}
+
+.btnIsoSelect_div {
+    display: flex;
+    justify-content: space-between
+}
+
+
+
+.modalAge {
+    display: none; 
+    position: fixed;
+    z-index: 999;
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #dbdbdb;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .modal-btn {
+
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #ffd43f;
+    color: #000000;
+
+  }
+
+/* КНОПКА ВМЕСТО ВЫПАДАЮЩЕГО СПИСКА - ФИНИШ */
 
