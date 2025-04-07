@@ -140,7 +140,8 @@ inputAge2.classList.add('btnIsoSelect_div')
 
 ageBtn_content= document.createElement('span')
 ageBtn_content.id = 'inputAge'
-ageBtn_content.textContent = item.age
+ageBtn_content.dataset.id = item.age.id
+ageBtn_content.textContent = item.age.name;
 
 ageBtn_content2 = document.createElement('span')
 ageBtn_content2.textContent = '▼'
@@ -181,6 +182,7 @@ inputAge.addEventListener('click', async () => {
       array.forEach((e) => {
         const btn = document.createElement('button');
         btn.textContent = e.name;
+        btn.dataset.id = e.id
   
         // Добавим класс, если надо стилизовать
         btn.className = 'modal-btn';
@@ -189,6 +191,7 @@ inputAge.addEventListener('click', async () => {
           console.log(`Выбрана категория: ${e.name}`);
         //   ageBtn_content = document.getElementById('ageBtn_content');
           ageBtn_content.textContent = e.name;
+          ageBtn_content.dataset.id = e.id;
           modalAge.style.display = 'none'; // Закрыть модалку
         });
   
@@ -259,7 +262,8 @@ inputAge.addEventListener('click', async () => {
 
     categoryBtn_content= document.createElement('span')
     categoryBtn_content.id = 'subcategory'
-    categoryBtn_content.textContent = item.subCategory_id
+    categoryBtn_content.textContent = item.subCategory_id.subcategory_name;
+    categoryBtn_content.dataset.id = item.subCategory_id.id;
 
     categoryBtn_content2 = document.createElement('span')
     categoryBtn_content2.textContent = '▼'
@@ -302,6 +306,7 @@ inputAge.addEventListener('click', async () => {
           array.forEach((e) => {
             const btn = document.createElement('button');
             btn.textContent = e.subcategory_name;
+            btn.dataset.id = e.id;
       
             // Добавим класс, если надо стилизовать
             btn.className = 'modal-btn';
@@ -310,6 +315,7 @@ inputAge.addEventListener('click', async () => {
               console.log(`Выбрана категория: ${e.subcategory_name}`);
             //   ageBtn_content = document.getElementById('ageBtn_content');
               categoryBtn_content.textContent = e.subcategory_name;
+              categoryBtn_content.dataset.id = e.id;
               modalCategory.style.display = 'none'; // Закрыть модалку
             });
       
@@ -415,9 +421,9 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
          let inputName = document.getElementById('inputName').value
          const inputDescription = document.getElementById('inputDescription').value
          const inputMainActor = document.getElementById('inputMainActor').value
-         const inputAge = document.getElementById('inputAge').textContent
+         const inputAge = document.getElementById('inputAge').dataset.id;
          const inputDuration = document.getElementById('inputDuration').value
-         const subcategory = document.getElementById('subcategory').textContent
+         const subcategory = document.getElementById('subcategory').dataset.id;
 
     
     

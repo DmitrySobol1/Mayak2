@@ -15,8 +15,14 @@ const title = document.getElementById('title');
 title.textContent =
   eventType == 'theatre' ? 'Добавить спектакль' : 'Добавить место';
 
+
+const categoryBtn_content=document.getElementById('categoryBtn_content')
+categoryBtn_content.textContent = eventType == 'theatre' ? 'Балет'  : 'Детям';
+categoryBtn_content.dataset.id = eventType == 'theatre' ? 'fc55857e-1647-4541-93ad-dca2c34961ad'  : '73f51d39-c6e3-4195-bd6a-61c2b49bba8c';
+
+
 let imgIsChanged = false;
-let textIsChanged = false;
+let textIsChanged = false; 
 
 const btn_back = document
   .getElementById('btn_back')
@@ -94,9 +100,9 @@ const adminEdit_btnSave = document
       const inputName = document.getElementById('text').value;
       const inputDescription = document.getElementById('description').value;
       const inputMainActor = document.getElementById('mainActor').value;
-      const inputAge = document.getElementById('ageBtn_content').textContent;
+      const inputAge = document.getElementById('ageBtn_content').dataset.id;
       const inputDuration = document.getElementById('duration').value;
-      const subcategory = document.getElementById('categoryBtn_content').textContent;
+      const subcategory = document.getElementById('categoryBtn_content').dataset.id;
 
       if (imgIsChanged && textIsChanged) {
         showSaveLoader();
@@ -289,6 +295,7 @@ document.getElementById('ageBtn').addEventListener('click', async () => {
     array.forEach((e) => {
       const btn = document.createElement('button');
       btn.textContent = e.name;
+      btn.dataset.id = e.id;
 
       // Добавим класс, если надо стилизовать
       btn.className = 'modal-btn';
@@ -297,6 +304,7 @@ document.getElementById('ageBtn').addEventListener('click', async () => {
         console.log(`Выбрана категория: ${e.name}`);
         ageBtn_content = document.getElementById('ageBtn_content');
         ageBtn_content.textContent = e.name;
+        ageBtn_content.dataset.id = e.id;
         modalAge.style.display = 'none'; // Закрыть модалку
       });
 
@@ -344,14 +352,17 @@ document.getElementById('categoryBtn').addEventListener('click', async () => {
     array.forEach((e) => {
       const btn = document.createElement('button');
       btn.textContent = e.subcategory_name;
+      btn.dataset.id = e.id;
+      
 
       // Добавим класс, если надо стилизовать
       btn.className = 'modal-btn';
 
       btn.addEventListener('click', () => {
-        console.log(`Выбрана категория: ${e.subcategory_name}`);
-        categoryBtn_content = document.getElementById('categoryBtn_content');
+        // console.log(`Выбрана категория: ${e.subcategory_name}`);
+        // categoryBtn_content = document.getElementById('categoryBtn_content');
         categoryBtn_content.textContent = e.subcategory_name;
+        categoryBtn_content.dataset.id = e.id;
         modalCategory.style.display = 'none'; // Закрыть модалку
       });
 
