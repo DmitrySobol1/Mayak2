@@ -95,42 +95,121 @@ async function getTheatreOrGenre(){
     // inputAge.classList.add('admin_input')
     // inputAge.placeholder = 'укажите возрастные ограничения'
 
-    inputAge = document.createElement('select')
-    inputAge.id = 'inputAge'
-    inputAge.classList.add('admin_select2')
-    inputAgeOption = document.createElement('option')
-    inputAgeOption.value = item.age.id
-    inputAgeOption.text = item.age.name
-    inputAge.appendChild(inputAgeOption)
-    
-    let isOptionsLoaded2 = false;
-    inputAge.addEventListener('click', async ()=> {
-        if (isOptionsLoaded2) return;
-        const resp = await fetch('https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            }) 
-            const json = await resp.json();
-    
-            const array = json.payload
-            console.log(array)
 
-            inputAge.innerHTML = '';
+
+    // <div id="ageBtn" class="btnIsoSelect">
+    //                 <div class="btnIsoSelect_div">
+    //             <span id="ageBtn_content">0+</span>    
+    //             <span>&#9660;</span>  
+    //             </div>  
+    //             </div>
+                
     
-            array.forEach((e)=>{
-                console.log(e.name)
+    inputAge = document.createElement('div')
+    inputAge.classList.add('btnIsoSelect')
+
+    inputAge2 = document.createElement('div')
+    inputAge2.classList.add('btnIsoSelect_div')
+
+    ageBtn_content= document.createElement('span')
+    ageBtn_content.id = 'inputAge'
+    ageBtn_content.textContent = item.age
+
+    ageBtn_content2 = document.createElement('span')
+    ageBtn_content2.textContent = '▼'
+
+    inputAge2.appendChild(ageBtn_content)
+    inputAge2.appendChild(ageBtn_content2)
+    inputAge.appendChild(inputAge2)
+   
+    const modalAge = document.getElementById('modalAge');
+    const modalAgeContent = document.getElementById('modalAgeContent');
+
+                
+    inputAge.addEventListener('click', async () => {
+        console.log('clicked');
+      
+        try {
+          const resp = await fetch(
+            'https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+      
+          const json = await resp.json();
+          const array = json.payload;
+      
+          // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
+          modalAgeContent.innerHTML = '';
+      
+          const titleText = document.createElement('div');
+          titleText.textContent = 'Возрастные ограничения:';
+          modalAgeContent.appendChild(titleText);
+      
+          array.forEach((e) => {
+            const btn = document.createElement('button');
+            btn.textContent = e.name;
+      
+            // Добавим класс, если надо стилизовать
+            btn.className = 'modal-btn';
+      
+            btn.addEventListener('click', () => {
+              console.log(`Выбрана категория: ${e.name}`);
+            //   ageBtn_content = document.getElementById('ageBtn_content');
+              ageBtn_content.textContent = e.name;
+              modalAge.style.display = 'none'; // Закрыть модалку
+            });
+      
+            modalAgeContent.appendChild(btn);
+          });
+      
+          modalAge.style.display = 'block';
+        } catch (error) {
+          console.error('Ошибка при получении категорий:', error);
+        }
+      });    
+
+
+//     inputAge = document.createElement('select')
+//     inputAge.id = 'inputAge'
+//     inputAge.classList.add('admin_select2')
+//     inputAgeOption = document.createElement('option')
+//     inputAgeOption.value = item.age.id
+//     inputAgeOption.text = item.age.name
+//     inputAge.appendChild(inputAgeOption)
     
-                const option = document.createElement('option')
-                option.value = e.id
-                option.text = e.name
+//     let isOptionsLoaded2 = false;
+//     inputAge.addEventListener('click', async ()=> {
+//         if (isOptionsLoaded2) return;
+//         const resp = await fetch('https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             }) 
+//             const json = await resp.json();
     
-                inputAge.appendChild(option)
+//             const array = json.payload
+//             console.log(array)
+
+//             inputAge.innerHTML = '';
     
-            })
-            isOptionsLoaded2 = true
-})    
+//             array.forEach((e)=>{
+//                 console.log(e.name)
+    
+//                 const option = document.createElement('option')
+//                 option.value = e.id
+//                 option.text = e.name
+    
+//                 inputAge.appendChild(option)
+    
+//             })
+//             isOptionsLoaded2 = true
+// })    
 
 
 

@@ -54,7 +54,7 @@ document.getElementById('photo').addEventListener('change', function (event) {
     reader.readAsDataURL(file);
   }
   imgIsChanged = true;
-//   console.log('img=', imgIsChanged);
+  //   console.log('img=', imgIsChanged);
   if (textIsChanged) {
     show_DivSaveCancellBtn();
   }
@@ -77,7 +77,7 @@ const adminEdit_btnSave = document
   .getElementById('adminEdit_btnSave')
   .addEventListener('click', async function () {
     const emptyOk = await checkEmpty();
-    console.log('emptyOk=',emptyOk);
+    console.log('emptyOk=', emptyOk);
 
     if (emptyOk == false) {
       const div_successText = document.getElementById('div_successText');
@@ -94,9 +94,9 @@ const adminEdit_btnSave = document
       const inputName = document.getElementById('text').value;
       const inputDescription = document.getElementById('description').value;
       const inputMainActor = document.getElementById('mainActor').value;
-      const inputAge = document.getElementById('age').value;
+      const inputAge = document.getElementById('ageBtn_content').textContent;
       const inputDuration = document.getElementById('duration').value;
-      const subcategory = document.getElementById('subcategory').value;
+      const subcategory = document.getElementById('categoryBtn_content').textContent;
 
       if (imgIsChanged && textIsChanged) {
         showSaveLoader();
@@ -124,19 +124,20 @@ const adminEdit_btnSave = document
         formData.append('creator_id', tlgid);
 
         document.querySelector('.adminEdit_btnSave').disabled = true;
-        
 
-        const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-
+        const response = await fetch(
+          'https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
+          {
             method: 'POST', // Должен быть POST
-            body: formData // Отправляем FormData
-        }).catch(error => console.error("Ошибка:", error));
+            body: formData, // Отправляем FormData
+          }
+        ).catch((error) => console.error('Ошибка:', error));
         const json = response.json();
         hideSaveLoader();
 
-        setTimeout(()=>{
-            window.location.href='3showSpectacleOrPlace.html'
-        },2000)
+        setTimeout(() => {
+          window.location.href = '3showSpectacleOrPlace.html';
+        }, 2000);
       } else {
         console.log('заполните все данные');
       }
@@ -179,10 +180,8 @@ function checkEmpty() {
   const inputs = document.querySelectorAll('input[type="text"], textarea');
   let allFilled = true;
 
-  
-  inputs.forEach((input,index) => {
+  inputs.forEach((input, index) => {
     if (input.value.trim() === '') {
-    
       allFilled = false;
     }
   });
@@ -194,77 +193,76 @@ function checkEmpty() {
   }
 }
 
-setsubcategory();
+// setsubcategory();
 
-async function setsubcategory() {
-  const subcategory = document.getElementById('subcategory');
+// async function setsubcategory() {
+//   const subcategory = document.getElementById('subcategory');
 
-  const resp = await fetch(
-    `https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  const json = await resp.json();
+//   const resp = await fetch(
+//     `https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`,
+//     {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     }
+//   );
+//   const json = await resp.json();
 
-  const array = json.payload;
-//   console.log(array);
+//   const array = json.payload;
+//   //   console.log(array);
 
-  array.forEach((e) => {
-    // console.log(e.subcategory_name);
+//   array.forEach((e) => {
+//     // console.log(e.subcategory_name);
 
-    const option = document.createElement('option');
-    option.value = e.id;
-    option.text = e.subcategory_name;
+//     const option = document.createElement('option');
+//     option.value = e.id;
+//     option.text = e.subcategory_name;
 
-    subcategory.appendChild(option);
-  });
+//     subcategory.appendChild(option);
+//   });
 
-  subcategory.selectedIndex = 0;
-}
+//   subcategory.selectedIndex = 0;
+// }
 
-setAgeCategory();
+// setAgeCategory();
 
-async function setAgeCategory() {
-  const age = document.getElementById('age');
+// async function setAgeCategory() {
+//   const age = document.getElementById('age');
 
-  const resp = await fetch(
-    'https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  const json = await resp.json();
+//   const resp = await fetch(
+//     'https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
+//     {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     }
+//   );
+//   const json = await resp.json();
 
-  const array = json.payload;
-//   console.log(array);
+//   const array = json.payload;
+//   //   console.log(array);
 
-  array.forEach((e) => {
-    // console.log(e.name);
+//   array.forEach((e) => {
+//     // console.log(e.name);
 
-    const option = document.createElement('option');
-    option.value = e.id;
-    option.text = e.name;
+//     const option = document.createElement('option');
+//     option.value = e.id;
+//     option.text = e.name;
 
-    age.appendChild(option);
-  });
+//     age.appendChild(option);
+//   });
 
-  age.selectedIndex = 0;
-}
+//   age.selectedIndex = 0;
+// }
+
 
 
 const modalAge = document.getElementById('modalAge');
-const modalContent = document.getElementById('modal-content');
-
+const modalAgeContent = document.getElementById('modalAgeContent');
 
 document.getElementById('ageBtn').addEventListener('click', async () => {
-
   console.log('clicked');
 
   try {
@@ -282,11 +280,11 @@ document.getElementById('ageBtn').addEventListener('click', async () => {
     const array = json.payload;
 
     // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
-    modalContent.innerHTML = '';
+    modalAgeContent.innerHTML = '';
 
-    const titleText =  document.createElement('div');
-    titleText.textContent = 'Возрастные ограничения:'
-    modalContent.appendChild(titleText);
+    const titleText = document.createElement('div');
+    titleText.textContent = 'Возрастные ограничения:';
+    modalAgeContent.appendChild(titleText);
 
     array.forEach((e) => {
       const btn = document.createElement('button');
@@ -295,17 +293,14 @@ document.getElementById('ageBtn').addEventListener('click', async () => {
       // Добавим класс, если надо стилизовать
       btn.className = 'modal-btn';
 
-      
-
-      
       btn.addEventListener('click', () => {
         console.log(`Выбрана категория: ${e.name}`);
-        ageBtn_content = document.getElementById('ageBtn_content')
+        ageBtn_content = document.getElementById('ageBtn_content');
         ageBtn_content.textContent = e.name;
         modalAge.style.display = 'none'; // Закрыть модалку
       });
 
-      modalContent.appendChild(btn);
+      modalAgeContent.appendChild(btn);
     });
 
     modalAge.style.display = 'block';
@@ -317,10 +312,54 @@ document.getElementById('ageBtn').addEventListener('click', async () => {
 
 
 
-// const closeBtns = document.querySelectorAll('.modal-close-btn');
 
-// closeBtns.forEach(btn => {
-//   btn.addEventListener('click', () => {
-//     modalAge.style.display = 'none';
-//   });
-// });
+const modalCategory = document.getElementById('modalCategory');
+const modalCategoryContent = document.getElementById('modalCategoryContent');
+
+
+document.getElementById('categoryBtn').addEventListener('click', async () => {
+  
+
+  try {
+    const resp = await fetch(
+      `https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    const json = await resp.json();
+    const array = json.payload;
+
+    // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
+    modalCategoryContent.innerHTML = '';
+
+    const titleText = document.createElement('div');
+    titleText.textContent = 'Выберите категорию:';
+    modalCategoryContent.appendChild(titleText);
+
+    array.forEach((e) => {
+      const btn = document.createElement('button');
+      btn.textContent = e.subcategory_name;
+
+      // Добавим класс, если надо стилизовать
+      btn.className = 'modal-btn';
+
+      btn.addEventListener('click', () => {
+        console.log(`Выбрана категория: ${e.subcategory_name}`);
+        categoryBtn_content = document.getElementById('categoryBtn_content');
+        categoryBtn_content.textContent = e.subcategory_name;
+        modalCategory.style.display = 'none'; // Закрыть модалку
+      });
+
+      modalCategoryContent.appendChild(btn);
+    });
+
+    modalCategory.style.display = 'block';
+  } catch (error) {
+    console.error('Ошибка при получении категорий:', error);
+  }
+});
