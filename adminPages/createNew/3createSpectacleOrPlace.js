@@ -128,8 +128,8 @@ const adminEdit_btnSave = document
         const response = await fetch(
           'https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
           {
-            method: 'POST', // Должен быть POST
-            body: formData, // Отправляем FormData
+            method: 'POST', 
+            body: formData, 
           }
         ).catch((error) => console.error('Ошибка:', error));
         const json = response.json();

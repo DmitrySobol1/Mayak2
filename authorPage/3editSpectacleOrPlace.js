@@ -94,42 +94,112 @@ async function getTheatreOrGenre(){
     // inputAge.classList.add('admin_input')
     // inputAge.placeholder = 'укажите возрастные ограничения'
 
-    inputAge = document.createElement('select')
-    inputAge.id = 'inputAge'
-    inputAge.classList.add('admin_select2')
-    inputAgeOption = document.createElement('option')
-    inputAgeOption.value = item.age.id
-    inputAgeOption.text = item.age.name
-    inputAge.appendChild(inputAgeOption)    
+//     inputAge = document.createElement('select')
+//     inputAge.id = 'inputAge'
+//     inputAge.classList.add('admin_select2')
+//     inputAgeOption = document.createElement('option')
+//     inputAgeOption.value = item.age.id
+//     inputAgeOption.text = item.age.name
+//     inputAge.appendChild(inputAgeOption)    
 
-    let isOptionsLoaded2 = false;
-    inputAge.addEventListener('click', async ()=> {
-        if (isOptionsLoaded2) return;
-        const resp = await fetch('https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            }) 
-            const json = await resp.json();
+//     let isOptionsLoaded2 = false;
+//     inputAge.addEventListener('click', async ()=> {
+//         if (isOptionsLoaded2) return;
+//         const resp = await fetch('https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             }) 
+//             const json = await resp.json();
     
-            const array = json.payload
-            // console.log(array)
+//             const array = json.payload
+//             // console.log(array)
 
-            inputAge.innerHTML = '';
+//             inputAge.innerHTML = '';
     
-            array.forEach((e)=>{
-                // console.log(e.name)
+//             array.forEach((e)=>{
+//                 // console.log(e.name)
     
-                const option = document.createElement('option')
-                option.value = e.id
-                option.text = e.name
+//                 const option = document.createElement('option')
+//                 option.value = e.id
+//                 option.text = e.name
     
-                inputAge.appendChild(option)
+//                 inputAge.appendChild(option)
     
-            })
-            isOptionsLoaded2 = true
-}) 
+//             })
+//             isOptionsLoaded2 = true
+// }) 
+
+
+inputAge = document.createElement('div')
+inputAge.classList.add('btnIsoSelect')
+
+inputAge2 = document.createElement('div')
+inputAge2.classList.add('btnIsoSelect_div')
+
+ageBtn_content= document.createElement('span')
+ageBtn_content.id = 'inputAge'
+ageBtn_content.textContent = item.age
+
+ageBtn_content2 = document.createElement('span')
+ageBtn_content2.textContent = '▼'
+
+inputAge2.appendChild(ageBtn_content)
+inputAge2.appendChild(ageBtn_content2)
+inputAge.appendChild(inputAge2)
+
+const modalAge = document.getElementById('modalAge');
+const modalAgeContent = document.getElementById('modalAgeContent');
+
+            
+inputAge.addEventListener('click', async () => {
+    console.log('clicked');
+    show_DivSaveCancellBtn(); 
+  
+    try {
+      const resp = await fetch(
+        'https://api.directual.com/good/api/v5/data/age_category/getAgeCategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      const json = await resp.json();
+      const array = json.payload;
+  
+      // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
+      modalAgeContent.innerHTML = '';
+  
+      const titleText = document.createElement('div');
+      titleText.textContent = 'Возрастные ограничения:';
+      modalAgeContent.appendChild(titleText);
+  
+      array.forEach((e) => {
+        const btn = document.createElement('button');
+        btn.textContent = e.name;
+  
+        // Добавим класс, если надо стилизовать
+        btn.className = 'modal-btn';
+  
+        btn.addEventListener('click', () => {
+          console.log(`Выбрана категория: ${e.name}`);
+        //   ageBtn_content = document.getElementById('ageBtn_content');
+          ageBtn_content.textContent = e.name;
+          modalAge.style.display = 'none'; // Закрыть модалку
+        });
+  
+        modalAgeContent.appendChild(btn);
+      });
+  
+      modalAge.style.display = 'block';
+    } catch (error) {
+      console.error('Ошибка при получении категорий:', error);
+    }
+  }); 
 
 
 
@@ -142,43 +212,115 @@ async function getTheatreOrGenre(){
     inputDuration.placeholder = 'укажите продолжительность'
 
 
-    subcategory = document.createElement('select')
-    subcategory.id = 'subcategory'
-    subcategory.classList.add('admin_select')
-    subcategoryOption = document.createElement('option')
-    subcategoryOption.value = item.subCategory_id.id
-    subcategoryOption.text = item.subCategory_id.subcategory_name
-    subcategory.appendChild(subcategoryOption)
+    // subcategory = document.createElement('select')
+    // subcategory.id = 'subcategory'
+    // subcategory.classList.add('admin_select')
+    // subcategoryOption = document.createElement('option')
+    // subcategoryOption.value = item.subCategory_id.id
+    // subcategoryOption.text = item.subCategory_id.subcategory_name
+    // subcategory.appendChild(subcategoryOption)
 
 
 
-    let isOptionsLoaded = false;
-    subcategory.addEventListener('click', async ()=> {
-            if (isOptionsLoaded) return;    
+    // let isOptionsLoaded = false;
+    // subcategory.addEventListener('click', async ()=> {
+    //         if (isOptionsLoaded) return;    
             
-            const resp = await fetch(`https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                }) 
-                const json = await resp.json();
+    //         const resp = await fetch(`https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             }) 
+    //             const json = await resp.json();
         
-                const array = json.payload
-                // console.log(array)
+    //             const array = json.payload
+    //             // console.log(array)
         
-                array.forEach((e)=>{
-                    // console.log(e.subcategory_name)
+    //             array.forEach((e)=>{
+    //                 // console.log(e.subcategory_name)
         
-                    const option = document.createElement('option')
-                    option.value = e.id
-                    option.text = e.subcategory_name
+    //                 const option = document.createElement('option')
+    //                 option.value = e.id
+    //                 option.text = e.subcategory_name
         
-                    subcategory.appendChild(option)
+    //                 subcategory.appendChild(option)
         
-                })
-                isOptionsLoaded = true;
-    })
+    //             })
+    //             isOptionsLoaded = true;
+    // })
+
+
+    subcategory = document.createElement('div')
+    subcategory.classList.add('btnIsoSelect')
+
+    subcategory2 = document.createElement('div')
+    subcategory2.classList.add('btnIsoSelect_div')
+
+    categoryBtn_content= document.createElement('span')
+    categoryBtn_content.id = 'subcategory'
+    categoryBtn_content.textContent = item.subCategory_id
+
+    categoryBtn_content2 = document.createElement('span')
+    categoryBtn_content2.textContent = '▼'
+
+    subcategory2.appendChild(categoryBtn_content)
+    subcategory2.appendChild(categoryBtn_content2)
+    subcategory.appendChild(subcategory2) 
+   
+    
+    const modalCategory = document.getElementById('modalCategory');
+    const modalCategoryContent = document.getElementById('modalCategoryContent');
+
+
+
+    subcategory.addEventListener('click', async () => {
+        show_DivSaveCancellBtn(); 
+        console.log('clickedSub');
+      
+        try {
+          const resp = await fetch(
+            `https://api.directual.com/good/api/v5/data/event_subcategory/getSubcategory?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=&type=${eventType}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+      
+          const json = await resp.json();
+          const array = json.payload;
+      
+          // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
+          modalCategoryContent.innerHTML = '';
+      
+          const titleText = document.createElement('div');
+          titleText.textContent = 'Возрастные ограничения:';
+          modalCategoryContent.appendChild(titleText);
+      
+          array.forEach((e) => {
+            const btn = document.createElement('button');
+            btn.textContent = e.subcategory_name;
+      
+            // Добавим класс, если надо стилизовать
+            btn.className = 'modal-btn';
+      
+            btn.addEventListener('click', () => {
+              console.log(`Выбрана категория: ${e.subcategory_name}`);
+            //   ageBtn_content = document.getElementById('ageBtn_content');
+              categoryBtn_content.textContent = e.subcategory_name;
+              modalCategory.style.display = 'none'; // Закрыть модалку
+            });
+      
+            modalCategoryContent.appendChild(btn);
+          });
+      
+          modalCategory.style.display = 'block';
+        } catch (error) {
+          console.error('Ошибка при получении категорий:', error);
+        }
+      });   
 
 
     newDivForImgTheatre.appendChild(newImgTheatre)
@@ -273,9 +415,9 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
          let inputName = document.getElementById('inputName').value
          const inputDescription = document.getElementById('inputDescription').value
          const inputMainActor = document.getElementById('inputMainActor').value
-         const inputAge = document.getElementById('inputAge').value
+         const inputAge = document.getElementById('inputAge').textContent
          const inputDuration = document.getElementById('inputDuration').value
-         const subcategory = document.getElementById('subcategory').value
+         const subcategory = document.getElementById('subcategory').textContent
 
     
     
@@ -302,7 +444,9 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         formData.append('name', inputName); 
         formData.append('subcategory', subcategory); 
 
-    
+        
+        document.querySelector('.adminEdit_btnSave').disabled = true;
+
         const response = await fetch('https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             
             method: 'POST', 
@@ -311,9 +455,15 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
         const json = response.json();
         hideSaveLoader();
 
+        setTimeout(() => {
+          window.location.href = '3showSpectacleOrPlace.html';
+        }, 2000);
+
     } else {
 
         showSaveLoader()
+
+        document.querySelector('.adminEdit_btnSave').disabled = true;
 
         const response = await fetch('https://api.directual.com/good/api/v5/data/authorrqsttoeditobjects/authorCreateSpectacleOrPlace?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
             method: 'POST',
@@ -334,6 +484,10 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
                 'Content-Type': 'application/json'
             },
             })
+
+            setTimeout(() => {
+              window.location.href = '3showSpectacleOrPlace.html';
+            }, 2000);
 
             const json = response.json();
             hideSaveLoader();
