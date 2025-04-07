@@ -1,10 +1,10 @@
 
 // FIXME: 
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
-const tlgid = 777
-const username = 'my777name'  
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = window.Telegram.WebApp.initDataUnsafe.user.username
+// const tlgid = 777
+// const username = 'my777name'  
 
 
 const eventType = localStorage.getItem('eventType')
