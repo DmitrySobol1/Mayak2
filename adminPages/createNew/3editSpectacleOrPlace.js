@@ -260,7 +260,7 @@ async function getTheatreOrGenre() {
       modalCategoryContent.innerHTML = '';
 
       const titleText = document.createElement('div');
-      titleText.textContent = 'Возрастные ограничения:';
+      titleText.textContent = 'Жанр события:';
       modalCategoryContent.appendChild(titleText);
 
       array.forEach((e) => {

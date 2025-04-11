@@ -1294,3 +1294,45 @@ margin-bottom: 40px;
 
 /* КНОПКА ВМЕСТО ВЫПАДАЮЩЕГО СПИСКА - ФИНИШ */
 
+
+
+/* ИНФО ПО ФОТО - СТАРТ */
+
+.infoButton{
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #b1b1b1;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid #b1b1b1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* margin-bottom: 100px; */
+  }
+
+  .infoImg{
+    width:20px;
+    height:20px;
+  }
+
+  .btnOk {
+    padding: 10px 10px;
+    background-color: #ffd43f;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+   }
+
+   .modalInfo {
+    background-color: #dbdbdb;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    text-align: left;
+  }
+
+/* ИНФО ПО ФОТО - ФИНИШ */
