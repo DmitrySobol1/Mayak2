@@ -71,30 +71,33 @@ function renderFront(dateString,timeString,linkString){
     newDivTheatre = document.createElement('div')
     newDivTheatre.classList.add('getAllEvents2_div')
 
-    inputDate = document.createElement('input')
-    inputDate.id = 'inputDate'
-    inputDate.value = dateString
-    inputDate.type = 'text'
-    inputDate.required = true
-    inputDate.classList.add('admin_input')
-    inputDate.placeholder = 'укажите дату'
+    // inputDate = document.createElement('input')
+    // inputDate.id = 'inputDate'
+    // inputDate.value = dateString
+    // inputDate.type = 'text'
+    // inputDate.required = true
+    // inputDate.classList.add('admin_input')
+    // inputDate.placeholder = 'укажите дату'
 
-    inputDate.addEventListener('input', function () {
-        const isValid = isValidDate(this.value);
+    // inputDate.addEventListener('input', function () {
+    //     const isValid = isValidDate(this.value);
       
-        if (isValid) {
+    //     if (isValid) {
          
-          dateOk = true
-          console.log (dateOk)
-          show_DivSaveCancellBtn()
+    //       dateOk = true
+    //       console.log (dateOk)
+    //       show_DivSaveCancellBtn()
         
-        } else {
-        dateOk = false
-          console.log (dateOk)
-        }
-      });
+    //     } else {
+    //     dateOk = false
+    //       console.log (dateOk)
+    //     }
+    //   });
 
-
+    const container = document.getElementById('eventstypediv')
+    const startDate = createDatePicker("startDateInput",dateString);
+    container.appendChild(startDate.dateContainer);
+    startDateInput.addEventListener("change", () => validateDates());
 
 
     inputTime = document.createElement('input')
@@ -144,7 +147,7 @@ function renderFront(dateString,timeString,linkString){
 
 
 
-    newDivTheatre.appendChild(inputDate)
+    // newDivTheatre.appendChild(inputDate)
     newDivTheatre.appendChild(inputTime)
     newDivTheatre.appendChild(inputLink)
    
@@ -172,11 +175,19 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
     } else {
 
-        const inputDate = document.getElementById('inputDate').value
+        // const inputDate = document.getElementById('inputDate').value
+
+        const inputDate = document.getElementById('startDateInput').value;
+
+        const [year2, month2, day2] = inputDate.split("-"); // Разбиваем строку по тире
+        const str = `${day2}.${month2}.${year2}`; // Возвращаем в нужном формате
+
+
+
         const inputTime = document.getElementById('inputTime').value
         const inputLink = document.getElementById('inputLink').value
     
-        const [day, month, year] = inputDate.split('.').map(Number);
+        const [day, month, year ] = str.split(".").map(Number);
         const [hours, minutes] = inputTime.split(':').map(Number);
         const date = new Date(year, month - 1, day, hours, minutes);
         const unixTime = Math.floor(date.getTime() / 1000);
@@ -185,12 +196,16 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
 
     
         
-            showSaveLoader()
+            showSaveLoader();
+            
+            document.querySelector('.adminEdit_btnSave').disabled = true;
+            document.querySelector('.deleteBtn').disabled = true;  
+    
     
             const response = await fetch('https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=', {
                 method: 'POST',
                 body: JSON.stringify({
-                    'dateString':inputDate,
+                    'dateString':str,
                     'timeString':inputTime,
                     'linkToTicketOffice':inputLink,
                     'whatIsChanged': 'ChangeSchedule',
@@ -206,6 +221,10 @@ const adminEdit_btnSave = document.getElementById ('adminEdit_btnSave').addEvent
     
                 const json = response.json();
                 hideSaveLoader();
+
+                setTimeout(() => {
+                    window.location.href = '4showSchedule.html';
+                  }, 2000);
     
     }
    
@@ -352,3 +371,63 @@ function isValidDate(dateString) {
     
 
 })
+
+
+
+
+
+
+function createDatePicker(inputDate,dateString) {
+    console.log('dateString',dateString)
+  
+    const dateContainer = document.createElement("div");
+    dateContainer.classList.add("date-container2");
+           
+    const input = document.createElement("input");
+    input.setAttribute("type", "date"); 
+    input.setAttribute("id", inputDate);
+    input.setAttribute("name", inputDate);
+    input.setAttribute("required", true);
+    input.setAttribute("class", "inputdate2");
+    
+    
+    const [day, month, year] = dateString.split("."); 
+    const str = `${year}-${month}-${day}`; 
+    input.value = str;
+            
+             
+  dateContainer.appendChild(input);
+  
+    return { dateContainer, input };
+  }
+  
+  
+  
+  
+  
+  
+  function validateDates() {
+    const startValue = startDateInput.value;
+    const today = new Date().toISOString().split("T")[0]; // Сегодняшняя дата в формате YYYY-MM-DD
+            
+    if (
+        startValue &&
+        startValue >= today
+       
+       ) {
+        //     submitBtn.disabled = false;
+        //     const textunderbutton = document.getElementById("textunderbutton");
+        // textunderbutton.classList.add('nonvisible')
+        dateOk = true;
+        show_DivSaveCancellBtn();
+        
+         } else {
+        //         submitBtn.disabled = true;
+        //         const textunderbutton = document.getElementById("textunderbutton");
+        // textunderbutton.classList.remove('nonvisible')
+        dateOk = false;
+        hide_DivSaveCancellBtn()
+        
+            }
+    
+  }

@@ -14,7 +14,7 @@ function createDatePicker(inputId,labelText) {
     dateContainer.classList.add("date-container");
            
     const input = document.createElement("input");
-     input.setAttribute("type", "date");
+     input.setAttribute("type", "date"); 
          		
     input.setAttribute("id", inputId);
     input.setAttribute("name", inputId);

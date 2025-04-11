@@ -1,11 +1,11 @@
 // FIXME:
 // Прод
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-const username = window.Telegram.WebApp.initDataUnsafe.user.username
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+// const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-// const tlgid = 777;
-// const username = 'my777name';
+const tlgid = 777;
+const username = 'my777name';
 
 
 
@@ -24,7 +24,7 @@ subtitle.textContent =
 
 let dateOk = false;
 let timeOk = false;
-let linkOk = false;
+let linkOk = false; 
 
 const btn_back = document
   .getElementById('btn_back')
@@ -58,25 +58,32 @@ function renderFront() {
   newDivTheatre = document.createElement('div');
   newDivTheatre.classList.add('getAllEvents2_div');
 
-  inputDate = document.createElement('input');
-  inputDate.id = 'inputDate';
-  inputDate.type = 'text';
-  inputDate.required = true;
-  inputDate.classList.add('admin_input');
-  inputDate.placeholder = 'укажите дату в формате 01.01.2025';
+  // inputDate = document.createElement('input');
+  // inputDate.id = 'inputDate';
+  // inputDate.type = 'text';
+  // inputDate.required = true;
+  // inputDate.classList.add('admin_input');
+  // inputDate.placeholder = 'укажите дату в формате 01.01.2025';
 
-  inputDate.addEventListener('input', function () {
-    const isValid = isValidDate(this.value);
+  // inputDate.addEventListener('input', function () {
+  //   const isValid = isValidDate(this.value);
 
-    if (isValid) {
-      dateOk = true;
-      console.log(dateOk);
-      show_DivSaveCancellBtn();
-    } else {
-      dateOk = false;
-      console.log(dateOk);
-    }
-  });
+  //   if (isValid) {
+  //     dateOk = true;
+  //     console.log(dateOk);
+  //     show_DivSaveCancellBtn();
+  //   } else {
+  //     dateOk = false;
+  //     console.log(dateOk);
+  //   }
+  // });
+
+
+  const container = document.getElementById('eventstypediv')
+  const startDate = createDatePicker("startDateInput");
+  container.appendChild(startDate.dateContainer);
+
+
 
   inputTime = document.createElement('input');
   inputTime.id = 'inputTime';
@@ -86,7 +93,7 @@ function renderFront() {
   inputTime.placeholder = 'укажите время в формате 19:00';
 
   inputTime.addEventListener('input', function () {
-    const isValid = isValidTime(this.value);
+    const isValid = isValidTime(this.value); 
 
     if (isValid) {
       timeOk = true;
@@ -118,7 +125,7 @@ function renderFront() {
     }
   });
 
-  newDivTheatre.appendChild(inputDate);
+  // newDivTheatre.appendChild(inputDate);
   newDivTheatre.appendChild(inputTime);
   newDivTheatre.appendChild(inputLink);
 
@@ -136,29 +143,36 @@ const adminEdit_btnSave = document
       successText.textContent = 'Введи дату, время, ссылку корректно!';
       div_successText.style.display = 'flex';
 
+      
+
       setTimeout(() => {
         div_successText.style.display = 'none';
       }, 2000);
     } else {
-      const inputDate = document.getElementById('inputDate').value;
+      const inputDate = document.getElementById('startDateInput').value;
+
+      const [year2, month2, day2] = inputDate.split("-"); // Разбиваем строку по тире
+      const str = `${day2}.${month2}.${year2}`; // Возвращаем в нужном формате
+
+      
       const inputTime = document.getElementById('inputTime').value;
       const inputLink = document.getElementById('inputLink').value;
 
-      const [day, month, year] = inputDate.split('.').map(Number);
+      const [day, month, year ] = str.split(".").map(Number);
       const [hours, minutes] = inputTime.split(':').map(Number);
       const date = new Date(year, month - 1, day, hours, minutes);
       const unixTime = Math.floor(date.getTime() / 1000);
 
       showSaveLoader();
 
-      document.querySelector('.adminEdit_btnSave').disabled = true;
+      document.querySelector('.adminEdit_btnSave').disabled = true; 
 
       const response = await fetch(
         'https://api.directual.com/good/api/v5/data/admineditobjects/adminRqstToEdit?appID=5481b0b8-ec7f-457d-a582-3de87fb4f347&sessionID=',
         {
           method: 'POST',
           body: JSON.stringify({
-            dateString: inputDate,
+            dateString: str,
             timeString: inputTime,
             linkToTicketOffice: inputLink,
             whatIsChanged: 'createSchedule',
@@ -238,4 +252,74 @@ function isValidTime(timeString) {
 function isValidLink(linkString) {
   const linkRegex = /^https?:\/\/(?:[^\s/$.?#]+\.)+[^\s/]{2,}(?:\/[^\s]*)?$/i;
   return linkRegex.test(linkString);
+}
+
+
+
+
+
+function createDatePicker(inputDate,labelText) {
+  const dateContainer = document.createElement("div");
+  dateContainer.classList.add("date-container2");
+         
+  const input = document.createElement("input");
+  input.setAttribute("type", "date"); 
+  input.setAttribute("id", inputDate);
+  input.setAttribute("name", inputDate);
+  input.setAttribute("required", true);
+  input.setAttribute("class", "inputdate2");
+         
+// const label = document.createElement("label");
+// label.textContent = labelText; 
+// label.setAttribute("for", inputDate);	
+//   label.setAttribute("class","labeldi")		
+          
+           
+dateContainer.appendChild(input);
+
+  return { dateContainer, input };
+}
+
+// Функция для преобразования даты из формата YYYY-MM-DD в DD.MM.YYYY
+// function formatDate(dateString,type) {
+//   const [year, month, day] = dateString.split("-"); // Разбиваем строку по тире
+//   const str = `${day}.${month}`; // Возвращаем в нужном формате
+  
+//   type === 'start' ? localStorage.setItem('dstartString',str) : localStorage.setItem('dfinishString',str)
+  
+// }
+
+
+
+
+
+const startDateInput= document.getElementById('startDateInput')
+startDateInput.addEventListener("change", () => validateDates());
+
+
+
+function validateDates() {
+  const startValue = startDateInput.value;
+  console.log('startValue=',startValue)
+  const today = new Date().toISOString().split("T")[0]; // Сегодняшняя дата в формате YYYY-MM-DD
+
+          
+  if (
+      startValue &&
+      startValue >= today
+     
+     ) {
+      //     submitBtn.disabled = false;
+      //     const textunderbutton = document.getElementById("textunderbutton");
+      // textunderbutton.classList.add('nonvisible')
+      dateOk = true
+      
+       } else {
+      //         submitBtn.disabled = true;
+      //         const textunderbutton = document.getElementById("textunderbutton");
+      // textunderbutton.classList.remove('nonvisible')
+      dateOk = false;
+      
+          }
+  
 }

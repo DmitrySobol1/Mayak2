@@ -203,6 +203,10 @@ body {
     margin-bottom: 20px;
 }
 
+.date-container2 {
+    margin-bottom: 8px;
+}
+
 .date-container label {
     font-weight: bold;
     margin-right: 10px;
@@ -259,6 +263,17 @@ opacity: 0.5;
     border-radius: 5px;      
   }
   
+  .inputdate2 {
+      width: 100%;             
+      border: 1px solid #000000; 
+      color: black;         
+      background-color: white; 
+      padding: 10px;           
+      font-size: 16px;         
+      border-radius: 10px;      
+    }
+
+
 .labeldi {
         font-weight: 300 !important; 
           color: #000000;   
@@ -848,6 +863,11 @@ margin-bottom: 40px;
   }
 
   .adminEdit_btnSave:disabled {
+    background-color: grey;
+    opacity: 50%;
+  }
+
+  .deleteBtn:disabled {
     background-color: grey;
     opacity: 50%;
   }
