@@ -640,3 +640,14 @@ document.body.addEventListener('input', (e) => {
         
     
     })
+
+
+    document.getElementById('infoBtn').addEventListener('click', ()=>{
+      const modalInfo = document.getElementById('modalInfo')
+      modalInfo.style.display = 'block'; 
+    })
+    
+    document.getElementById('btnOk').addEventListener('click', ()=>{
+      const modalInfo = document.getElementById('modalInfo')
+      modalInfo.style.display = 'none'; 
+    })  

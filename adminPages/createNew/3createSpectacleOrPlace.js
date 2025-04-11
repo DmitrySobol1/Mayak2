@@ -1,11 +1,11 @@
 //FIXME:
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // // тесты
-const tlgid = 777;
-const username = 'my777name';
+// const tlgid = 777;
+// const username = 'my777name';
 
 const eventType = localStorage.getItem('eventType');
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre');
@@ -375,3 +375,14 @@ document.getElementById('categoryBtn').addEventListener('click', async () => {
     console.error('Ошибка при получении категорий:', error);
   }
 });
+
+
+document.getElementById('infoBtn').addEventListener('click', ()=>{
+  const modalInfo = document.getElementById('modalInfo')
+  modalInfo.style.display = 'block'; 
+})
+
+document.getElementById('btnOk').addEventListener('click', ()=>{
+  const modalInfo = document.getElementById('modalInfo')
+  modalInfo.style.display = 'none'; 
+}) 

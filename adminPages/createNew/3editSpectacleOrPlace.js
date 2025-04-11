@@ -600,3 +600,13 @@ yesDelete_btn.addEventListener('click', async () => {
     window.location.href = '3showSpectacleOrPlace.html';
   }, 1000);
 });
+
+document.getElementById('infoBtn').addEventListener('click', ()=>{
+  const modalInfo = document.getElementById('modalInfo')
+  modalInfo.style.display = 'block'; 
+})
+
+document.getElementById('btnOk').addEventListener('click', ()=>{
+  const modalInfo = document.getElementById('modalInfo')
+  modalInfo.style.display = 'none'; 
+}) 

@@ -397,3 +397,14 @@ document.getElementById('categoryBtn').addEventListener('click', async () => {
     console.error('Ошибка при получении категорий:', error);
   }
 });
+
+
+document.getElementById('infoBtn').addEventListener('click', ()=>{
+  const modalInfo = document.getElementById('modalInfo')
+  modalInfo.style.display = 'block'; 
+})
+
+document.getElementById('btnOk').addEventListener('click', ()=>{
+  const modalInfo = document.getElementById('modalInfo')
+  modalInfo.style.display = 'none'; 
+}) 

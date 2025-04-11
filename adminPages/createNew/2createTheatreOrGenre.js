@@ -144,4 +144,4 @@ document.getElementById('infoBtn').addEventListener('click', ()=>{
 document.getElementById('btnOk').addEventListener('click', ()=>{
   const modalInfo = document.getElementById('modalInfo')
   modalInfo.style.display = 'none'; 
-})
+})  
