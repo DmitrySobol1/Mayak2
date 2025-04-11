@@ -1,11 +1,11 @@
 //FIXME:
 // Прод
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// const username = window.Telegram.WebApp.initDataUnsafe.user.username
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
-const tlgid = 777
-const username = 'my777name'
+// const tlgid = 777
+// const username = 'my777name'
 
 
 const dstart = localStorage.getItem('dstart')
