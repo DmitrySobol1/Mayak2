@@ -1300,19 +1300,19 @@ margin-bottom: 40px;
 
 .infoButton{
     display: inline-block;
-    padding: 5px 5px;
-    /* background-color: #b1b1b1; */
+    padding: 10px 10px;
+    background-color: #b1b1b1;
     color: rgb(0, 0, 0);
     border-radius: 10px;
-    /* border: 1px solid #b1b1b1; */
+    border: 1px solid black;
     cursor: pointer;
     transition: background-color 0.3s ease;
     /* margin-bottom: 100px; */
   }
 
   .infoImg{
-    width:30px;
-    height:30px;
+    width:20px;
+    height:20px;
   }
 
   .btnOk {
