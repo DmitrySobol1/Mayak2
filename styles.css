@@ -816,7 +816,8 @@ margin-bottom: 40px;
 
 .admin_textarea {
     resize: none; /* Запретить изменение размера */
-    overflow: hidden; /* Скрыть полосу прокрутки */
+    /* overflow: hidden; Скрыть полосу прокрутки */
+    overflow-y: scroll;
     white-space: pre-wrap; /* Сохранять переносы строк */
     font-family: inherit; /* Наследовать шрифт */
   /* font-size: inherit;  */
