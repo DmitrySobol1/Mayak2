@@ -5,7 +5,7 @@ const username = window.Telegram.WebApp.initDataUnsafe.user.username
 
 // тесты
 // const tlgid = 777
-// const username = 'my777name'
+// const username = 'my777name' 
 
 
 const dstart = localStorage.getItem('dstart')

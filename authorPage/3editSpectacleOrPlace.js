@@ -150,8 +150,8 @@ inputAge2.appendChild(ageBtn_content)
 inputAge2.appendChild(ageBtn_content2)
 inputAge.appendChild(inputAge2)
 
-const modalAge = document.getElementById('modalAge');
-const modalAgeContent = document.getElementById('modalAgeContent');
+const modalAge = document.getElementById('modalCategory');
+const modalAgeContent = document.getElementById('modalCategoryContent');
 
             
 inputAge.addEventListener('click', async () => {

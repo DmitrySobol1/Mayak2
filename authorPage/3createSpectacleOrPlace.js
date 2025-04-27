@@ -289,8 +289,8 @@ function checkEmpty() {
 
 
 
-  const modalAge = document.getElementById('modalAge');
-const modalAgeContent = document.getElementById('modalAgeContent');
+  const modalAge = document.getElementById('modalCategory');
+const modalAgeContent = document.getElementById('modalCategoryContent');
 
 document.getElementById('ageBtn').addEventListener('click', async () => {
   console.log('clicked');
