@@ -1298,6 +1298,8 @@ margin-bottom: 40px;
     width: 300px;
     border-radius: 8px;
     text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   
   .modal-btn {

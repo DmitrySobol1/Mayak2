@@ -91,31 +91,30 @@ async function getTheatreOrGenre() {
   // inputAge.classList.add('admin_input')
   // inputAge.placeholder = 'укажите возрастные ограничения'
 
-  inputAge = document.createElement('div');
+  const inputAge = document.createElement('div'); 
   inputAge.classList.add('btnIsoSelect');
 
-  inputAge2 = document.createElement('div');
+  const inputAge2 = document.createElement('div');
   inputAge2.classList.add('btnIsoSelect_div');
 
-  ageBtn_content = document.createElement('span');
+  const ageBtn_content = document.createElement('span');
   ageBtn_content.id = 'inputAge';
-  console.log('item=',item)
-  ageBtn_content.dataset.id = item.age.id
   ageBtn_content.textContent = item.age.name;
+  ageBtn_content.dataset.id = item.age.id
 
-  ageBtn_content2 = document.createElement('span');
+  const ageBtn_content2 = document.createElement('span');
   ageBtn_content2.textContent = '▼';
 
   inputAge2.appendChild(ageBtn_content);
   inputAge2.appendChild(ageBtn_content2);
   inputAge.appendChild(inputAge2);
 
-  const modalAge = document.getElementById('modalAge');
-  const modalAgeContent = document.getElementById('modalAgeContent');
-
+  const modalAge = document.getElementById('modalCategory');
+  const modalAgeContent = document.getElementById('modalCategoryContent');
+  
   
   inputAge.addEventListener('click', async () => {
-    console.log('clicked');
+    
     show_DivSaveCancellBtn();
 
     try {
@@ -131,6 +130,7 @@ async function getTheatreOrGenre() {
 
       const json = await resp.json();
       const array = json.payload;
+      console.log(array)
 
       // Очищаем модальное окно, чтобы не дублировать кнопки при повторных открытиях
       modalAgeContent.innerHTML = '';
@@ -209,26 +209,20 @@ async function getTheatreOrGenre() {
   inputDuration.classList.add('admin_input');
   inputDuration.placeholder = 'укажите продолжительность';
 
-  // subcategory = document.createElement('select')
-  // subcategory.id = 'subcategory'
-  // subcategory.classList.add('admin_select')
-  // subcategoryOption = document.createElement('option')
-  // subcategoryOption.value = item.subCategory_id.id
-  // subcategoryOption.text = item.subCategory_id.subcategory_name
-  // subcategory.appendChild(subcategoryOption)
+  
 
-  subcategory = document.createElement('div');
+  const subcategory = document.createElement('div');
   subcategory.classList.add('btnIsoSelect');
 
-  subcategory2 = document.createElement('div');
+  const subcategory2 = document.createElement('div');
   subcategory2.classList.add('btnIsoSelect_div');
 
-  categoryBtn_content = document.createElement('span');
+  const categoryBtn_content = document.createElement('span');
   categoryBtn_content.id = 'subcategory';
   categoryBtn_content.textContent = item.subCategory_id.subcategory_name;
   categoryBtn_content.dataset.id = item.subCategory_id.id;
 
-  categoryBtn_content2 = document.createElement('span');
+  const categoryBtn_content2 = document.createElement('span');
   categoryBtn_content2.textContent = '▼';
 
   subcategory2.appendChild(categoryBtn_content);
@@ -236,7 +230,7 @@ async function getTheatreOrGenre() {
   subcategory.appendChild(subcategory2);
 
   const modalCategory = document.getElementById('modalCategory');
-  const modalCategoryContent = document.getElementById('modalCategoryContent');
+  const modalCategoryContent = document.getElementById('modalCategoryContent'); 
 
   subcategory.addEventListener('click', async () => {
     console.log('clickedSub');
@@ -269,7 +263,6 @@ async function getTheatreOrGenre() {
         btn.dataset.id = e.id;
 
         
-
         // Добавим класс, если надо стилизовать
         btn.className = 'modal-btn';
 
