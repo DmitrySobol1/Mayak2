@@ -8,7 +8,7 @@ const choosedName = localStorage.getItem('choosedName');
 const btn_back = document
   .getElementById('btn_back')
   .addEventListener('click', () => {
-    window.location.href = '../adminMainMenu.html';
+    window.location.href = '../adminMainMenu.html'; 
   });
 
 const btn_gotomainmenuk = document
@@ -52,6 +52,8 @@ async function getInfoAboutTicket() {
     console.error('Некорректные данные в payload');
     return;
   }
+
+  console.log(payload)
 
   payload.forEach((item) => {
     const schedulediv = document.getElementById('schedulediv');

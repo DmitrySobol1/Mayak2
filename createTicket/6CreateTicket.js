@@ -24,7 +24,8 @@ subtitle.textContent = subtitleFull
 
 
 const title = document.querySelector('.title')
-title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
+// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
+title.textContent =`${choosedEventName} в ${choosedName}`;
 
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', async () => {

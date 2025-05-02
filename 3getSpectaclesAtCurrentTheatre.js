@@ -11,7 +11,7 @@ const subtitleFull = `c ${dstartString} по ${dfinishString}`
 subtitle.textContent = subtitleFull
 
 const title = document.querySelector('.title')
-title.textContent = eventType === 'theatre'? `Спектакли в ${choosedName}` : 'Выберите место'
+title.textContent = eventType === 'theatre'? `Спектакли в ${choosedName}` : `Мероприятия в ${choosedName}`
 
 
 let allTheatres = []

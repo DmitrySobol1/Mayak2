@@ -7,7 +7,9 @@ const choosedSchedule  = localStorage.getItem('choosedSchedule')
 
 
 const subtitle = document.getElementById('subtitle')
-subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
+// subtitle.textContent =  eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
+subtitle.textContent =  `${choosedTheatreGenreName} в ${choosedName}`
+
 
 let dateOk = true
 let timeOk = true

@@ -81,7 +81,8 @@ async function getTheatreOrGenre() {
   inputMainActor.required = true;
   inputMainActor.classList.add('admin_input');
   inputMainActor.classList.add('admin_textarea');
-  inputMainActor.placeholder = 'укажите главных актеров';
+  // inputMainActor.placeholder = 'укажите главных актеров';
+  inputMainActor.placeholder = eventType == 'theatre' ? 'укажите главных актеров' : 'укажите главных действующих лиц'
 
   // inputAge = document.createElement('input')
   // inputAge.id = 'inputAge'

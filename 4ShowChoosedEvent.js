@@ -18,7 +18,8 @@ let heartarray = []
 let manarray = []
 
 const title = document.querySelector('.title')
-title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
+// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
+title.textContent = `${choosedEventName} в ${choosedName}` 
 
 
 const btn_back = document.getElementById('btn_back').addEventListener('click', async () => {
@@ -178,6 +179,7 @@ const response = await fetch(`https://api.directual.com/good/api/v5/data/2_spect
     const mainActor_title = document.createElement('div')
     mainActor_title.classList.add('ShowChoosedEvent_title')
     mainActor_title.textContent = 'Главные действующие лица:'
+    mainActor_title.textContent = eventType ==='theatre' ? 'Главные актеры:':'Главные действующие лица:' ; 
     const mainActor = document.createElement('div')
     mainActor.textContent = item.main_actor
     mainActor.classList.add('ShowChoosedEvent_text')

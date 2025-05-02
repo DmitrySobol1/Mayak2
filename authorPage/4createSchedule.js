@@ -17,10 +17,14 @@ const choosedTheatreGenreName = localStorage.getItem('choosedTheatreGenreName');
 const choosedName = localStorage.getItem('choosedName');
 
 const subtitle = document.getElementById('subtitle');
-subtitle.textContent =
-  eventType === 'theatre'
-    ? `${choosedTheatreGenreName} в ${choosedName}`
-    : `${choosedName} в ${choosedTheatreGenreName}`;
+// subtitle.textContent =
+//   eventType === 'theatre'
+//     ? `${choosedTheatreGenreName} в ${choosedName}`
+//     : `${choosedName} в ${choosedTheatreGenreName}`;
+subtitle.textContent = `${choosedTheatreGenreName} в ${choosedName}`;
+    
+
+
 
 let dateOk = false;
 let timeOk = false;

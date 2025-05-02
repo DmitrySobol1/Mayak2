@@ -7,7 +7,8 @@ const choosedName = localStorage.getItem('choosedName')
 const choosedTheatreGenreName = localStorage.getItem('choosedTheatreGenreName')
 
 const title = document.querySelector('.title')
-title.textContent = eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
+// title.textContent = eventType === 'theatre'? `${choosedTheatreGenreName} в ${choosedName}` : `${choosedName} в ${choosedTheatreGenreName}`
+title.textContent = `${choosedTheatreGenreName} в ${choosedName}`
 
 const contextMenu = document.getElementById('context-menu');
 

@@ -14,7 +14,10 @@ const choosedEvent = localStorage.getItem('choosedEvent')
 
 
 const title = document.getElementById('title')
-title.textContent = eventType == 'theatre' ? 'Добавить спектакль' : 'Добавить место'
+title.textContent = eventType == 'theatre' ? 'Добавить спектакль' : 'Добавить мероприятие'
+
+const inputMainActorPlaceholder = document.getElementById('mainActor');
+inputMainActorPlaceholder.placeholder = eventType == 'theatre' ? 'главные актеры' : 'главные действующие лица'
 
 
 const categoryBtn_content=document.getElementById('categoryBtn_content')

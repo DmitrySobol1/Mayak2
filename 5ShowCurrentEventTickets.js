@@ -5,8 +5,8 @@ const choosedEventName = localStorage.getItem('choosedEventName')
 const choosedName = localStorage.getItem('choosedName')
 
 const title = document.querySelector('.title')
-title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
-
+// title.textContent = eventType === 'theatre'? `${choosedEventName} в ${choosedName}` : `${choosedName} в ${choosedEventName}`
+title.textContent = `${choosedEventName} в ${choosedName}`;
 
 
 

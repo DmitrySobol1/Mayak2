@@ -14,12 +14,19 @@ const choosedEvent = localStorage.getItem('choosedEvent');
 
 const title = document.getElementById('title');
 title.textContent =
-  eventType == 'theatre' ? 'Добавить спектакль' : 'Добавить место';
+  eventType == 'theatre' ? 'Добавить спектакль' : 'Добавить мероприятие';
+
+const inputMainActorPlaceholder = document.getElementById('mainActor');
+inputMainActorPlaceholder.placeholder = eventType == 'theatre' ? 'главные актеры' : 'главные действующие лица'
+
 
 
 const categoryBtn_content=document.getElementById('categoryBtn_content')
 categoryBtn_content.textContent = eventType == 'theatre' ? 'Балет'  : 'Детям';
 categoryBtn_content.dataset.id = eventType == 'theatre' ? 'fc55857e-1647-4541-93ad-dca2c34961ad'  : '73f51d39-c6e3-4195-bd6a-61c2b49bba8c';
+
+
+
 
 
 let imgIsChanged = false;
@@ -101,6 +108,7 @@ const adminEdit_btnSave = document
       const inputName = document.getElementById('text').value;
       const inputDescription = document.getElementById('description').value;
       const inputMainActor = document.getElementById('mainActor').value;
+      
       const inputAge = document.getElementById('ageBtn_content').dataset.id;
       const inputDuration = document.getElementById('duration').value;
       const subcategory = document.getElementById('categoryBtn_content').dataset.id;

@@ -2,7 +2,7 @@ const eventType = localStorage.getItem('eventType');
 const choosedTheatreGenre = localStorage.getItem('choosedTheatreGenre');
 
 const title = document.getElementById('title');
-title.textContent = eventType == 'theatre' ? 'Добавить театр' : 'Добавить жанр';
+title.textContent = eventType == 'theatre' ? 'Добавить театр' : 'Добавить место';
 
 let imgIsChanged = false;
 let textIsChanged = false;
